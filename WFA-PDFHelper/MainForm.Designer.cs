@@ -30,12 +30,16 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.panelTop = new System.Windows.Forms.Panel();
+            this.lblPDFHelper = new System.Windows.Forms.Label();
+            this.panelMenuTask = new System.Windows.Forms.Panel();
             this.btnClose = new System.Windows.Forms.Button();
             this.panelTop.SuspendLayout();
             this.SuspendLayout();
             // 
             // panelTop
             // 
+            this.panelTop.BackColor = System.Drawing.Color.Black;
+            this.panelTop.Controls.Add(this.lblPDFHelper);
             this.panelTop.Controls.Add(this.btnClose);
             this.panelTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelTop.Location = new System.Drawing.Point(0, 0);
@@ -43,6 +47,26 @@
             this.panelTop.Size = new System.Drawing.Size(900, 40);
             this.panelTop.TabIndex = 0;
             this.panelTop.MouseMove += new System.Windows.Forms.MouseEventHandler(this.panelTop_MouseMove);
+            // 
+            // lblPDFHelper
+            // 
+            this.lblPDFHelper.AutoSize = true;
+            this.lblPDFHelper.Font = new System.Drawing.Font("Itim", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPDFHelper.ForeColor = System.Drawing.Color.White;
+            this.lblPDFHelper.Location = new System.Drawing.Point(5, 9);
+            this.lblPDFHelper.Name = "lblPDFHelper";
+            this.lblPDFHelper.Size = new System.Drawing.Size(91, 19);
+            this.lblPDFHelper.TabIndex = 1;
+            this.lblPDFHelper.Text = "PDFHelper";
+            // 
+            // panelMenuTask
+            // 
+            this.panelMenuTask.BackColor = System.Drawing.Color.Black;
+            this.panelMenuTask.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panelMenuTask.Location = new System.Drawing.Point(0, 40);
+            this.panelMenuTask.Name = "panelMenuTask";
+            this.panelMenuTask.Size = new System.Drawing.Size(256, 560);
+            this.panelMenuTask.TabIndex = 1;
             // 
             // btnClose
             // 
@@ -65,6 +89,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(163)))), ((int)(((byte)(163)))), ((int)(((byte)(163)))));
             this.ClientSize = new System.Drawing.Size(900, 600);
+            this.Controls.Add(this.panelMenuTask);
             this.Controls.Add(this.panelTop);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -74,6 +99,7 @@
             this.Text = "MainForm";
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.panelTop.ResumeLayout(false);
+            this.panelTop.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -82,5 +108,7 @@
 
         private System.Windows.Forms.Panel panelTop;
         private System.Windows.Forms.Button btnClose;
+        private System.Windows.Forms.Label lblPDFHelper;
+        private System.Windows.Forms.Panel panelMenuTask;
     }
 }

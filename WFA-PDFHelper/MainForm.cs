@@ -22,6 +22,15 @@ namespace WFA.PDFHelper
         public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
         [System.Runtime.InteropServices.DllImport("user32.dll")]
         public static extern bool ReleaseCapture();
+
+        private void panelTop_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                ReleaseCapture();
+                SendMessage(Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
+            }
+        }
         #endregion
 
         #region init
@@ -35,7 +44,7 @@ namespace WFA.PDFHelper
         #region form
         private void MainForm_Load(object sender, EventArgs e)
         {
-            //UserControlHelper.SetUserControl(panelTop, userControl: new UCTopHeaderTitle(), dockStyle: UserControlDockStyle.DockStyleFill);
+            UserControlHelper.SetUserControl(panelMenuTask, userControl: new UCPDF2Image(), dockStyle: UserControlDockStyle.DockStyleFill);
         }
         #endregion
 
@@ -52,14 +61,7 @@ namespace WFA.PDFHelper
         #endregion
 
         #region panel
-        private void panelTop_MouseMove(object sender, MouseEventArgs e)
-        {
-            if (e.Button == MouseButtons.Left)
-            {
-                ReleaseCapture();
-                SendMessage(Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
-            }
-        }
+       
         #endregion
     }
 }

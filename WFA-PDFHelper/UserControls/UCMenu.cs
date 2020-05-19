@@ -10,17 +10,11 @@ using System.Windows.Forms;
 
 namespace WFA.PDFHelper.UserControls
 {
-    public partial class UCTopHeaderTitle : UserControl
+    public partial class UCMenu : UserControl
     {
-        public UCTopHeaderTitle()
+        public UCMenu()
         {
             InitializeComponent();
-        }
-
-        private void picClose_Click(object sender, EventArgs e)
-        {
-            //close form
-            ((Form)this.TopLevelControl).Close();
         }
     }
 }

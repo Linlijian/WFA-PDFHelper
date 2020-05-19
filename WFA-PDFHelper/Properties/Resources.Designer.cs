@@ -73,6 +73,26 @@ namespace WFA_PDFHelper.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap home_32px {
+            get {
+                object obj = ResourceManager.GetObject("home_32px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap home_page_96px {
+            get {
+                object obj = ResourceManager.GetObject("home_page_96px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap multiply_32px {
             get {
                 object obj = ResourceManager.GetObject("multiply_32px", resourceCulture);
