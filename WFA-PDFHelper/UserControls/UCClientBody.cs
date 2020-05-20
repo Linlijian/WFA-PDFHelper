@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WFA.PDFHelper.Helper;
 
 namespace WFA.PDFHelper.UserControls
 {

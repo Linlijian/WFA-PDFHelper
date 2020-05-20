@@ -62,6 +62,12 @@
     <Compile Include="UserControls\UCClientBody.Designer.cs">
       <DependentUpon>UCClientBody.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\UCClientTask.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\UCClientTask.Designer.cs">
+      <DependentUpon>UCClientTask.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\UCMenu.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -89,6 +95,9 @@
     </Compile>
     <EmbeddedResource Include="UserControls\UCClientBody.resx">
       <DependentUpon>UCClientBody.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCClientTask.resx">
+      <DependentUpon>UCClientTask.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\UCMenu.resx">
       <DependentUpon>UCMenu.cs</DependentUpon>

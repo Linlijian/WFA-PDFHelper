@@ -34,7 +34,30 @@ namespace WFA.PDFHelper
         #endregion
 
         #region init
+        static MainForm _obj;
 
+        public static MainForm Instance
+        {
+            get
+            {
+                if (_obj == null)
+                {
+                    _obj = new MainForm();
+                }
+                return _obj;
+            }
+        }
+
+        public Panel PnlClientBody
+        {
+            get { return panelClientBody; }
+            set { panelClientBody = value; }
+        }
+        //public Button HomeButton
+        //{
+        //    get { return btnHome; }
+        //    set { btnHome = value; }
+        //}
 
         public MainForm()
         {
@@ -45,8 +68,9 @@ namespace WFA.PDFHelper
         #region form
         private void MainForm_Load(object sender, EventArgs e)
         {
-            panelMenuTask.Hide();
-            UserControlHelper.SetUserControl(panelClientBody, userControl: new UCClientBody(),dockStyle:UserControlDockStyle.DockStyleFill);
+            _obj = this;
+
+            //UserControlHelper.SetUserControl(panelClientBody, userControl: new UCClientBody(),dockStyle:UserControlDockStyle.DockStyleFill);
         }
         #endregion
 
@@ -63,7 +87,22 @@ namespace WFA.PDFHelper
         #endregion
 
         #region panel
-       
+
         #endregion
+
+        private void btnPDFtoImage_Click(object sender, EventArgs e)
+        {
+            string ActiveTask = "PDF to Image";
+
+            if (!PnlClientBody.Controls.ContainsKey("UCClientTask"))
+            {
+                UCClientTask un = new UCClientTask(ActiveTask);
+                un.Dock = DockStyle.Fill;
+                PnlClientBody.Controls.Add(un);
+            }
+            PnlClientBody.Controls["UCClientTask"].BringToFront();
+
+            // UserControlHelper.SetUserControl(panelClientBody, userControl: new UCClientTask(ActiveTask), dockStyle: UserControlDockStyle.DockStyleFill);
+        }
     }
 }
