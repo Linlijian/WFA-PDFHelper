@@ -73,13 +73,14 @@
             this.btnPDFtoImage.ForeColor = System.Drawing.Color.White;
             this.btnPDFtoImage.Image = global::WFA_PDFHelper.Properties.Resources.image_file_64px;
             this.btnPDFtoImage.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnPDFtoImage.Location = new System.Drawing.Point(50, 100);
+            this.btnPDFtoImage.Location = new System.Drawing.Point(58, 100);
             this.btnPDFtoImage.Name = "btnPDFtoImage";
             this.btnPDFtoImage.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
             this.btnPDFtoImage.Size = new System.Drawing.Size(240, 80);
             this.btnPDFtoImage.TabIndex = 0;
             this.btnPDFtoImage.Text = "PDF to Image";
             this.btnPDFtoImage.UseVisualStyleBackColor = true;
+            this.btnPDFtoImage.Click += new System.EventHandler(this.btnPDFtoImage_Click);
             // 
             // UCClientBody
             // 

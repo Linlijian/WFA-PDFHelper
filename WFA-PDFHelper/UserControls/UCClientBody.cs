@@ -16,5 +16,10 @@ namespace WFA.PDFHelper.UserControls
         {
             InitializeComponent();
         }
+
+        private void btnPDFtoImage_Click(object sender, EventArgs e)
+        {
+            //UserControlHelper.SetUserControl(MainForm.pa, userControl: new UCPDF2Image(), dockStyle: UserControlDockStyle.DockStyleFill);
+        }
     }
 }
