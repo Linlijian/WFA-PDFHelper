@@ -44,7 +44,10 @@ namespace WFA.PDFHelper
         #region form
         private void MainForm_Load(object sender, EventArgs e)
         {
-            UserControlHelper.SetUserControl(panelMenuTask, userControl: new UCPDF2Image(), dockStyle: UserControlDockStyle.DockStyleFill);
+            panelMenuTask.Hide();
+            //panelClientBody.Hide();
+            UserControlHelper.SetUserControl(panelClientBody, userControl: new UCClientBody(),dockStyle:UserControlDockStyle.DockStyleFill);
+            //UserControlHelper.SetUserControl(panelMenuTask, userControl: new UCPDF2Image(), dockStyle: UserControlDockStyle.DockStyleFill);
         }
         #endregion
 

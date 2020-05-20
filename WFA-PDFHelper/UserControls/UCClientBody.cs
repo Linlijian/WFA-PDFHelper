@@ -10,17 +10,11 @@ using System.Windows.Forms;
 
 namespace WFA.PDFHelper.UserControls
 {
-    public partial class UCPDF2Image : UserControl
+    public partial class UCClientBody : UserControl
     {
-        public UCPDF2Image()
+        public UCClientBody()
         {
             InitializeComponent();
-        }
-
-        private void btnHome_Click(object sender, EventArgs e)
-        {
-
-
         }
     }
 }

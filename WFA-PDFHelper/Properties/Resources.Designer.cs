@@ -93,6 +93,26 @@ namespace WFA_PDFHelper.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap image_file_32px {
+            get {
+                object obj = ResourceManager.GetObject("image_file_32px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap image_file_64px {
+            get {
+                object obj = ResourceManager.GetObject("image_file_64px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap multiply_32px {
             get {
                 object obj = ResourceManager.GetObject("multiply_32px", resourceCulture);
@@ -106,6 +126,26 @@ namespace WFA_PDFHelper.Properties {
         internal static System.Drawing.Bitmap multiply_48px {
             get {
                 object obj = ResourceManager.GetObject("multiply_48px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap pdf_64px {
+            get {
+                object obj = ResourceManager.GetObject("pdf_64px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap settings_64px {
+            get {
+                object obj = ResourceManager.GetObject("settings_64px", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
