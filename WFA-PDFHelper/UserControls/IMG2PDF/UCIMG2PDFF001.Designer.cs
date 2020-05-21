@@ -31,6 +31,7 @@
             this.lblToppic = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.btnAddImage = new System.Windows.Forms.Button();
+            this.OFDAddImage = new System.Windows.Forms.OpenFileDialog();
             this.SuspendLayout();
             // 
             // lblToppic
@@ -70,7 +71,11 @@
             this.btnAddImage.Size = new System.Drawing.Size(36, 36);
             this.btnAddImage.TabIndex = 2;
             this.btnAddImage.UseVisualStyleBackColor = false;
-            this.btnAddImage.MouseHover += new System.EventHandler(this.btnAddImage_MouseHover);
+            this.btnAddImage.Click += new System.EventHandler(this.btnAddImage_Click);
+            // 
+            // OFDAddImage
+            // 
+            this.OFDAddImage.FileName = "OFDAddImage";
             // 
             // UCIMG2PDFF001
             // 
@@ -93,5 +98,6 @@
         private System.Windows.Forms.Label lblToppic;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnAddImage;
+        private System.Windows.Forms.OpenFileDialog OFDAddImage;
     }
 }
