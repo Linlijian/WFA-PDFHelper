@@ -50,8 +50,7 @@ namespace WFA.PDFHelper.UserControls
                 UserControlHelper.SetUserControl(MainForm.Instance.PnlClientBody, userControl: new UCClientBody(), dockStyle: UserControlDockStyle.DockStyleFill);
             }
             MainForm.Instance.PnlClientBody.Controls["UCClientBody"].BringToFront();
-            //panelClient.Hide();
-            //UserControlHelper.SetUserControl(panelClient, userControl: new UCClientBody(), dockStyle: UserControlDockStyle.DockStyleFill);
+            MainForm.Instance.PnlTitle.BackColor = Color.Black;
         }
     }
 }

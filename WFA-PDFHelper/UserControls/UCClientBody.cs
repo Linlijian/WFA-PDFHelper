@@ -28,6 +28,7 @@ namespace WFA.PDFHelper.UserControls
                 UserControlHelper.SetUserControl(MainForm.Instance.PnlClientBody, userControl: new UCClientPDF2IMG(), dockStyle: UserControlDockStyle.DockStyleFill);
             }
             MainForm.Instance.PnlClientBody.Controls["UCClientPDF2IMG"].BringToFront();
+            MainForm.Instance.PnlTitle.BackColor = Color.FromArgb(32, 32, 32);
         }
 
         private void btnImagetoPDF_Click(object sender, EventArgs e)
@@ -37,6 +38,7 @@ namespace WFA.PDFHelper.UserControls
                 UserControlHelper.SetUserControl(MainForm.Instance.PnlClientBody, userControl: new UCClientIMG2PDF(), dockStyle: UserControlDockStyle.DockStyleFill);
             }
             MainForm.Instance.PnlClientBody.Controls["UCClientIMG2PDF"].BringToFront();
+            MainForm.Instance.PnlTitle.BackColor = Color.FromArgb(32, 32, 32);
         }        
     }
 }

@@ -33,13 +33,15 @@
             this.lblPDFHelper = new System.Windows.Forms.Label();
             this.btnClose = new System.Windows.Forms.Button();
             this.panelClientBody = new System.Windows.Forms.Panel();
+            this.panelTitle = new System.Windows.Forms.Panel();
             this.panelTop.SuspendLayout();
+            this.panelTitle.SuspendLayout();
             this.SuspendLayout();
             // 
             // panelTop
             // 
             this.panelTop.BackColor = System.Drawing.Color.Black;
-            this.panelTop.Controls.Add(this.lblPDFHelper);
+            this.panelTop.Controls.Add(this.panelTitle);
             this.panelTop.Controls.Add(this.btnClose);
             this.panelTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelTop.Location = new System.Drawing.Point(0, 0);
@@ -84,6 +86,15 @@
             this.panelClientBody.Size = new System.Drawing.Size(900, 560);
             this.panelClientBody.TabIndex = 2;
             // 
+            // panelTitle
+            // 
+            this.panelTitle.Controls.Add(this.lblPDFHelper);
+            this.panelTitle.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panelTitle.Location = new System.Drawing.Point(0, 0);
+            this.panelTitle.Name = "panelTitle";
+            this.panelTitle.Size = new System.Drawing.Size(256, 40);
+            this.panelTitle.TabIndex = 0;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -100,7 +111,8 @@
             this.Text = "MainForm";
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.panelTop.ResumeLayout(false);
-            this.panelTop.PerformLayout();
+            this.panelTitle.ResumeLayout(false);
+            this.panelTitle.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -111,5 +123,6 @@
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.Label lblPDFHelper;
         private System.Windows.Forms.Panel panelClientBody;
+        private System.Windows.Forms.Panel panelTitle;
     }
 }

@@ -53,6 +53,11 @@ namespace WFA.PDFHelper
             get { return panelClientBody; }
             set { panelClientBody = value; }
         }
+        public Panel PnlTitle
+        {
+            get { return panelTitle; }
+            set { panelTitle = value; }
+        }
 
         public MainForm()
         {
