@@ -20,13 +20,20 @@ namespace WFA.PDFHelper.UserControls
 
         private void btnPDFtoImage_Click(object sender, EventArgs e)
         {
-            if (!MainForm.Instance.PnlClientBody.Controls.ContainsKey("UCClientTask"))
+            if (!MainForm.Instance.PnlClientBody.Controls.ContainsKey("UCClientPDF2IMG"))
             {
-                UserControlHelper.SetUserControl(MainForm.Instance.PnlClientBody, userControl: new UCClientTask(), dockStyle: UserControlDockStyle.DockStyleFill);
+                UserControlHelper.SetUserControl(MainForm.Instance.PnlClientBody, userControl: new UCClientPDF2IMG(), dockStyle: UserControlDockStyle.DockStyleFill);
             }
-            MainForm.Instance.PnlClientBody.Controls["UCClientTask"].BringToFront();
-            //MainForm.Instance.ButtonHome.Visible = true;
-            //UserControlHelper.SetUserControl(MainForm.pa, userControl: new UCPDF2Image(), dockStyle: UserControlDockStyle.DockStyleFill);
+            MainForm.Instance.PnlClientBody.Controls["UCClientPDF2IMG"].BringToFront();
+        }
+
+        private void btnImagetoPDF_Click(object sender, EventArgs e)
+        {
+            if (!MainForm.Instance.PnlClientBody.Controls.ContainsKey("UCClientIMG2PDF"))
+            {
+                UserControlHelper.SetUserControl(MainForm.Instance.PnlClientBody, userControl: new UCClientIMG2PDF(), dockStyle: UserControlDockStyle.DockStyleFill);
+            }
+            MainForm.Instance.PnlClientBody.Controls["UCClientIMG2PDF"].BringToFront();
         }
     }
 }

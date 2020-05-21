@@ -64,6 +64,7 @@
             this.btnImagetoPDF.TabIndex = 1;
             this.btnImagetoPDF.Text = "Image to PDF";
             this.btnImagetoPDF.UseVisualStyleBackColor = true;
+            this.btnImagetoPDF.Click += new System.EventHandler(this.btnImagetoPDF_Click);
             // 
             // btnPDFtoImage
             // 

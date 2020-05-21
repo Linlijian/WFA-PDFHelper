@@ -11,37 +11,37 @@ using WFA.PDFHelper.Helper;
 
 namespace WFA.PDFHelper.UserControls
 {
-    public partial class UCClientPDF2IMG : UserControl
+    public partial class UCClientIMG2PDF : UserControl
     {
-        public UCClientPDF2IMG()
-        {            
+        public UCClientIMG2PDF()
+        {
             InitializeComponent();
             HideActive();
         }
         public void HideActive()
         {
-            PActiveConvert2Image.Hide();
+            PActiveConvert2PDF.Hide();
             PActiveConvertInFolder.Hide();
             PActiveConvertInMulFolder.Hide();
         }
 
-        private void btnConvert2Image_Click(object sender, EventArgs e)
+        private void btnConvert2PDF_Click(object sender, EventArgs e)
         {
             HideActive();
-            PActiveConvert2Image.Show();
-            UserControlHelper.SetUserControl(panelClientTask, userControl: new UCPDF2IMGF001(), dockStyle: UserControlDockStyle.DockStyleFill);
+            PActiveConvert2PDF.Show();
+            UserControlHelper.SetUserControl(panelClientTask, userControl: new UCIMG2PDFF001(), dockStyle: UserControlDockStyle.DockStyleFill);
         }
         private void btnConvertInFolder_Click(object sender, EventArgs e)
         {
             HideActive();
             PActiveConvertInFolder.Show();
-            UserControlHelper.SetUserControl(panelClientTask, userControl: new UCPDF2IMGF002(), dockStyle: UserControlDockStyle.DockStyleFill);
+            UserControlHelper.SetUserControl(panelClientTask, userControl: new UCIMG2PDFF002(), dockStyle: UserControlDockStyle.DockStyleFill);
         }
         private void btnConvertInMulFolder_Click(object sender, EventArgs e)
         {
             HideActive();
             PActiveConvertInMulFolder.Show();
-            UserControlHelper.SetUserControl(panelClientTask, userControl: new UCPDF2IMGF003(), dockStyle: UserControlDockStyle.DockStyleFill);
+            UserControlHelper.SetUserControl(panelClientTask, userControl: new UCIMG2PDFF003(), dockStyle: UserControlDockStyle.DockStyleFill);
         }
         private void btnHome_Click(object sender, EventArgs e)
         {
@@ -49,9 +49,7 @@ namespace WFA.PDFHelper.UserControls
             {
                 UserControlHelper.SetUserControl(MainForm.Instance.PnlClientBody, userControl: new UCClientBody(), dockStyle: UserControlDockStyle.DockStyleFill);
             }
-            MainForm.Instance.PnlClientBody.Controls["UCClientBody"].BringToFront();
-            //panelClient.Hide();
-            //UserControlHelper.SetUserControl(panelClient, userControl: new UCClientBody(), dockStyle: UserControlDockStyle.DockStyleFill);
+            MainForm.Instance.PnlClientBody.Controls["UCClientBody"].BringToFront();            
         }
     }
 }
