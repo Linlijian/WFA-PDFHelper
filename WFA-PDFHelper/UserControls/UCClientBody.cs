@@ -20,6 +20,14 @@ namespace WFA.PDFHelper.UserControls
 
         private void btnPDFtoImage_Click(object sender, EventArgs e)
         {
+            if (!MainForm.Instance.PnlClientBody.Controls.ContainsKey("UCClientTask"))
+            {
+                UCClientTask un = new UCClientTask("PDF to Image");
+                un.Dock = DockStyle.Fill;
+                MainForm.Instance.PnlClientBody.Controls.Add(un);
+            }
+            MainForm.Instance.PnlClientBody.Controls["UCClientTask"].BringToFront();
+            //MainForm.Instance.ButtonHome.Visible = true;
             //UserControlHelper.SetUserControl(MainForm.pa, userControl: new UCPDF2Image(), dockStyle: UserControlDockStyle.DockStyleFill);
         }
     }
