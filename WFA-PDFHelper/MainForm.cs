@@ -53,11 +53,6 @@ namespace WFA.PDFHelper
             get { return panelClientBody; }
             set { panelClientBody = value; }
         }
-        public Button ButtonHome
-        {
-            get { return btnHome; }
-            set { btnHome = value; }
-        }
 
         public MainForm()
         {
@@ -69,7 +64,6 @@ namespace WFA.PDFHelper
         private void MainForm_Load(object sender, EventArgs e)
         {
             _obj = this;
-            btnHome.Visible = false;
             UserControlHelper.SetUserControl(panelClientBody, userControl: new UCClientBody(),dockStyle:UserControlDockStyle.DockStyleFill);
         }
         #endregion
@@ -93,7 +87,6 @@ namespace WFA.PDFHelper
         private void btnHome_Click(object sender, EventArgs e)
         {
             PnlClientBody.Controls["UCClientBody"].BringToFront();
-            btnHome.Visible = false;
         }
     }
 }

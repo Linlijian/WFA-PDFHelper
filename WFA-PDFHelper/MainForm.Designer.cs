@@ -30,7 +30,6 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.panelTop = new System.Windows.Forms.Panel();
-            this.btnHome = new System.Windows.Forms.Button();
             this.lblPDFHelper = new System.Windows.Forms.Label();
             this.btnClose = new System.Windows.Forms.Button();
             this.panelClientBody = new System.Windows.Forms.Panel();
@@ -40,7 +39,6 @@
             // panelTop
             // 
             this.panelTop.BackColor = System.Drawing.Color.Black;
-            this.panelTop.Controls.Add(this.btnHome);
             this.panelTop.Controls.Add(this.lblPDFHelper);
             this.panelTop.Controls.Add(this.btnClose);
             this.panelTop.Dock = System.Windows.Forms.DockStyle.Top;
@@ -50,26 +48,12 @@
             this.panelTop.TabIndex = 0;
             this.panelTop.MouseMove += new System.Windows.Forms.MouseEventHandler(this.panelTop_MouseMove);
             // 
-            // btnHome
-            // 
-            this.btnHome.BackColor = System.Drawing.Color.Black;
-            this.btnHome.BackgroundImage = global::WFA_PDFHelper.Properties.Resources.home_32px;
-            this.btnHome.FlatAppearance.BorderSize = 0;
-            this.btnHome.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnHome.ForeColor = System.Drawing.Color.Black;
-            this.btnHome.Location = new System.Drawing.Point(3, 4);
-            this.btnHome.Name = "btnHome";
-            this.btnHome.Size = new System.Drawing.Size(33, 33);
-            this.btnHome.TabIndex = 2;
-            this.btnHome.UseVisualStyleBackColor = false;
-            this.btnHome.Click += new System.EventHandler(this.btnHome_Click);
-            // 
             // lblPDFHelper
             // 
             this.lblPDFHelper.AutoSize = true;
             this.lblPDFHelper.Font = new System.Drawing.Font("Itim", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPDFHelper.ForeColor = System.Drawing.Color.White;
-            this.lblPDFHelper.Location = new System.Drawing.Point(42, 10);
+            this.lblPDFHelper.Location = new System.Drawing.Point(15, 10);
             this.lblPDFHelper.Name = "lblPDFHelper";
             this.lblPDFHelper.Size = new System.Drawing.Size(91, 19);
             this.lblPDFHelper.TabIndex = 1;
@@ -126,6 +110,5 @@
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.Label lblPDFHelper;
         private System.Windows.Forms.Panel panelClientBody;
-        private System.Windows.Forms.Button btnHome;
     }
 }

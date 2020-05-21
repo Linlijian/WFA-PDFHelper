@@ -13,13 +13,10 @@ namespace WFA.PDFHelper.UserControls
 {
     public partial class UCClientTask : UserControl
     {
-        public UCClientTask(string _ActiveTask)
+        public UCClientTask()
         {            
             InitializeComponent();
-
-            lblActiveTask.Text = _ActiveTask;
             HideActive();
-
         }
         public void HideActive()
         {
@@ -32,28 +29,28 @@ namespace WFA.PDFHelper.UserControls
         {
             HideActive();
             PActiveConvert2Image.Show();
-
+            UserControlHelper.SetUserControl(panelClientTask, userControl: new UCPDF2IMGF001(), dockStyle: UserControlDockStyle.DockStyleFill);
         }
 
         private void btnConvertInFolder_Click(object sender, EventArgs e)
         {
             HideActive();
             PActiveConvertInFolder.Show();
+            UserControlHelper.SetUserControl(panelClientTask, userControl: new UCPDF2IMGF002(), dockStyle: UserControlDockStyle.DockStyleFill);
         }
 
         private void btnConvertInMulFolder_Click(object sender, EventArgs e)
         {
             HideActive();
             PActiveConvertInMulFolder.Show();
+            UserControlHelper.SetUserControl(panelClientTask, userControl: new UCPDF2IMGF003(), dockStyle: UserControlDockStyle.DockStyleFill);
         }
 
         private void btnHome_Click(object sender, EventArgs e)
         {
             if (!MainForm.Instance.PnlClientBody.Controls.ContainsKey("UCClientBody"))
             {
-                UCClientBody un = new UCClientBody();
-                un.Dock = DockStyle.Fill;
-                MainForm.Instance.PnlClientBody.Controls.Add(un);
+                UserControlHelper.SetUserControl(MainForm.Instance.PnlClientBody, userControl: new UCClientBody(), dockStyle: UserControlDockStyle.DockStyleFill);
             }
             MainForm.Instance.PnlClientBody.Controls["UCClientBody"].BringToFront();
             //panelClient.Hide();

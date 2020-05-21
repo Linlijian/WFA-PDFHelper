@@ -22,9 +22,7 @@ namespace WFA.PDFHelper.UserControls
         {
             if (!MainForm.Instance.PnlClientBody.Controls.ContainsKey("UCClientTask"))
             {
-                UCClientTask un = new UCClientTask("PDF to Image");
-                un.Dock = DockStyle.Fill;
-                MainForm.Instance.PnlClientBody.Controls.Add(un);
+                UserControlHelper.SetUserControl(MainForm.Instance.PnlClientBody, userControl: new UCClientTask(), dockStyle: UserControlDockStyle.DockStyleFill);
             }
             MainForm.Instance.PnlClientBody.Controls["UCClientTask"].BringToFront();
             //MainForm.Instance.ButtonHome.Visible = true;

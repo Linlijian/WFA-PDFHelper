@@ -56,17 +56,35 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UserControls\PDF2IMG\UCPDF2IMGF001.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\PDF2IMG\UCPDF2IMGF001.Designer.cs">
+      <DependentUpon>UCPDF2IMGF001.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\PDF2IMG\UCPDF2IMGF002.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\PDF2IMG\UCPDF2IMGF002.Designer.cs">
+      <DependentUpon>UCPDF2IMGF002.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\PDF2IMG\UCPDF2IMGF003.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\PDF2IMG\UCPDF2IMGF003.Designer.cs">
+      <DependentUpon>UCPDF2IMGF003.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\UCClientBody.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="UserControls\UCClientBody.Designer.cs">
       <DependentUpon>UCClientBody.cs</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\UCClientTask.cs">
+    <Compile Include="UserControls\PDF2IMG\UCClientPDF2IMG.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UserControls\UCClientTask.Designer.cs">
-      <DependentUpon>UCClientTask.cs</DependentUpon>
+    <Compile Include="UserControls\PDF2IMG\UCClientPDF2IMG.Designer.cs">
+      <DependentUpon>UCClientPDF2IMG.cs</DependentUpon>
     </Compile>
     <Compile Include="UserControls\UCMenu.cs">
       <SubType>UserControl</SubType>
@@ -93,11 +111,20 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="UserControls\PDF2IMG\UCPDF2IMGF001.resx">
+      <DependentUpon>UCPDF2IMGF001.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\PDF2IMG\UCPDF2IMGF002.resx">
+      <DependentUpon>UCPDF2IMGF002.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\PDF2IMG\UCPDF2IMGF003.resx">
+      <DependentUpon>UCPDF2IMGF003.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UserControls\UCClientBody.resx">
       <DependentUpon>UCClientBody.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UserControls\UCClientTask.resx">
-      <DependentUpon>UCClientTask.cs</DependentUpon>
+    <EmbeddedResource Include="UserControls\PDF2IMG\UCClientPDF2IMG.resx">
+      <DependentUpon>UCClientPDF2IMG.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\UCMenu.resx">
       <DependentUpon>UCMenu.cs</DependentUpon>
@@ -145,6 +172,7 @@
   <ItemGroup>
     <None Include="Resources\settings_64px.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

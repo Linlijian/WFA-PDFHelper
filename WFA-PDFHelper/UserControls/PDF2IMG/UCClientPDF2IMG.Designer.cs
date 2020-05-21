@@ -144,9 +144,9 @@
             this.lblActiveTask.ForeColor = System.Drawing.Color.White;
             this.lblActiveTask.Location = new System.Drawing.Point(8, 76);
             this.lblActiveTask.Name = "lblActiveTask";
-            this.lblActiveTask.Size = new System.Drawing.Size(100, 19);
+            this.lblActiveTask.Size = new System.Drawing.Size(101, 19);
             this.lblActiveTask.TabIndex = 3;
-            this.lblActiveTask.Text = "Label change";
+            this.lblActiveTask.Text = "PDF to Image";
             // 
             // btnHome
             // 
