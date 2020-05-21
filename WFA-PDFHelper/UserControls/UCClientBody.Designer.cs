@@ -48,6 +48,7 @@
             this.btnSetting.TabIndex = 2;
             this.btnSetting.Text = "Setting";
             this.btnSetting.UseVisualStyleBackColor = true;
+            this.btnSetting.MouseHover += new System.EventHandler(this.btnSetting_MouseHover);
             // 
             // btnImagetoPDF
             // 
@@ -65,6 +66,7 @@
             this.btnImagetoPDF.Text = "Image to PDF";
             this.btnImagetoPDF.UseVisualStyleBackColor = true;
             this.btnImagetoPDF.Click += new System.EventHandler(this.btnImagetoPDF_Click);
+            this.btnImagetoPDF.MouseHover += new System.EventHandler(this.btnImagetoPDF_MouseHover);
             // 
             // btnPDFtoImage
             // 
@@ -82,6 +84,7 @@
             this.btnPDFtoImage.Text = "PDF to Image";
             this.btnPDFtoImage.UseVisualStyleBackColor = true;
             this.btnPDFtoImage.Click += new System.EventHandler(this.btnPDFtoImage_Click);
+            this.btnPDFtoImage.MouseHover += new System.EventHandler(this.btnPDFtoImage_MouseHover);
             // 
             // UCClientBody
             // 

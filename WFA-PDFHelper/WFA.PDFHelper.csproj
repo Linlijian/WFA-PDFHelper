@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Helper\ButtonHelper.cs" />
     <Compile Include="Helper\UserControlDockStyle.cs" />
     <Compile Include="Helper\UserControlHelper.cs" />
     <Compile Include="MainForm.cs">

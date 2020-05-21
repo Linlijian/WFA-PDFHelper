@@ -18,6 +18,21 @@ namespace WFA.PDFHelper.UserControls
             InitializeComponent();
         }
 
+        #region event
+        private void btnPDFtoImage_MouseHover(object sender, EventArgs e)
+        {
+            btnPDFtoImage.SetOverBackColor(Color.DimGray);
+        }
+        private void btnImagetoPDF_MouseHover(object sender, EventArgs e)
+        {
+            btnImagetoPDF.SetOverBackColor(Color.DimGray);
+        }
+        private void btnSetting_MouseHover(object sender, EventArgs e)
+        {
+            btnSetting.SetOverBackColor(Color.DimGray);
+        }
+        #endregion
+
         private void btnPDFtoImage_Click(object sender, EventArgs e)
         {
             if (!MainForm.Instance.PnlClientBody.Controls.ContainsKey("UCClientPDF2IMG"))
@@ -34,6 +49,6 @@ namespace WFA.PDFHelper.UserControls
                 UserControlHelper.SetUserControl(MainForm.Instance.PnlClientBody, userControl: new UCClientIMG2PDF(), dockStyle: UserControlDockStyle.DockStyleFill);
             }
             MainForm.Instance.PnlClientBody.Controls["UCClientIMG2PDF"].BringToFront();
-        }
+        }        
     }
 }
