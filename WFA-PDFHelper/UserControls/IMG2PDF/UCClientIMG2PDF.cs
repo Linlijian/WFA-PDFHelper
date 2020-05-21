@@ -20,7 +20,7 @@ namespace WFA.PDFHelper.UserControls
         }
         public void HideActive()
         {
-            PActiveConvert2PDF.Hide();
+            PActiveConvert2Image.Hide();
             PActiveConvertInFolder.Hide();
             PActiveConvertInMulFolder.Hide();
         }
@@ -28,7 +28,7 @@ namespace WFA.PDFHelper.UserControls
         private void btnConvert2PDF_Click(object sender, EventArgs e)
         {
             HideActive();
-            PActiveConvert2PDF.Show();
+            PActiveConvert2Image.Show();
             UserControlHelper.SetUserControl(panelClientTask, userControl: new UCIMG2PDFF001(), dockStyle: UserControlDockStyle.DockStyleFill);
         }
         private void btnConvertInFolder_Click(object sender, EventArgs e)

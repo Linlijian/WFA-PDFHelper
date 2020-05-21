@@ -69,11 +69,6 @@ namespace WFA.PDFHelper
         #endregion
 
         #region btn
-        private void btnClose_MouseHover(object sender, EventArgs e)
-        {
-            btnClose.FlatAppearance.MouseOverBackColor = Color.Red;
-            btnClose.FlatAppearance.MouseDownBackColor = Color.DarkRed;
-        }
         private void btnClose_Click(object sender, EventArgs e)
         {
             this.Close();

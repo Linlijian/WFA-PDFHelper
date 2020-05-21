@@ -16,5 +16,16 @@ namespace WFA.PDFHelper.UserControls
         {
             InitializeComponent();
         }
+
+        private void UCIMG2PDFF001_Load(object sender, EventArgs e)
+        {
+           // btnAddImage.FlatAppearance.BorderColor = Color.DarkRed;
+            //button.FlatAppearance.BorderColor = Color.FromArgb(0, 255, 255, 255);
+        }
+
+        private void btnAddImage_MouseHover(object sender, EventArgs e)
+        {
+           // btnAddImage.FlatAppearance.BorderColor = Color.DarkRed;
+        }
     }
 }

@@ -29,14 +29,14 @@
         private void InitializeComponent()
         {
             this.panelClient = new System.Windows.Forms.Panel();
+            this.btnHome = new System.Windows.Forms.Button();
             this.PActiveConvertInMulFolder = new System.Windows.Forms.Panel();
             this.btnConvertInMulFolder = new System.Windows.Forms.Button();
             this.PActiveConvertInFolder = new System.Windows.Forms.Panel();
-            this.btnConvertInFolder = new System.Windows.Forms.Button();
-            this.PActiveConvert2PDF = new System.Windows.Forms.Panel();
+            this.btnConveretInFolder = new System.Windows.Forms.Button();
+            this.PActiveConvert2Image = new System.Windows.Forms.Panel();
             this.btnConvert2PDF = new System.Windows.Forms.Button();
             this.lblActiveTask = new System.Windows.Forms.Label();
-            this.btnHome = new System.Windows.Forms.Button();
             this.panelClientTask = new System.Windows.Forms.Panel();
             this.panelClient.SuspendLayout();
             this.SuspendLayout();
@@ -44,42 +44,64 @@
             // panelClient
             // 
             this.panelClient.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(32)))), ((int)(((byte)(32)))));
+            this.panelClient.Controls.Add(this.btnHome);
             this.panelClient.Controls.Add(this.PActiveConvertInMulFolder);
             this.panelClient.Controls.Add(this.btnConvertInMulFolder);
             this.panelClient.Controls.Add(this.PActiveConvertInFolder);
-            this.panelClient.Controls.Add(this.btnConvertInFolder);
-            this.panelClient.Controls.Add(this.PActiveConvert2PDF);
+            this.panelClient.Controls.Add(this.btnConveretInFolder);
+            this.panelClient.Controls.Add(this.PActiveConvert2Image);
             this.panelClient.Controls.Add(this.btnConvert2PDF);
             this.panelClient.Controls.Add(this.lblActiveTask);
-            this.panelClient.Controls.Add(this.btnHome);
             this.panelClient.Dock = System.Windows.Forms.DockStyle.Left;
             this.panelClient.Location = new System.Drawing.Point(0, 0);
             this.panelClient.Name = "panelClient";
             this.panelClient.Size = new System.Drawing.Size(256, 560);
-            this.panelClient.TabIndex = 0;
+            this.panelClient.TabIndex = 1;
+            // 
+            // btnHome
+            // 
+            this.btnHome.FlatAppearance.BorderSize = 0;
+            this.btnHome.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(87)))), ((int)(((byte)(151)))), ((int)(((byte)(174)))));
+            this.btnHome.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(137)))), ((int)(((byte)(163)))));
+            this.btnHome.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnHome.Font = new System.Drawing.Font("Itim", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnHome.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.btnHome.Image = global::WFA_PDFHelper.Properties.Resources.home_32px;
+            this.btnHome.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnHome.Location = new System.Drawing.Point(12, 4);
+            this.btnHome.Name = "btnHome";
+            this.btnHome.Padding = new System.Windows.Forms.Padding(6, 0, 0, 0);
+            this.btnHome.Size = new System.Drawing.Size(244, 35);
+            this.btnHome.TabIndex = 20;
+            this.btnHome.Text = "          Home";
+            this.btnHome.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnHome.UseVisualStyleBackColor = true;
+            this.btnHome.Click += new System.EventHandler(this.btnHome_Click);
             // 
             // PActiveConvertInMulFolder
             // 
             this.PActiveConvertInMulFolder.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(125)))), ((int)(((byte)(154)))));
-            this.PActiveConvertInMulFolder.Location = new System.Drawing.Point(0, 241);
+            this.PActiveConvertInMulFolder.Location = new System.Drawing.Point(0, 239);
             this.PActiveConvertInMulFolder.Name = "PActiveConvertInMulFolder";
-            this.PActiveConvertInMulFolder.Size = new System.Drawing.Size(10, 35);
-            this.PActiveConvertInMulFolder.TabIndex = 14;
+            this.PActiveConvertInMulFolder.Size = new System.Drawing.Size(6, 35);
+            this.PActiveConvertInMulFolder.TabIndex = 19;
             // 
             // btnConvertInMulFolder
             // 
-            this.btnConvertInMulFolder.BackgroundImage = global::WFA_PDFHelper.Properties.Resources.home_32px;
-            this.btnConvertInMulFolder.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.btnConvertInMulFolder.FlatAppearance.BorderSize = 0;
+            this.btnConvertInMulFolder.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(77)))), ((int)(((byte)(77)))), ((int)(((byte)(77)))));
+            this.btnConvertInMulFolder.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(100)))), ((int)(((byte)(100)))));
             this.btnConvertInMulFolder.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnConvertInMulFolder.Font = new System.Drawing.Font("Itim", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnConvertInMulFolder.ForeColor = System.Drawing.Color.White;
-            this.btnConvertInMulFolder.Location = new System.Drawing.Point(12, 243);
+            this.btnConvertInMulFolder.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.btnConvertInMulFolder.Image = global::WFA_PDFHelper.Properties.Resources.home_32px;
+            this.btnConvertInMulFolder.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnConvertInMulFolder.Location = new System.Drawing.Point(12, 239);
             this.btnConvertInMulFolder.Name = "btnConvertInMulFolder";
-            this.btnConvertInMulFolder.Padding = new System.Windows.Forms.Padding(40, 0, 0, 0);
+            this.btnConvertInMulFolder.Padding = new System.Windows.Forms.Padding(6, 0, 0, 0);
             this.btnConvertInMulFolder.Size = new System.Drawing.Size(244, 35);
-            this.btnConvertInMulFolder.TabIndex = 13;
-            this.btnConvertInMulFolder.Text = "Convert in Multi Folder";
+            this.btnConvertInMulFolder.TabIndex = 18;
+            this.btnConvertInMulFolder.Text = "          Convert in Multi";
             this.btnConvertInMulFolder.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnConvertInMulFolder.UseVisualStyleBackColor = true;
             this.btnConvertInMulFolder.Click += new System.EventHandler(this.btnConvertInMulFolder_Click);
@@ -87,54 +109,58 @@
             // PActiveConvertInFolder
             // 
             this.PActiveConvertInFolder.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(125)))), ((int)(((byte)(154)))));
-            this.PActiveConvertInFolder.Location = new System.Drawing.Point(0, 200);
+            this.PActiveConvertInFolder.Location = new System.Drawing.Point(0, 198);
             this.PActiveConvertInFolder.Name = "PActiveConvertInFolder";
-            this.PActiveConvertInFolder.Size = new System.Drawing.Size(10, 35);
-            this.PActiveConvertInFolder.TabIndex = 12;
+            this.PActiveConvertInFolder.Size = new System.Drawing.Size(6, 35);
+            this.PActiveConvertInFolder.TabIndex = 17;
             // 
-            // btnConvertInFolder
+            // btnConveretInFolder
             // 
-            this.btnConvertInFolder.BackgroundImage = global::WFA_PDFHelper.Properties.Resources.home_32px;
-            this.btnConvertInFolder.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btnConvertInFolder.FlatAppearance.BorderSize = 0;
-            this.btnConvertInFolder.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnConvertInFolder.Font = new System.Drawing.Font("Itim", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnConvertInFolder.ForeColor = System.Drawing.Color.White;
-            this.btnConvertInFolder.Location = new System.Drawing.Point(12, 202);
-            this.btnConvertInFolder.Name = "btnConvertInFolder";
-            this.btnConvertInFolder.Padding = new System.Windows.Forms.Padding(40, 0, 0, 0);
-            this.btnConvertInFolder.Size = new System.Drawing.Size(244, 35);
-            this.btnConvertInFolder.TabIndex = 11;
-            this.btnConvertInFolder.Text = "Convert in Folder";
-            this.btnConvertInFolder.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnConvertInFolder.UseVisualStyleBackColor = true;
-            this.btnConvertInFolder.Click += new System.EventHandler(this.btnConvertInFolder_Click);
+            this.btnConveretInFolder.FlatAppearance.BorderSize = 0;
+            this.btnConveretInFolder.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(77)))), ((int)(((byte)(77)))), ((int)(((byte)(77)))));
+            this.btnConveretInFolder.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(100)))), ((int)(((byte)(100)))));
+            this.btnConveretInFolder.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnConveretInFolder.Font = new System.Drawing.Font("Itim", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnConveretInFolder.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.btnConveretInFolder.Image = global::WFA_PDFHelper.Properties.Resources.home_32px;
+            this.btnConveretInFolder.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnConveretInFolder.Location = new System.Drawing.Point(12, 198);
+            this.btnConveretInFolder.Name = "btnConveretInFolder";
+            this.btnConveretInFolder.Padding = new System.Windows.Forms.Padding(6, 0, 0, 0);
+            this.btnConveretInFolder.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.btnConveretInFolder.Size = new System.Drawing.Size(244, 35);
+            this.btnConveretInFolder.TabIndex = 16;
+            this.btnConveretInFolder.Text = "          Convert in Folder";
+            this.btnConveretInFolder.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnConveretInFolder.UseVisualStyleBackColor = true;
+            this.btnConveretInFolder.Click += new System.EventHandler(this.btnConvertInFolder_Click);
             // 
-            // PActiveConvert2PDF
+            // PActiveConvert2Image
             // 
-            this.PActiveConvert2PDF.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(125)))), ((int)(((byte)(154)))));
-            this.PActiveConvert2PDF.Location = new System.Drawing.Point(0, 159);
-            this.PActiveConvert2PDF.Name = "PActiveConvert2PDF";
-            this.PActiveConvert2PDF.Size = new System.Drawing.Size(10, 35);
-            this.PActiveConvert2PDF.TabIndex = 10;
+            this.PActiveConvert2Image.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(125)))), ((int)(((byte)(154)))));
+            this.PActiveConvert2Image.Location = new System.Drawing.Point(0, 157);
+            this.PActiveConvert2Image.Name = "PActiveConvert2Image";
+            this.PActiveConvert2Image.Size = new System.Drawing.Size(6, 35);
+            this.PActiveConvert2Image.TabIndex = 15;
             // 
             // btnConvert2PDF
             // 
-            this.btnConvert2PDF.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(32)))), ((int)(((byte)(32)))));
-            this.btnConvert2PDF.BackgroundImage = global::WFA_PDFHelper.Properties.Resources.home_32px;
-            this.btnConvert2PDF.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.btnConvert2PDF.FlatAppearance.BorderSize = 0;
+            this.btnConvert2PDF.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(77)))), ((int)(((byte)(77)))), ((int)(((byte)(77)))));
+            this.btnConvert2PDF.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(100)))), ((int)(((byte)(100)))));
             this.btnConvert2PDF.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnConvert2PDF.Font = new System.Drawing.Font("Itim", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnConvert2PDF.ForeColor = System.Drawing.Color.White;
-            this.btnConvert2PDF.Location = new System.Drawing.Point(12, 161);
+            this.btnConvert2PDF.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.btnConvert2PDF.Image = global::WFA_PDFHelper.Properties.Resources.home_32px;
+            this.btnConvert2PDF.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnConvert2PDF.Location = new System.Drawing.Point(12, 157);
             this.btnConvert2PDF.Name = "btnConvert2PDF";
-            this.btnConvert2PDF.Padding = new System.Windows.Forms.Padding(40, 0, 0, 0);
+            this.btnConvert2PDF.Padding = new System.Windows.Forms.Padding(6, 0, 0, 0);
             this.btnConvert2PDF.Size = new System.Drawing.Size(244, 35);
-            this.btnConvert2PDF.TabIndex = 9;
-            this.btnConvert2PDF.Text = "Convert to PDF";
+            this.btnConvert2PDF.TabIndex = 0;
+            this.btnConvert2PDF.Text = "          Convert to PDF";
             this.btnConvert2PDF.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnConvert2PDF.UseVisualStyleBackColor = false;
+            this.btnConvert2PDF.UseVisualStyleBackColor = true;
             this.btnConvert2PDF.Click += new System.EventHandler(this.btnConvert2PDF_Click);
             // 
             // lblActiveTask
@@ -148,31 +174,13 @@
             this.lblActiveTask.TabIndex = 3;
             this.lblActiveTask.Text = "Image to PDF";
             // 
-            // btnHome
-            // 
-            this.btnHome.BackgroundImage = global::WFA_PDFHelper.Properties.Resources.home_32px;
-            this.btnHome.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btnHome.FlatAppearance.BorderSize = 0;
-            this.btnHome.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnHome.Font = new System.Drawing.Font("Itim", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnHome.ForeColor = System.Drawing.Color.White;
-            this.btnHome.Location = new System.Drawing.Point(12, 4);
-            this.btnHome.Name = "btnHome";
-            this.btnHome.Padding = new System.Windows.Forms.Padding(40, 0, 0, 0);
-            this.btnHome.Size = new System.Drawing.Size(244, 35);
-            this.btnHome.TabIndex = 1;
-            this.btnHome.Text = "Home";
-            this.btnHome.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnHome.UseVisualStyleBackColor = true;
-            this.btnHome.Click += new System.EventHandler(this.btnHome_Click);
-            // 
             // panelClientTask
             // 
             this.panelClientTask.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelClientTask.Location = new System.Drawing.Point(256, 0);
             this.panelClientTask.Name = "panelClientTask";
             this.panelClientTask.Size = new System.Drawing.Size(644, 560);
-            this.panelClientTask.TabIndex = 1;
+            this.panelClientTask.TabIndex = 2;
             // 
             // UCClientIMG2PDF
             // 
@@ -190,16 +198,15 @@
         }
 
         #endregion
-
         private System.Windows.Forms.Panel panelClient;
         private System.Windows.Forms.Button btnHome;
-        private System.Windows.Forms.Label lblActiveTask;
-        private System.Windows.Forms.Panel panelClientTask;
         private System.Windows.Forms.Panel PActiveConvertInMulFolder;
         private System.Windows.Forms.Button btnConvertInMulFolder;
         private System.Windows.Forms.Panel PActiveConvertInFolder;
-        private System.Windows.Forms.Button btnConvertInFolder;
-        private System.Windows.Forms.Panel PActiveConvert2PDF;
+        private System.Windows.Forms.Button btnConveretInFolder;
+        private System.Windows.Forms.Panel PActiveConvert2Image;
         private System.Windows.Forms.Button btnConvert2PDF;
+        private System.Windows.Forms.Label lblActiveTask;
+        private System.Windows.Forms.Panel panelClientTask;
     }
 }

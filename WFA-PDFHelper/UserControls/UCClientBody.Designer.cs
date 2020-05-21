@@ -36,6 +36,8 @@
             // btnSetting
             // 
             this.btnSetting.FlatAppearance.BorderSize = 0;
+            this.btnSetting.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(77)))), ((int)(((byte)(77)))), ((int)(((byte)(77)))));
+            this.btnSetting.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(100)))), ((int)(((byte)(100)))));
             this.btnSetting.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSetting.Font = new System.Drawing.Font("Itim", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSetting.ForeColor = System.Drawing.Color.White;
@@ -48,11 +50,12 @@
             this.btnSetting.TabIndex = 2;
             this.btnSetting.Text = "Setting";
             this.btnSetting.UseVisualStyleBackColor = true;
-            this.btnSetting.MouseHover += new System.EventHandler(this.btnSetting_MouseHover);
             // 
             // btnImagetoPDF
             // 
             this.btnImagetoPDF.FlatAppearance.BorderSize = 0;
+            this.btnImagetoPDF.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(77)))), ((int)(((byte)(77)))), ((int)(((byte)(77)))));
+            this.btnImagetoPDF.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(100)))), ((int)(((byte)(100)))));
             this.btnImagetoPDF.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnImagetoPDF.Font = new System.Drawing.Font("Itim", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnImagetoPDF.ForeColor = System.Drawing.Color.White;
@@ -66,11 +69,12 @@
             this.btnImagetoPDF.Text = "Image to PDF";
             this.btnImagetoPDF.UseVisualStyleBackColor = true;
             this.btnImagetoPDF.Click += new System.EventHandler(this.btnImagetoPDF_Click);
-            this.btnImagetoPDF.MouseHover += new System.EventHandler(this.btnImagetoPDF_MouseHover);
             // 
             // btnPDFtoImage
             // 
             this.btnPDFtoImage.FlatAppearance.BorderSize = 0;
+            this.btnPDFtoImage.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(77)))), ((int)(((byte)(77)))), ((int)(((byte)(77)))));
+            this.btnPDFtoImage.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(100)))), ((int)(((byte)(100)))));
             this.btnPDFtoImage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPDFtoImage.Font = new System.Drawing.Font("Itim", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPDFtoImage.ForeColor = System.Drawing.Color.White;
@@ -84,7 +88,6 @@
             this.btnPDFtoImage.Text = "PDF to Image";
             this.btnPDFtoImage.UseVisualStyleBackColor = true;
             this.btnPDFtoImage.Click += new System.EventHandler(this.btnPDFtoImage_Click);
-            this.btnPDFtoImage.MouseHover += new System.EventHandler(this.btnPDFtoImage_MouseHover);
             // 
             // UCClientBody
             // 
