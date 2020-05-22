@@ -32,6 +32,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.btnAddImage = new System.Windows.Forms.Button();
             this.OFDAddImage = new System.Windows.Forms.OpenFileDialog();
+            this.listboxImage = new System.Windows.Forms.ListBox();
             this.SuspendLayout();
             // 
             // lblToppic
@@ -77,11 +78,25 @@
             // 
             this.OFDAddImage.FileName = "OFDAddImage";
             // 
+            // listboxImage
+            // 
+            this.listboxImage.BackColor = System.Drawing.Color.DimGray;
+            this.listboxImage.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.listboxImage.Font = new System.Drawing.Font("Itim", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.listboxImage.ForeColor = System.Drawing.Color.White;
+            this.listboxImage.FormattingEnabled = true;
+            this.listboxImage.ItemHeight = 15;
+            this.listboxImage.Location = new System.Drawing.Point(27, 115);
+            this.listboxImage.Name = "listboxImage";
+            this.listboxImage.Size = new System.Drawing.Size(417, 225);
+            this.listboxImage.TabIndex = 3;
+            // 
             // UCIMG2PDFF001
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
+            this.Controls.Add(this.listboxImage);
             this.Controls.Add(this.btnAddImage);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.lblToppic);
@@ -99,5 +114,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnAddImage;
         private System.Windows.Forms.OpenFileDialog OFDAddImage;
+        private System.Windows.Forms.ListBox listboxImage;
     }
 }

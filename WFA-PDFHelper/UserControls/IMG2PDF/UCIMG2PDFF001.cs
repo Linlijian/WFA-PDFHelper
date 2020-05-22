@@ -9,12 +9,14 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 using IMG2PDF;
+using System.Text.RegularExpressions;
+using UtilityLib;
 
 namespace WFA.PDFHelper.UserControls
 {
     public partial class UCIMG2PDFF001 : UserControl
     {
-        private IMG2PDFDA localModel = new IMG2PDFDA();
+        private IMG2PDFDA IMG2PDF = new IMG2PDFDA();
         public UCIMG2PDFF001()
         {
             InitializeComponent();
@@ -29,8 +31,10 @@ namespace WFA.PDFHelper.UserControls
         {
             using (OpenFileDialog theDialog = new OpenFileDialog())
             {
+                var regex = new Regex("(.*)(?=.*.JPG|.*.JPEG|.*.jpg|.*.jpeg)");
+
                 theDialog.Title = "Open Image File";
-                theDialog.Filter = "Images |*.JPG";
+                theDialog.Filter = "JPEG| *.JPG;*.JPEG*.jpg;*.jpeg";
                 theDialog.InitialDirectory = @"C:\";
                 theDialog.Multiselect = true;
 
@@ -40,15 +44,24 @@ namespace WFA.PDFHelper.UserControls
                     {
                         try
                         {
-                            //give file namd and path to model
-                            //file = D:\testGI\output\71018377_1198760736982570_7540964554520395776_o.jpg
-                            var file_name = file.Split('\\');
-                            localModel.DTO.Model.IMG2PDFModels.Add(new IMG2PDFModels { FILE_NAME = file_name.Last(), FILE_PATH = file });
+                            if (regex.IsMatch(file))
+                            {
+                                var file_name = file.Split('\\');
+                                var dup = IMG2PDF.DTO.Model.IMG2PDFModels.Where(t=>t.FILE_NAME == file_name.Last()).FirstOrDefault();
+                                if(dup.IsNullOrEmpty())
+                                    IMG2PDF.DTO.Model.IMG2PDFModels.Add(new IMG2PDFModels { FILE_NAME = file_name.Last(), FILE_PATH = file });
+                            }                            
                         }
                         catch (Exception ex)
                         {
                             MessageBox.Show("Error: " + ex.Message);
                         }
+                    }
+
+                    listboxImage.Items.Clear();
+                    foreach (var model in IMG2PDF.DTO.Model.IMG2PDFModels)
+                    {
+                        listboxImage.Items.Add(model.FILE_NAME);
                     }
                 }
             } //end using
