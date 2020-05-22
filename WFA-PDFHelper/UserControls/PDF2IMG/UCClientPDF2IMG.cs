@@ -45,12 +45,12 @@ namespace WFA.PDFHelper.UserControls
         }
         private void btnHome_Click(object sender, EventArgs e)
         {
+            MainForm.Instance.PnlTitle.BackColor = Color.Black;
             if (!MainForm.Instance.PnlClientBody.Controls.ContainsKey("UCClientBody"))
             {
                 UserControlHelper.SetUserControl(MainForm.Instance.PnlClientBody, userControl: new UCClientBody(), dockStyle: UserControlDockStyle.DockStyleFill);
             }
             MainForm.Instance.PnlClientBody.Controls["UCClientBody"].BringToFront();
-            MainForm.Instance.PnlTitle.BackColor = Color.Black;
         }
     }
 }
