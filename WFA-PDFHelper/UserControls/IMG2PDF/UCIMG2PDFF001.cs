@@ -11,6 +11,8 @@ using System.IO;
 using IMG2PDF;
 using System.Text.RegularExpressions;
 using UtilityLib;
+using System.Threading;
+using WFA.PlugIn;
 
 namespace WFA.PDFHelper.UserControls
 {
@@ -24,7 +26,8 @@ namespace WFA.PDFHelper.UserControls
 
         private void UCIMG2PDFF001_Load(object sender, EventArgs e)
         {
-           
+            //btnDeleteImage.Visible = false;
+            btnDeleteImage.Visible = true;
         }
 
         private void btnAddImage_Click(object sender, EventArgs e)
@@ -40,35 +43,53 @@ namespace WFA.PDFHelper.UserControls
 
                 if (theDialog.ShowDialog() == DialogResult.OK)
                 {
-                    foreach (String file in theDialog.FileNames)
+                    try
                     {
-                        try
+                        foreach (String file in theDialog.FileNames)
                         {
+
                             if (regex.IsMatch(file))
                             {
                                 var file_name = file.Split('\\');
-                                var dup = IMG2PDF.DTO.Model.IMG2PDFModels.Where(t=>t.FILE_NAME == file_name.Last()).FirstOrDefault();
-                                if(dup.IsNullOrEmpty())
+                                var dup = IMG2PDF.DTO.Model.IMG2PDFModels.Where(t => t.FILE_NAME == file_name.Last()).FirstOrDefault();
+                                if (dup.IsNullOrEmpty())
                                     IMG2PDF.DTO.Model.IMG2PDFModels.Add(new IMG2PDFModels { FILE_NAME = file_name.Last(), FILE_PATH = file });
-                            }                            
+                            }
                         }
-                        catch (Exception ex)
+
+                        listboxImage.Items.Clear();
+                        foreach (var model in IMG2PDF.DTO.Model.IMG2PDFModels)
                         {
-                            MessageBox.Show("Error: " + ex.Message);
+                            listboxImage.Items.Add(model.FILE_NAME);
                         }
+
+                        btnDeleteImage.Visible = true;
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Error: " + ex.Message);
                     }
 
-                    listboxImage.Items.Clear();
-                    foreach (var model in IMG2PDF.DTO.Model.IMG2PDFModels)
-                    {
-                        listboxImage.Items.Add(model.FILE_NAME);
-                    }
+
                 }
-            } //end using
-                
+
+            }
+        } //end using
+
+        private void btnDeleteImage_Click(object sender, EventArgs e)
+        {
+            //test
+            using (WaitForm form = new WaitForm(savedaa))
+            {
+                form.ShowDialog(this);
+            }
         }
 
-
+        private void savedaa()
+        {
+            for (int i = 0; i <= 500; i++)
+                Thread.Sleep(10);
+        }
 
     }
 }

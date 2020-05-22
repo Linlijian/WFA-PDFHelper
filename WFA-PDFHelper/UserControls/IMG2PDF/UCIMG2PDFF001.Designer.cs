@@ -30,9 +30,12 @@
         {
             this.lblToppic = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.btnAddImage = new System.Windows.Forms.Button();
             this.OFDAddImage = new System.Windows.Forms.OpenFileDialog();
             this.listboxImage = new System.Windows.Forms.ListBox();
+            this.btnDeleteImage = new System.Windows.Forms.Button();
+            this.btnAddImage = new System.Windows.Forms.Button();
+            this.ckbSort = new System.Windows.Forms.CheckBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lblToppic
@@ -57,6 +60,40 @@
             this.label1.TabIndex = 1;
             this.label1.Text = "Add Image file";
             // 
+            // OFDAddImage
+            // 
+            this.OFDAddImage.FileName = "OFDAddImage";
+            // 
+            // listboxImage
+            // 
+            this.listboxImage.BackColor = System.Drawing.Color.DimGray;
+            this.listboxImage.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.listboxImage.Font = new System.Drawing.Font("Itim", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.listboxImage.ForeColor = System.Drawing.Color.White;
+            this.listboxImage.FormattingEnabled = true;
+            this.listboxImage.ItemHeight = 15;
+            this.listboxImage.Location = new System.Drawing.Point(27, 115);
+            this.listboxImage.Name = "listboxImage";
+            this.listboxImage.Size = new System.Drawing.Size(417, 165);
+            this.listboxImage.TabIndex = 3;
+            // 
+            // btnDeleteImage
+            // 
+            this.btnDeleteImage.BackColor = System.Drawing.Color.Black;
+            this.btnDeleteImage.BackgroundImage = global::WFA_PDFHelper.Properties.Resources.subtract_32px;
+            this.btnDeleteImage.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(65)))), ((int)(((byte)(65)))));
+            this.btnDeleteImage.FlatAppearance.BorderSize = 2;
+            this.btnDeleteImage.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(77)))), ((int)(((byte)(77)))), ((int)(((byte)(77)))));
+            this.btnDeleteImage.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(100)))), ((int)(((byte)(100)))));
+            this.btnDeleteImage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDeleteImage.ForeColor = System.Drawing.Color.Black;
+            this.btnDeleteImage.Location = new System.Drawing.Point(69, 73);
+            this.btnDeleteImage.Name = "btnDeleteImage";
+            this.btnDeleteImage.Size = new System.Drawing.Size(36, 36);
+            this.btnDeleteImage.TabIndex = 4;
+            this.btnDeleteImage.UseVisualStyleBackColor = false;
+            this.btnDeleteImage.Click += new System.EventHandler(this.btnDeleteImage_Click);
+            // 
             // btnAddImage
             // 
             this.btnAddImage.BackColor = System.Drawing.Color.Black;
@@ -74,28 +111,37 @@
             this.btnAddImage.UseVisualStyleBackColor = false;
             this.btnAddImage.Click += new System.EventHandler(this.btnAddImage_Click);
             // 
-            // OFDAddImage
+            // ckbSort
             // 
-            this.OFDAddImage.FileName = "OFDAddImage";
+            this.ckbSort.AutoSize = true;
+            this.ckbSort.Font = new System.Drawing.Font("Itim", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ckbSort.ForeColor = System.Drawing.Color.White;
+            this.ckbSort.Location = new System.Drawing.Point(27, 318);
+            this.ckbSort.Name = "ckbSort";
+            this.ckbSort.Size = new System.Drawing.Size(254, 19);
+            this.ckbSort.TabIndex = 5;
+            this.ckbSort.Text = "Sorting file name  before converet to pdf.";
+            this.ckbSort.UseVisualStyleBackColor = true;
             // 
-            // listboxImage
+            // label2
             // 
-            this.listboxImage.BackColor = System.Drawing.Color.DimGray;
-            this.listboxImage.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.listboxImage.Font = new System.Drawing.Font("Itim", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.listboxImage.ForeColor = System.Drawing.Color.White;
-            this.listboxImage.FormattingEnabled = true;
-            this.listboxImage.ItemHeight = 15;
-            this.listboxImage.Location = new System.Drawing.Point(27, 115);
-            this.listboxImage.Name = "listboxImage";
-            this.listboxImage.Size = new System.Drawing.Size(417, 225);
-            this.listboxImage.TabIndex = 3;
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Itim", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.White;
+            this.label2.Location = new System.Drawing.Point(23, 296);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(56, 19);
+            this.label2.TabIndex = 6;
+            this.label2.Text = "Option";
             // 
             // UCIMG2PDFF001
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.ckbSort);
+            this.Controls.Add(this.btnDeleteImage);
             this.Controls.Add(this.listboxImage);
             this.Controls.Add(this.btnAddImage);
             this.Controls.Add(this.label1);
@@ -115,5 +161,8 @@
         private System.Windows.Forms.Button btnAddImage;
         private System.Windows.Forms.OpenFileDialog OFDAddImage;
         private System.Windows.Forms.ListBox listboxImage;
+        private System.Windows.Forms.Button btnDeleteImage;
+        private System.Windows.Forms.CheckBox ckbSort;
+        private System.Windows.Forms.Label label2;
     }
 }

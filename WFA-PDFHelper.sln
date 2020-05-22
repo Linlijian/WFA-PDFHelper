@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UtilityLib", "UtilityLib\Ut
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PDF2IMG", "PDF2IMG\PDF2IMG.csproj", "{9709B23D-3BE1-4733-B7E0-1D0E3A26D3B3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WFA-PlugIn", "WFA-PlugIn\WFA-PlugIn.csproj", "{C1311BB4-79C4-4610-9E6C-E2DA40E438AD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{9709B23D-3BE1-4733-B7E0-1D0E3A26D3B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9709B23D-3BE1-4733-B7E0-1D0E3A26D3B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9709B23D-3BE1-4733-B7E0-1D0E3A26D3B3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C1311BB4-79C4-4610-9E6C-E2DA40E438AD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C1311BB4-79C4-4610-9E6C-E2DA40E438AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C1311BB4-79C4-4610-9E6C-E2DA40E438AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C1311BB4-79C4-4610-9E6C-E2DA40E438AD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
