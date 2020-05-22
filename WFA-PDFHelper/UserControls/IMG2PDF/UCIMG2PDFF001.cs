@@ -8,11 +8,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
+using IMG2PDF;
 
 namespace WFA.PDFHelper.UserControls
 {
     public partial class UCIMG2PDFF001 : UserControl
-    { 
+    {
+        private IMG2PDFDA localModel = new IMG2PDFDA();
         public UCIMG2PDFF001()
         {
             InitializeComponent();
@@ -40,6 +42,8 @@ namespace WFA.PDFHelper.UserControls
                         {
                             //give file namd and path to model
                             //file = D:\testGI\output\71018377_1198760736982570_7540964554520395776_o.jpg
+                            var file_name = file.Split('\\');
+                            localModel.DTO.Model.IMG2PDFModels.Add(new IMG2PDFModels { FILE_NAME = file_name.Last(), FILE_PATH = file });
                         }
                         catch (Exception ex)
                         {
