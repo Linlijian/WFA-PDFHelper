@@ -8,7 +8,8 @@ namespace IMG2PDF
 {
     public class IMG2PDFModel
     {
-
+        public bool SORT { get; set; }
+        public string ErrorMassage { get; set; }
         public List<IMG2PDFModels> IMG2PDFModels { get; set; }
     }
 

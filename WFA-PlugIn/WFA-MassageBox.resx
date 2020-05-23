@@ -117,47 +117,4 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="pdf_64px" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\pdf_64px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="image_file_64px" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\image_file_64px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="home_page_96px" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\home_page_96px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="image_file_32px" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\image_file_32px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="home_32px" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\home_32px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="multiply_32px" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\multiply_32px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="delete_64px" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\delete_64px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="toggle_off_32px" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\toggle_off_32px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="subtract_32px" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\subtract_32px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="multiply_48px" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\multiply_48px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="toggle_indeterminate_32px" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\toggle_indeterminate_32px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="settings_64px" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\settings_64px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="plus_math_32px" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\plus_math_32px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="toggle_on_32px" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\toggle_on_32px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
 </root>

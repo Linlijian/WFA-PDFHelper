@@ -166,10 +166,11 @@
             this.btnGenerate.ForeColor = System.Drawing.Color.White;
             this.btnGenerate.Location = new System.Drawing.Point(28, 353);
             this.btnGenerate.Name = "btnGenerate";
-            this.btnGenerate.Size = new System.Drawing.Size(104, 36);
+            this.btnGenerate.Size = new System.Drawing.Size(110, 34);
             this.btnGenerate.TabIndex = 10;
             this.btnGenerate.Text = "Generate";
             this.btnGenerate.UseVisualStyleBackColor = false;
+            this.btnGenerate.Click += new System.EventHandler(this.btnGenerate_Click);
             // 
             // UCIMG2PDFF001
             // 

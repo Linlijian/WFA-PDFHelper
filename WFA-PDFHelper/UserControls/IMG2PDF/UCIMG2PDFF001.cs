@@ -112,6 +112,20 @@ namespace WFA.PDFHelper.UserControls
                 SORT_TOGGLE_ON++;
             }
         }
+        private void btnGenerate_Click(object sender, EventArgs e)
+        {
+            var dto = new IMG2PDFDA();
+
+            IMG2PDF.DTO.Model.SORT = SORT_TOGGLE_ON % 2 == 0 ? true : false;
+            dto = IMG2PDF;
+            dto.GeneratePdf(IMG2PDF.DTO);
+
+            if (!dto.DTO.Model.ErrorMassage.IsNullOrEmpty())
+            {
+                MessageBox.Show("");
+            }
+
+        }
         #endregion
 
         #region method
@@ -126,5 +140,6 @@ namespace WFA.PDFHelper.UserControls
                 Thread.Sleep(10);
         }
         #endregion
+       
     }
 }
