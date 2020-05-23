@@ -63,6 +63,16 @@ namespace WFA_PDFHelper.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap akagi {
+            get {
+                object obj = ResourceManager.GetObject("akagi", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap delete_64px {
             get {
                 object obj = ResourceManager.GetObject("delete_64px", resourceCulture);
@@ -166,6 +176,36 @@ namespace WFA_PDFHelper.Properties {
         internal static System.Drawing.Bitmap subtract_32px {
             get {
                 object obj = ResourceManager.GetObject("subtract_32px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap toggle_indeterminate_32px {
+            get {
+                object obj = ResourceManager.GetObject("toggle_indeterminate_32px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap toggle_off_32px {
+            get {
+                object obj = ResourceManager.GetObject("toggle_off_32px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap toggle_on_32px {
+            get {
+                object obj = ResourceManager.GetObject("toggle_on_32px", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

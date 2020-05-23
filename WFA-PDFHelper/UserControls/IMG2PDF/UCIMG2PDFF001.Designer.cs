@@ -32,10 +32,12 @@
             this.label1 = new System.Windows.Forms.Label();
             this.OFDAddImage = new System.Windows.Forms.OpenFileDialog();
             this.listboxImage = new System.Windows.Forms.ListBox();
-            this.btnDeleteImage = new System.Windows.Forms.Button();
-            this.btnAddImage = new System.Windows.Forms.Button();
-            this.label2 = new System.Windows.Forms.Label();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.btnSortImage = new System.Windows.Forms.Button();
+            this.btnDelete = new System.Windows.Forms.Button();
+            this.btnAdd = new System.Windows.Forms.Button();
+            this.lblSortImage = new System.Windows.Forms.Label();
+            this.lblSwitchSortImage = new System.Windows.Forms.Label();
+            this.btnGenerate = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lblToppic
@@ -66,7 +68,7 @@
             // 
             // listboxImage
             // 
-            this.listboxImage.BackColor = System.Drawing.Color.DimGray;
+            this.listboxImage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(23)))), ((int)(((byte)(23)))));
             this.listboxImage.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.listboxImage.Font = new System.Drawing.Font("Itim", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listboxImage.ForeColor = System.Drawing.Color.White;
@@ -78,74 +80,109 @@
             this.listboxImage.Size = new System.Drawing.Size(417, 165);
             this.listboxImage.TabIndex = 3;
             // 
-            // btnDeleteImage
+            // btnSortImage
             // 
-            this.btnDeleteImage.BackColor = System.Drawing.Color.Black;
-            this.btnDeleteImage.BackgroundImage = global::WFA_PDFHelper.Properties.Resources.subtract_32px;
-            this.btnDeleteImage.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(65)))), ((int)(((byte)(65)))));
-            this.btnDeleteImage.FlatAppearance.BorderSize = 2;
-            this.btnDeleteImage.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(77)))), ((int)(((byte)(77)))), ((int)(((byte)(77)))));
-            this.btnDeleteImage.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(100)))), ((int)(((byte)(100)))));
-            this.btnDeleteImage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDeleteImage.ForeColor = System.Drawing.Color.Black;
-            this.btnDeleteImage.Location = new System.Drawing.Point(69, 73);
-            this.btnDeleteImage.Name = "btnDeleteImage";
-            this.btnDeleteImage.Size = new System.Drawing.Size(36, 36);
-            this.btnDeleteImage.TabIndex = 4;
-            this.btnDeleteImage.UseVisualStyleBackColor = false;
-            this.btnDeleteImage.Click += new System.EventHandler(this.btnDeleteImage_Click);
+            this.btnSortImage.BackColor = System.Drawing.Color.Black;
+            this.btnSortImage.BackgroundImage = global::WFA_PDFHelper.Properties.Resources.toggle_off_32px;
+            this.btnSortImage.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnSortImage.FlatAppearance.BorderSize = 0;
+            this.btnSortImage.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Black;
+            this.btnSortImage.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Black;
+            this.btnSortImage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSortImage.ForeColor = System.Drawing.Color.Black;
+            this.btnSortImage.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
+            this.btnSortImage.Location = new System.Drawing.Point(28, 318);
+            this.btnSortImage.Name = "btnSortImage";
+            this.btnSortImage.Size = new System.Drawing.Size(35, 29);
+            this.btnSortImage.TabIndex = 8;
+            this.btnSortImage.UseVisualStyleBackColor = false;
+            this.btnSortImage.Click += new System.EventHandler(this.btnSortImage_Click);
             // 
-            // btnAddImage
+            // btnDelete
             // 
-            this.btnAddImage.BackColor = System.Drawing.Color.Black;
-            this.btnAddImage.BackgroundImage = global::WFA_PDFHelper.Properties.Resources.plus_math_32px;
-            this.btnAddImage.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(125)))), ((int)(((byte)(154)))));
-            this.btnAddImage.FlatAppearance.BorderSize = 2;
-            this.btnAddImage.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(77)))), ((int)(((byte)(77)))), ((int)(((byte)(77)))));
-            this.btnAddImage.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(100)))), ((int)(((byte)(100)))));
-            this.btnAddImage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAddImage.ForeColor = System.Drawing.Color.Black;
-            this.btnAddImage.Location = new System.Drawing.Point(27, 73);
-            this.btnAddImage.Name = "btnAddImage";
-            this.btnAddImage.Size = new System.Drawing.Size(36, 36);
-            this.btnAddImage.TabIndex = 2;
-            this.btnAddImage.UseVisualStyleBackColor = false;
-            this.btnAddImage.Click += new System.EventHandler(this.btnAddImage_Click);
+            this.btnDelete.BackColor = System.Drawing.Color.Black;
+            this.btnDelete.BackgroundImage = global::WFA_PDFHelper.Properties.Resources.subtract_32px;
+            this.btnDelete.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(65)))), ((int)(((byte)(65)))));
+            this.btnDelete.FlatAppearance.BorderSize = 2;
+            this.btnDelete.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(77)))), ((int)(((byte)(77)))), ((int)(((byte)(77)))));
+            this.btnDelete.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(100)))), ((int)(((byte)(100)))));
+            this.btnDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDelete.ForeColor = System.Drawing.Color.Black;
+            this.btnDelete.Location = new System.Drawing.Point(69, 73);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(36, 36);
+            this.btnDelete.TabIndex = 4;
+            this.btnDelete.UseVisualStyleBackColor = false;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
-            // label2
+            // btnAdd
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Itim", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(23, 296);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(56, 19);
-            this.label2.TabIndex = 6;
-            this.label2.Text = "Option";
+            this.btnAdd.BackColor = System.Drawing.Color.Black;
+            this.btnAdd.BackgroundImage = global::WFA_PDFHelper.Properties.Resources.plus_math_32px;
+            this.btnAdd.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(125)))), ((int)(((byte)(154)))));
+            this.btnAdd.FlatAppearance.BorderSize = 2;
+            this.btnAdd.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(77)))), ((int)(((byte)(77)))), ((int)(((byte)(77)))));
+            this.btnAdd.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(100)))), ((int)(((byte)(100)))));
+            this.btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAdd.ForeColor = System.Drawing.Color.Black;
+            this.btnAdd.Location = new System.Drawing.Point(27, 73);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(36, 36);
+            this.btnAdd.TabIndex = 2;
+            this.btnAdd.UseVisualStyleBackColor = false;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
-            // checkBox1
+            // lblSortImage
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.checkBox1.Font = new System.Drawing.Font("Itim", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBox1.ForeColor = System.Drawing.Color.White;
-            this.checkBox1.Location = new System.Drawing.Point(27, 318);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(252, 19);
-            this.checkBox1.TabIndex = 7;
-            this.checkBox1.Text = "Sorting file name  before converet to pdf.";
-            this.checkBox1.UseVisualStyleBackColor = true;
+            this.lblSortImage.AutoSize = true;
+            this.lblSortImage.Font = new System.Drawing.Font("Itim", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSortImage.ForeColor = System.Drawing.Color.White;
+            this.lblSortImage.Location = new System.Drawing.Point(24, 296);
+            this.lblSortImage.Name = "lblSortImage";
+            this.lblSortImage.Size = new System.Drawing.Size(292, 19);
+            this.lblSortImage.TabIndex = 6;
+            this.lblSortImage.Text = "Sorting file name  before converet to pdf.";
+            // 
+            // lblSwitchSortImage
+            // 
+            this.lblSwitchSortImage.AutoSize = true;
+            this.lblSwitchSortImage.Font = new System.Drawing.Font("Itim", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSwitchSortImage.ForeColor = System.Drawing.Color.White;
+            this.lblSwitchSortImage.Location = new System.Drawing.Point(69, 322);
+            this.lblSwitchSortImage.Name = "lblSwitchSortImage";
+            this.lblSwitchSortImage.Size = new System.Drawing.Size(33, 19);
+            this.lblSwitchSortImage.TabIndex = 9;
+            this.lblSwitchSortImage.Text = "Off";
+            // 
+            // btnGenerate
+            // 
+            this.btnGenerate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
+            this.btnGenerate.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
+            this.btnGenerate.FlatAppearance.BorderSize = 2;
+            this.btnGenerate.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(77)))), ((int)(((byte)(77)))), ((int)(((byte)(77)))));
+            this.btnGenerate.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(100)))), ((int)(((byte)(100)))));
+            this.btnGenerate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnGenerate.Font = new System.Drawing.Font("Itim", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnGenerate.ForeColor = System.Drawing.Color.White;
+            this.btnGenerate.Location = new System.Drawing.Point(28, 353);
+            this.btnGenerate.Name = "btnGenerate";
+            this.btnGenerate.Size = new System.Drawing.Size(104, 36);
+            this.btnGenerate.TabIndex = 10;
+            this.btnGenerate.Text = "Generate";
+            this.btnGenerate.UseVisualStyleBackColor = false;
             // 
             // UCIMG2PDFF001
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
-            this.Controls.Add(this.checkBox1);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.btnDeleteImage);
+            this.Controls.Add(this.btnGenerate);
+            this.Controls.Add(this.lblSwitchSortImage);
+            this.Controls.Add(this.btnSortImage);
+            this.Controls.Add(this.lblSortImage);
+            this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.listboxImage);
-            this.Controls.Add(this.btnAddImage);
+            this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.lblToppic);
             this.Name = "UCIMG2PDFF001";
@@ -160,11 +197,13 @@
 
         private System.Windows.Forms.Label lblToppic;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button btnAddImage;
+        private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.OpenFileDialog OFDAddImage;
         private System.Windows.Forms.ListBox listboxImage;
-        private System.Windows.Forms.Button btnDeleteImage;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.Button btnDelete;
+        private System.Windows.Forms.Button btnSortImage;
+        private System.Windows.Forms.Label lblSortImage;
+        private System.Windows.Forms.Label lblSwitchSortImage;
+        private System.Windows.Forms.Button btnGenerate;
     }
 }

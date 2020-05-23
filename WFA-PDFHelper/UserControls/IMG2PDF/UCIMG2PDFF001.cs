@@ -18,18 +18,22 @@ namespace WFA.PDFHelper.UserControls
 {
     public partial class UCIMG2PDFF001 : UserControl
     {
+        #region init
         private IMG2PDFDA IMG2PDF = new IMG2PDFDA();
+        private int SORT_TOGGLE_ON = 0;
+
         public UCIMG2PDFF001()
         {
             InitializeComponent();
         }
-
         private void UCIMG2PDFF001_Load(object sender, EventArgs e)
         {
-            btnDeleteImage.Visible = false;
+            btnDelete.Visible = false;
         }
+        #endregion
 
-        private void btnAddImage_Click(object sender, EventArgs e)
+        #region event
+        private void btnAdd_Click(object sender, EventArgs e)
         {
             using (OpenFileDialog theDialog = new OpenFileDialog())
             {
@@ -62,7 +66,7 @@ namespace WFA.PDFHelper.UserControls
                             listboxImage.Items.Add(model.FILE_NAME);
                         }
 
-                        btnDeleteImage.Visible = true;
+                        btnDelete.Visible = true;
                     }
                     catch (Exception ex)
                     {
@@ -72,14 +76,13 @@ namespace WFA.PDFHelper.UserControls
 
                 }
 
-            }
-        } //end using
-
-        private void btnDeleteImage_Click(object sender, EventArgs e)
+            }//end using
+        }
+        private void btnDelete_Click(object sender, EventArgs e)
         {
             if (listboxImage.SelectedItems.Count > 0)
             {
-                foreach(var file in listboxImage.SelectedItems)
+                foreach (var file in listboxImage.SelectedItems)
                     IMG2PDF.DTO.Model.IMG2PDFModels.RemoveAll(t => t.FILE_NAME == file.ToString());
             }
 
@@ -90,9 +93,28 @@ namespace WFA.PDFHelper.UserControls
             }
 
             if (listboxImage.Items.Count == 0)
-                btnDeleteImage.Visible = false;
+                btnDelete.Visible = false;
         }
+        private void btnSortImage_Click(object sender, EventArgs e)
+        {
+            if (SORT_TOGGLE_ON % 2 == 0)
+            {
+                //on
+                btnSortImage.BackgroundImage = global::WFA_PDFHelper.Properties.Resources.toggle_on_32px;
+                lblSwitchSortImage.Text = "On";
+                SORT_TOGGLE_ON++;
+            }
+            else
+            {
+                //off
+                btnSortImage.BackgroundImage = global::WFA_PDFHelper.Properties.Resources.toggle_off_32px;
+                lblSwitchSortImage.Text = "Off";
+                SORT_TOGGLE_ON++;
+            }
+        }
+        #endregion
 
+        #region method
         private void savedaa()
         {
             //test
@@ -103,6 +125,6 @@ namespace WFA.PDFHelper.UserControls
             for (int i = 0; i <= 500; i++)
                 Thread.Sleep(10);
         }
-
+        #endregion
     }
 }
