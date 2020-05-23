@@ -26,8 +26,7 @@ namespace WFA.PDFHelper.UserControls
 
         private void UCIMG2PDFF001_Load(object sender, EventArgs e)
         {
-            //btnDeleteImage.Visible = false;
-            btnDeleteImage.Visible = true;
+            btnDeleteImage.Visible = false;
         }
 
         private void btnAddImage_Click(object sender, EventArgs e)
@@ -78,15 +77,29 @@ namespace WFA.PDFHelper.UserControls
 
         private void btnDeleteImage_Click(object sender, EventArgs e)
         {
-            //test
-            using (WaitForm form = new WaitForm(savedaa))
+            if (listboxImage.SelectedItems.Count > 0)
             {
-                form.ShowDialog(this);
+                foreach(var file in listboxImage.SelectedItems)
+                    IMG2PDF.DTO.Model.IMG2PDFModels.RemoveAll(t => t.FILE_NAME == file.ToString());
             }
+
+            listboxImage.Items.Clear();
+            foreach (var model in IMG2PDF.DTO.Model.IMG2PDFModels)
+            {
+                listboxImage.Items.Add(model.FILE_NAME);
+            }
+
+            if (listboxImage.Items.Count == 0)
+                btnDeleteImage.Visible = false;
         }
 
         private void savedaa()
         {
+            //test
+            //using (WaitForm form = new WaitForm(savedaa))
+            //{
+            //    form.ShowDialog(this);
+            //}
             for (int i = 0; i <= 500; i++)
                 Thread.Sleep(10);
         }
