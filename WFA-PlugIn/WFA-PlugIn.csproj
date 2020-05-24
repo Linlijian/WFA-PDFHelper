@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Model\MassageBoxModel.cs" />
     <Compile Include="WFA-MassageBox.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -91,6 +92,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\delete_32px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\windownserror10.mp3" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

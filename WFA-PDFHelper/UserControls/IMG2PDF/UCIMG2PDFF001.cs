@@ -111,6 +111,17 @@ namespace WFA.PDFHelper.UserControls
                 lblSwitchSortImage.Text = "Off";
                 SORT_TOGGLE_ON++;
             }
+
+            //that work!
+            //var message = new MassageBoxModel();
+            //message.TITLE = "Error";
+            //message.MESSAGE = "401: No have girlfirend";
+            //message.BUTTON_TYPE = ButtonType.OK;
+
+            //using (MassageBox box = new MassageBox(message))
+            //{
+            //    box.ShowDialog(this);
+            //}
         }
         private void btnGenerate_Click(object sender, EventArgs e)
         {
