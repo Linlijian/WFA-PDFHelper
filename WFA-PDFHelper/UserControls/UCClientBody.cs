@@ -39,6 +39,16 @@ namespace WFA.PDFHelper.UserControls
             }
             MainForm.Instance.PnlClientBody.Controls["UCClientIMG2PDF"].BringToFront();
             MainForm.Instance.PnlTitle.BackColor = Color.FromArgb(32, 32, 32);
-        }        
+        }
+
+        private void btnSetting_Click(object sender, EventArgs e)
+        {
+            if (!MainForm.Instance.PnlClientBody.Controls.ContainsKey("UCClientSETTING"))
+            {
+                UserControlHelper.SetUserControl(MainForm.Instance.PnlClientBody, userControl: new UCClientSETTING(), dockStyle: UserControlDockStyle.DockStyleFill);
+            }
+            MainForm.Instance.PnlClientBody.Controls["UCClientSETTING"].BringToFront();
+            MainForm.Instance.PnlTitle.BackColor = Color.FromArgb(32, 32, 32);
+        }
     }
 }

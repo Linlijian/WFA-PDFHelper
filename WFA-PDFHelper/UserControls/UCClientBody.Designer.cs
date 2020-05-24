@@ -50,6 +50,7 @@
             this.btnSetting.TabIndex = 2;
             this.btnSetting.Text = "Setting";
             this.btnSetting.UseVisualStyleBackColor = true;
+            this.btnSetting.Click += new System.EventHandler(this.btnSetting_Click);
             // 
             // btnImagetoPDF
             // 

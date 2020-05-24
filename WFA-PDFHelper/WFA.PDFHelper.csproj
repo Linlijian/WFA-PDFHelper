@@ -99,6 +99,12 @@
     <Compile Include="UserControls\PDF2IMG\UCPDF2IMGF003.Designer.cs">
       <DependentUpon>UCPDF2IMGF003.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\SETTING\UCClientSETTING.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\SETTING\UCClientSETTING.Designer.cs">
+      <DependentUpon>UCClientSETTING.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\UCClientBody.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -156,6 +162,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\PDF2IMG\UCPDF2IMGF003.resx">
       <DependentUpon>UCPDF2IMGF003.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\SETTING\UCClientSETTING.resx">
+      <DependentUpon>UCClientSETTING.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\UCClientBody.resx">
       <DependentUpon>UCClientBody.cs</DependentUpon>
@@ -230,9 +239,6 @@
     <None Include="Resources\subtract_32px.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\akagi.gif" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\toggle_off_32px.png" />
   </ItemGroup>
   <ItemGroup>
@@ -240,6 +246,30 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\toggle_on_32px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\folder_settings_32px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\info_32px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\update_32px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\export_pdf_32px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pdf_window_32px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\folder_tree_32px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\jpg_32px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\image_gallery_32px.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

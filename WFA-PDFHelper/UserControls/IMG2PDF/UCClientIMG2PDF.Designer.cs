@@ -29,15 +29,15 @@
         private void InitializeComponent()
         {
             this.panelClient = new System.Windows.Forms.Panel();
-            this.btnHome = new System.Windows.Forms.Button();
             this.PActiveConvertInMulFolder = new System.Windows.Forms.Panel();
-            this.btnConvertInMulFolder = new System.Windows.Forms.Button();
             this.PActiveConvertInFolder = new System.Windows.Forms.Panel();
-            this.btnConveretInFolder = new System.Windows.Forms.Button();
             this.PActiveConvert2Image = new System.Windows.Forms.Panel();
-            this.btnConvert2PDF = new System.Windows.Forms.Button();
             this.lblActiveTask = new System.Windows.Forms.Label();
             this.panelClientTask = new System.Windows.Forms.Panel();
+            this.btnHome = new System.Windows.Forms.Button();
+            this.btnConvertInMulFolder = new System.Windows.Forms.Button();
+            this.btnConveretInFolder = new System.Windows.Forms.Button();
+            this.btnConvert2PDF = new System.Windows.Forms.Button();
             this.panelClient.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -57,6 +57,49 @@
             this.panelClient.Name = "panelClient";
             this.panelClient.Size = new System.Drawing.Size(256, 560);
             this.panelClient.TabIndex = 1;
+            // 
+            // PActiveConvertInMulFolder
+            // 
+            this.PActiveConvertInMulFolder.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(125)))), ((int)(((byte)(154)))));
+            this.PActiveConvertInMulFolder.Location = new System.Drawing.Point(0, 239);
+            this.PActiveConvertInMulFolder.Name = "PActiveConvertInMulFolder";
+            this.PActiveConvertInMulFolder.Size = new System.Drawing.Size(6, 35);
+            this.PActiveConvertInMulFolder.TabIndex = 19;
+            // 
+            // PActiveConvertInFolder
+            // 
+            this.PActiveConvertInFolder.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(125)))), ((int)(((byte)(154)))));
+            this.PActiveConvertInFolder.Location = new System.Drawing.Point(0, 198);
+            this.PActiveConvertInFolder.Name = "PActiveConvertInFolder";
+            this.PActiveConvertInFolder.Size = new System.Drawing.Size(6, 35);
+            this.PActiveConvertInFolder.TabIndex = 17;
+            // 
+            // PActiveConvert2Image
+            // 
+            this.PActiveConvert2Image.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(125)))), ((int)(((byte)(154)))));
+            this.PActiveConvert2Image.Location = new System.Drawing.Point(0, 157);
+            this.PActiveConvert2Image.Name = "PActiveConvert2Image";
+            this.PActiveConvert2Image.Size = new System.Drawing.Size(6, 35);
+            this.PActiveConvert2Image.TabIndex = 15;
+            // 
+            // lblActiveTask
+            // 
+            this.lblActiveTask.AutoSize = true;
+            this.lblActiveTask.Font = new System.Drawing.Font("Itim", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblActiveTask.ForeColor = System.Drawing.Color.White;
+            this.lblActiveTask.Location = new System.Drawing.Point(8, 76);
+            this.lblActiveTask.Name = "lblActiveTask";
+            this.lblActiveTask.Size = new System.Drawing.Size(101, 19);
+            this.lblActiveTask.TabIndex = 3;
+            this.lblActiveTask.Text = "Image to PDF";
+            // 
+            // panelClientTask
+            // 
+            this.panelClientTask.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelClientTask.Location = new System.Drawing.Point(256, 0);
+            this.panelClientTask.Name = "panelClientTask";
+            this.panelClientTask.Size = new System.Drawing.Size(644, 560);
+            this.panelClientTask.TabIndex = 2;
             // 
             // btnHome
             // 
@@ -78,14 +121,6 @@
             this.btnHome.UseVisualStyleBackColor = true;
             this.btnHome.Click += new System.EventHandler(this.btnHome_Click);
             // 
-            // PActiveConvertInMulFolder
-            // 
-            this.PActiveConvertInMulFolder.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(125)))), ((int)(((byte)(154)))));
-            this.PActiveConvertInMulFolder.Location = new System.Drawing.Point(0, 239);
-            this.PActiveConvertInMulFolder.Name = "PActiveConvertInMulFolder";
-            this.PActiveConvertInMulFolder.Size = new System.Drawing.Size(6, 35);
-            this.PActiveConvertInMulFolder.TabIndex = 19;
-            // 
             // btnConvertInMulFolder
             // 
             this.btnConvertInMulFolder.FlatAppearance.BorderSize = 0;
@@ -94,7 +129,7 @@
             this.btnConvertInMulFolder.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnConvertInMulFolder.Font = new System.Drawing.Font("Itim", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnConvertInMulFolder.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.btnConvertInMulFolder.Image = global::WFA_PDFHelper.Properties.Resources.home_32px;
+            this.btnConvertInMulFolder.Image = global::WFA_PDFHelper.Properties.Resources.folder_tree_32px;
             this.btnConvertInMulFolder.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnConvertInMulFolder.Location = new System.Drawing.Point(12, 239);
             this.btnConvertInMulFolder.Name = "btnConvertInMulFolder";
@@ -106,14 +141,6 @@
             this.btnConvertInMulFolder.UseVisualStyleBackColor = true;
             this.btnConvertInMulFolder.Click += new System.EventHandler(this.btnConvertInMulFolder_Click);
             // 
-            // PActiveConvertInFolder
-            // 
-            this.PActiveConvertInFolder.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(125)))), ((int)(((byte)(154)))));
-            this.PActiveConvertInFolder.Location = new System.Drawing.Point(0, 198);
-            this.PActiveConvertInFolder.Name = "PActiveConvertInFolder";
-            this.PActiveConvertInFolder.Size = new System.Drawing.Size(6, 35);
-            this.PActiveConvertInFolder.TabIndex = 17;
-            // 
             // btnConveretInFolder
             // 
             this.btnConveretInFolder.FlatAppearance.BorderSize = 0;
@@ -122,7 +149,7 @@
             this.btnConveretInFolder.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnConveretInFolder.Font = new System.Drawing.Font("Itim", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnConveretInFolder.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.btnConveretInFolder.Image = global::WFA_PDFHelper.Properties.Resources.home_32px;
+            this.btnConveretInFolder.Image = global::WFA_PDFHelper.Properties.Resources.pdf_window_32px;
             this.btnConveretInFolder.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnConveretInFolder.Location = new System.Drawing.Point(12, 198);
             this.btnConveretInFolder.Name = "btnConveretInFolder";
@@ -135,14 +162,6 @@
             this.btnConveretInFolder.UseVisualStyleBackColor = true;
             this.btnConveretInFolder.Click += new System.EventHandler(this.btnConvertInFolder_Click);
             // 
-            // PActiveConvert2Image
-            // 
-            this.PActiveConvert2Image.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(125)))), ((int)(((byte)(154)))));
-            this.PActiveConvert2Image.Location = new System.Drawing.Point(0, 157);
-            this.PActiveConvert2Image.Name = "PActiveConvert2Image";
-            this.PActiveConvert2Image.Size = new System.Drawing.Size(6, 35);
-            this.PActiveConvert2Image.TabIndex = 15;
-            // 
             // btnConvert2PDF
             // 
             this.btnConvert2PDF.FlatAppearance.BorderSize = 0;
@@ -151,7 +170,7 @@
             this.btnConvert2PDF.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnConvert2PDF.Font = new System.Drawing.Font("Itim", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnConvert2PDF.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.btnConvert2PDF.Image = global::WFA_PDFHelper.Properties.Resources.home_32px;
+            this.btnConvert2PDF.Image = global::WFA_PDFHelper.Properties.Resources.export_pdf_32px;
             this.btnConvert2PDF.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnConvert2PDF.Location = new System.Drawing.Point(12, 157);
             this.btnConvert2PDF.Name = "btnConvert2PDF";
@@ -162,25 +181,6 @@
             this.btnConvert2PDF.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnConvert2PDF.UseVisualStyleBackColor = true;
             this.btnConvert2PDF.Click += new System.EventHandler(this.btnConvert2PDF_Click);
-            // 
-            // lblActiveTask
-            // 
-            this.lblActiveTask.AutoSize = true;
-            this.lblActiveTask.Font = new System.Drawing.Font("Itim", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblActiveTask.ForeColor = System.Drawing.Color.White;
-            this.lblActiveTask.Location = new System.Drawing.Point(8, 76);
-            this.lblActiveTask.Name = "lblActiveTask";
-            this.lblActiveTask.Size = new System.Drawing.Size(101, 19);
-            this.lblActiveTask.TabIndex = 3;
-            this.lblActiveTask.Text = "Image to PDF";
-            // 
-            // panelClientTask
-            // 
-            this.panelClientTask.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelClientTask.Location = new System.Drawing.Point(256, 0);
-            this.panelClientTask.Name = "panelClientTask";
-            this.panelClientTask.Size = new System.Drawing.Size(644, 560);
-            this.panelClientTask.TabIndex = 2;
             // 
             // UCClientIMG2PDF
             // 

@@ -73,6 +73,36 @@ namespace WFA_PDFHelper.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap export_pdf_32px {
+            get {
+                object obj = ResourceManager.GetObject("export_pdf_32px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap folder_settings_32px {
+            get {
+                object obj = ResourceManager.GetObject("folder_settings_32px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap folder_tree_32px {
+            get {
+                object obj = ResourceManager.GetObject("folder_tree_32px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap home_32px {
             get {
                 object obj = ResourceManager.GetObject("home_32px", resourceCulture);
@@ -113,6 +143,36 @@ namespace WFA_PDFHelper.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap image_gallery_32px {
+            get {
+                object obj = ResourceManager.GetObject("image_gallery_32px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap info_32px {
+            get {
+                object obj = ResourceManager.GetObject("info_32px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap jpg_32px {
+            get {
+                object obj = ResourceManager.GetObject("jpg_32px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap multiply_32px {
             get {
                 object obj = ResourceManager.GetObject("multiply_32px", resourceCulture);
@@ -136,6 +196,16 @@ namespace WFA_PDFHelper.Properties {
         internal static System.Drawing.Bitmap pdf_64px {
             get {
                 object obj = ResourceManager.GetObject("pdf_64px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap pdf_window_32px {
+            get {
+                object obj = ResourceManager.GetObject("pdf_window_32px", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -196,6 +266,16 @@ namespace WFA_PDFHelper.Properties {
         internal static System.Drawing.Bitmap toggle_on_32px {
             get {
                 object obj = ResourceManager.GetObject("toggle_on_32px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap update_32px {
+            get {
+                object obj = ResourceManager.GetObject("update_32px", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
