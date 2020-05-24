@@ -53,6 +53,12 @@
     <Compile Include="WFA-MassageBox.Designer.cs">
       <DependentUpon>WFA-MassageBox.cs</DependentUpon>
     </Compile>
+    <Compile Include="WFA-SplashScreen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WFA-SplashScreen.Designer.cs">
+      <DependentUpon>WFA-SplashScreen.cs</DependentUpon>
+    </Compile>
     <Compile Include="WFA-WaitForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -63,6 +69,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="WFA-MassageBox.resx">
       <DependentUpon>WFA-MassageBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WFA-SplashScreen.resx">
+      <DependentUpon>WFA-SplashScreen.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="WFA-WaitForm.resx">
       <DependentUpon>WFA-WaitForm.cs</DependentUpon>
@@ -95,6 +104,13 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\windownserror10.mp3" />
+    <None Include="Resources\youtube_64px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\UtilityLib\UtilityLib.csproj">
+      <Project>{B4A79F70-8D7B-4E9F-A156-F325F46BCBAF}</Project>
+      <Name>UtilityLib</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

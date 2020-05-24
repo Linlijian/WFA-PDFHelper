@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
+using System.Threading;
+using WFA.PlugIn;
 
 namespace WFA.PDFHelper.UserControls
 {
@@ -29,6 +31,20 @@ namespace WFA.PDFHelper.UserControls
                 string savePath = Path.GetDirectoryName(sf.FileName);
                 string appPath = Path.GetDirectoryName(Application.ExecutablePath);
                 // Do whatever
+            }
+        }
+        private void savedaa()
+        {
+            
+            for (int i = 0; i <= 500; i++)
+                Thread.Sleep(10);
+        }
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            //test
+            using (WaitForm form = new WaitForm(savedaa))
+            {
+                form.ShowDialog(this);
             }
         }
     }

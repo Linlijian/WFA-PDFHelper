@@ -30,10 +30,10 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.panelTop = new System.Windows.Forms.Panel();
+            this.panelTitle = new System.Windows.Forms.Panel();
             this.lblPDFHelper = new System.Windows.Forms.Label();
             this.btnClose = new System.Windows.Forms.Button();
             this.panelClientBody = new System.Windows.Forms.Panel();
-            this.panelTitle = new System.Windows.Forms.Panel();
             this.panelTop.SuspendLayout();
             this.panelTitle.SuspendLayout();
             this.SuspendLayout();
@@ -49,6 +49,15 @@
             this.panelTop.Size = new System.Drawing.Size(900, 40);
             this.panelTop.TabIndex = 0;
             this.panelTop.MouseMove += new System.Windows.Forms.MouseEventHandler(this.panelTop_MouseMove);
+            // 
+            // panelTitle
+            // 
+            this.panelTitle.Controls.Add(this.lblPDFHelper);
+            this.panelTitle.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panelTitle.Location = new System.Drawing.Point(0, 0);
+            this.panelTitle.Name = "panelTitle";
+            this.panelTitle.Size = new System.Drawing.Size(256, 40);
+            this.panelTitle.TabIndex = 0;
             // 
             // lblPDFHelper
             // 
@@ -86,15 +95,6 @@
             this.panelClientBody.Size = new System.Drawing.Size(900, 560);
             this.panelClientBody.TabIndex = 2;
             // 
-            // panelTitle
-            // 
-            this.panelTitle.Controls.Add(this.lblPDFHelper);
-            this.panelTitle.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panelTitle.Location = new System.Drawing.Point(0, 0);
-            this.panelTitle.Name = "panelTitle";
-            this.panelTitle.Size = new System.Drawing.Size(256, 40);
-            this.panelTitle.TabIndex = 0;
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -104,11 +104,11 @@
             this.Controls.Add(this.panelClientBody);
             this.Controls.Add(this.panelTop);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "MainForm";
-            this.Text = "MainForm";
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.panelTop.ResumeLayout(false);
             this.panelTitle.ResumeLayout(false);

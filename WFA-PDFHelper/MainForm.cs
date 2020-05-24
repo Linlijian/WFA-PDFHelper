@@ -5,10 +5,14 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using UtilityLib;
 using WFA.PDFHelper.Helper;
 using WFA.PDFHelper.UserControls;
+using WFA.PlugIn;
+using WFA_PlugIn;
 
 namespace WFA.PDFHelper
 {
@@ -61,15 +65,41 @@ namespace WFA.PDFHelper
 
         public MainForm()
         {
+            Thread t = new Thread(new ThreadStart(StartUp));
+            t.Start();
+            Thread.Sleep(2000);
             InitializeComponent();
+            t.Abort();
+        }
+        public void StartUp()
+        {
+            Application.Run(new SplashScreen());
         }
         #endregion
 
         #region form
         private void MainForm_Load(object sender, EventArgs e)
         {
-            _obj = this;
-            UserControlHelper.SetUserControl(panelClientBody, userControl: new UCClientBody(),dockStyle:UserControlDockStyle.DockStyleFill);
+            if (!SessionHelper.SYS_StartUp)
+            {
+                //that work!
+                var message = new MassageBoxModel();
+                message.TITLE = "Error";
+                message.MESSAGE = "402: No have girlfirend every life!";
+                message.BUTTON_TYPE = ButtonType.OK;
+
+                using (MassageBox box = new MassageBox(message))
+                {
+                    box.ShowDialog(this);
+                }
+
+                Application.Exit();
+            }
+            else
+            {
+                _obj = this;
+                UserControlHelper.SetUserControl(panelClientBody, userControl: new UCClientBody(), dockStyle: UserControlDockStyle.DockStyleFill);
+            }  
         }
         #endregion
 
