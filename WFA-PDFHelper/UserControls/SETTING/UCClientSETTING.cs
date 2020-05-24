@@ -39,6 +39,7 @@ namespace WFA.PDFHelper.UserControls
         {
             HideActive();
             PActiveGeneral.Show();
+            UserControlHelper.SetUserControl(panelClientTask, userControl: new UCSETTINGF001(), dockStyle: UserControlDockStyle.DockStyleFill);
         }
 
         private void btnAbout_Click(object sender, EventArgs e)
