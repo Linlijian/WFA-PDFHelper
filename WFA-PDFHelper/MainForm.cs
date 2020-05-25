@@ -69,6 +69,7 @@ namespace WFA.PDFHelper
             t.Start();
             Thread.Sleep(2000);
             InitializeComponent();
+            Thread.Sleep(10);
             t.Abort();
         }
         public void StartUp()
@@ -84,8 +85,8 @@ namespace WFA.PDFHelper
             {
                 //that work!
                 var message = new MassageBoxModel();
-                message.TITLE = "Error";
-                message.MESSAGE = "402: No have girlfirend every life!";
+                message.TITLE = SessionHelper.SYS_TITLE;
+                message.MESSAGE = SessionHelper.SYS_ERROR_CODE + " : " + SessionHelper.SYS_ERROR_MESSAGE;
                 message.BUTTON_TYPE = ButtonType.OK;
 
                 using (MassageBox box = new MassageBox(message))

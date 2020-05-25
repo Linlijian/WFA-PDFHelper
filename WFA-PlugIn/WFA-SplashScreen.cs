@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -20,9 +21,55 @@ namespace WFA_PlugIn
             InitializeComponent();
             VerifyStartUp();
         }
-        private bool VerifyStartUp()
+        private void VerifyStartUp()
         {
-            return SessionHelper.SYS_StartUp = true;
+            //load xml
+            lblStatus.Text = "Load Config";
+            var xml = new XMLHelper();
+            xml.loadConfig();
+
+            //check folder output
+            lblStatus.Text = "Folder Output";
+            try
+            {
+                if (!Directory.Exists(xml.STATE.FolderOutput))
+                {
+                    var state = new FormState();
+                    state.FolderOutput = @"C:\Generate\";
+                    Directory.CreateDirectory(state.FolderOutput);
+
+                    xml.writeConfig(xml.STATE);
+                }
+            }
+            catch (Exception x)
+            {
+                SessionHelper.SYS_StartUp = false;
+                SessionHelper.SYS_ERROR_CODE = "001";
+                SessionHelper.SYS_ERROR_MESSAGE = "Can't Create Folder Output!";
+                SessionHelper.SYS_TITLE = "ERROR";
+
+                return;
+            }
+
+            xml.loadConfig();
+
+            try
+            {
+                var load_data = xml;
+                SessionHelper.XML_FOLDER_INPUT = load_data.STATE.FolderIntput;
+                SessionHelper.XML_FOLDER_OUTPUT = load_data.STATE.FolderOutput;
+            }
+            catch (Exception x)
+            {
+                SessionHelper.SYS_StartUp = false;
+                SessionHelper.SYS_ERROR_CODE = "002";
+                SessionHelper.SYS_ERROR_MESSAGE = "Can't Load config in Session";
+                SessionHelper.SYS_TITLE = "ERROR";
+
+                return;
+            }
+
+            SessionHelper.SYS_StartUp = true;
         }
 
     }

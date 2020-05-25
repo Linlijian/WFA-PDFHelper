@@ -103,7 +103,6 @@
     <None Include="Resources\delete_32px.png" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Resources\windownserror10.mp3" />
     <None Include="Resources\youtube_64px.png" />
   </ItemGroup>
   <ItemGroup>
