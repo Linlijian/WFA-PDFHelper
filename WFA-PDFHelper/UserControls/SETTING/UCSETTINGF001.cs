@@ -23,7 +23,8 @@ namespace WFA.PDFHelper.UserControls
         }
         private void UCSETTINGF001_Load(object sender, EventArgs e)
         {
-            lblShowInput.Text = SessionHelper.XML_FOLDER_OUTPUT;
+            lblShowInput.Text = SessionHelper.XML_FOLDER_INPUT;
+            lblShowOutput.Text = SessionHelper.XML_FOLDER_OUTPUT;
         }
 
         private void btnAddInputPath_Click(object sender, EventArgs e)
@@ -36,14 +37,36 @@ namespace WFA.PDFHelper.UserControls
                 {
                     lblShowInput.Text = dialog.FileName;
                 }
-            }
-                
+            }                
         }
-
+        private void btnAddOutputPath_Click(object sender, EventArgs e)
+        {
+            using (CommonOpenFileDialog dialog = new CommonOpenFileDialog())
+            {
+                dialog.InitialDirectory = lblShowInput.Text;
+                dialog.IsFolderPicker = true;
+                if (dialog.ShowDialog() == CommonFileDialogResult.Ok)
+                {
+                    lblShowOutput.Text = dialog.FileName;
+                }
+            }
+        }
         private void btnSave_Click(object sender, EventArgs e)
         {
             //save xml
+            var xml = new XMLHelper();
+
+            xml.STATE.FolderIntput = lblShowInput.Text;
+            xml.STATE.FolderOutput = lblShowOutput.Text;
+
+            xml.writeConfig(xml.STATE);
+
             //load to sassion
+            xml.loadConfig();
+            SessionHelper.XML_FOLDER_INPUT = xml.STATE.FolderIntput;
+            SessionHelper.XML_FOLDER_OUTPUT = xml.STATE.FolderOutput;
         }
+
+        
     }
 }

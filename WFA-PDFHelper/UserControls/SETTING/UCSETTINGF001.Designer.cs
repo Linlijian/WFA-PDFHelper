@@ -135,6 +135,7 @@
             this.btnAddOutputPath.Size = new System.Drawing.Size(36, 36);
             this.btnAddOutputPath.TabIndex = 13;
             this.btnAddOutputPath.UseVisualStyleBackColor = false;
+            this.btnAddOutputPath.Click += new System.EventHandler(this.btnAddOutputPath_Click);
             // 
             // lblTitle_output
             // 

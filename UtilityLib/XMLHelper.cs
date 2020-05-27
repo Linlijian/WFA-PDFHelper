@@ -36,7 +36,7 @@ namespace UtilityLib
                 {
                     writer.WriteStartElement("FormState");
                     writer.WriteElementString("FolderIntput", @"C:\");
-                    writer.WriteElementString("FolderOutput", @"C:\Generate\");
+                    writer.WriteElementString("FolderOutput", @"C:\Generate");
                     writer.WriteEndElement();
                     writer.Flush();
                 }
