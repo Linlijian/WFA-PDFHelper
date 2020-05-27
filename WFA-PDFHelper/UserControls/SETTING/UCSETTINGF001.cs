@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using System.IO;
 using System.Threading;
 using WFA.PlugIn;
+using UtilityLib;
 
 namespace WFA.PDFHelper.UserControls
 {
@@ -19,33 +20,37 @@ namespace WFA.PDFHelper.UserControls
         {
             InitializeComponent();
         }
-
-        private void btnAdd_Click(object sender, EventArgs e)
+        private void UCSETTINGF001_Load(object sender, EventArgs e)
         {
-            SaveFileDialog sf = new SaveFileDialog();
-            sf.FileName = "";
+            lblShowInput.Text = SessionHelper.XML_FOLDER_OUTPUT;
+        }
 
-            if (sf.ShowDialog() == DialogResult.OK)
+        private void btnAddInputPath_Click(object sender, EventArgs e)
+        {
+            //SaveFileDialog sf = new SaveFileDialog();
+            //OpenFileDialog sf = new OpenFileDialog();
+            //sf.FileName = "Generate";
+
+            //if (sf.ShowDialog() == DialogResult.OK)
+            //{
+            //    string savePath = Path.GetDirectoryName(sf.FileName);
+            //    lblShowInput.Text = savePath;
+            //}
+           
+            using (var fbd = new FolderBrowserDialog())
             {
-                // Now here's our save folder
-                string savePath = Path.GetDirectoryName(sf.FileName);
-                string appPath = Path.GetDirectoryName(Application.ExecutablePath);
-                // Do whatever
+                DialogResult result = fbd.ShowDialog();
+                if (result == DialogResult.OK && !string.IsNullOrWhiteSpace(fbd.SelectedPath))
+                {
+                   
+                }
             }
         }
-        private void savedaa()
+
+        private void btnSave_Click(object sender, EventArgs e)
         {
-            
-            for (int i = 0; i <= 500; i++)
-                Thread.Sleep(10);
-        }
-        private void btnDelete_Click(object sender, EventArgs e)
-        {
-            //test
-            using (WaitForm form = new WaitForm(savedaa))
-            {
-                form.ShowDialog(this);
-            }
+            //save xml
+            //load to sassion
         }
     }
 }
