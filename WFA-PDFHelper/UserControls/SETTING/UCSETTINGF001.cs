@@ -11,6 +11,7 @@ using System.IO;
 using System.Threading;
 using WFA.PlugIn;
 using UtilityLib;
+using Microsoft.WindowsAPICodePack.Dialogs;
 
 namespace WFA.PDFHelper.UserControls
 {
@@ -27,24 +28,16 @@ namespace WFA.PDFHelper.UserControls
 
         private void btnAddInputPath_Click(object sender, EventArgs e)
         {
-            //SaveFileDialog sf = new SaveFileDialog();
-            //OpenFileDialog sf = new OpenFileDialog();
-            //sf.FileName = "Generate";
-
-            //if (sf.ShowDialog() == DialogResult.OK)
-            //{
-            //    string savePath = Path.GetDirectoryName(sf.FileName);
-            //    lblShowInput.Text = savePath;
-            //}
-           
-            using (var fbd = new FolderBrowserDialog())
+            using (CommonOpenFileDialog dialog = new CommonOpenFileDialog())
             {
-                DialogResult result = fbd.ShowDialog();
-                if (result == DialogResult.OK && !string.IsNullOrWhiteSpace(fbd.SelectedPath))
+                dialog.InitialDirectory = lblShowInput.Text;
+                dialog.IsFolderPicker = true;
+                if (dialog.ShowDialog() == CommonFileDialogResult.Ok)
                 {
-                   
+                    lblShowInput.Text = dialog.FileName;
                 }
             }
+                
         }
 
         private void btnSave_Click(object sender, EventArgs e)
