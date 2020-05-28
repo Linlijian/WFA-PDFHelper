@@ -35,13 +35,14 @@ namespace WFA.PDFHelper.UserControls
         #region event
         private void btnAdd_Click(object sender, EventArgs e)
         {
+            ClearGenerateStatus();
             using (OpenFileDialog theDialog = new OpenFileDialog())
             {
                 var regex = new Regex("(.*)(?=.*.JPG|.*.JPEG|.*.jpg|.*.jpeg)");
 
-                theDialog.Title = "Open Image File";
+                theDialog.Title = "Select Image File";
                 theDialog.Filter = "JPEG| *.JPG;*.JPEG*.jpg;*.jpeg";
-                theDialog.InitialDirectory = @"C:\";
+                theDialog.InitialDirectory = SessionHelper.XML_FOLDER_INPUT;
                 theDialog.Multiselect = true;
 
                 if (theDialog.ShowDialog() == DialogResult.OK)
@@ -70,16 +71,23 @@ namespace WFA.PDFHelper.UserControls
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show("Error: " + ex.Message);
+                        var message = new MassageBoxModel();
+                        message.TITLE = "Error";
+                        message.MESSAGE = "Error add image : " + ex.Message;
+                        message.BUTTON_TYPE = ButtonType.OK;
+
+                        using (MassageBox box = new MassageBox(message))
+                        {
+                            box.ShowDialog(this);
+                        }
                     }
-
-
                 }
 
             }//end using
         }
         private void btnDelete_Click(object sender, EventArgs e)
         {
+            ClearGenerateStatus();
             if (listboxImage.SelectedItems.Count > 0)
             {
                 foreach (var file in listboxImage.SelectedItems)
@@ -97,6 +105,7 @@ namespace WFA.PDFHelper.UserControls
         }
         private void btnSortImage_Click(object sender, EventArgs e)
         {
+            ClearGenerateStatus();
             if (SORT_TOGGLE_ON % 2 == 0)
             {
                 //on
@@ -111,25 +120,29 @@ namespace WFA.PDFHelper.UserControls
                 lblSwitchSortImage.Text = "Off";
                 SORT_TOGGLE_ON++;
             }
-
-            //that work!
-            //var message = new MassageBoxModel();
-            //message.TITLE = "Error";
-            //message.MESSAGE = "401: No have girlfirend";
-            //message.BUTTON_TYPE = ButtonType.OK;
-
-            //using (MassageBox box = new MassageBox(message))
-            //{
-            //    box.ShowDialog(this);
-            //}
         }
         private void btnGenerate_Click(object sender, EventArgs e)
         {
+            ClearGenerateStatus();
             var dto = new IMG2PDFDA();
 
             IMG2PDF.DTO.Model.SORT = SORT_TOGGLE_ON % 2 == 0 ? true : false;
             dto = IMG2PDF;
-            dto.GeneratePdf(IMG2PDF.DTO);
+            try {
+                dto.GeneratePdf(IMG2PDF.DTO);
+                lblGenerateStatus.Text = "Generate Complete!";
+            }
+            catch {
+                var message = new MassageBoxModel();
+                message.TITLE = "Error";
+                message.MESSAGE = "Please re-check to generate pdf.";
+                message.BUTTON_TYPE = ButtonType.OK;
+
+                using (MassageBox box = new MassageBox(message))
+                {
+                    box.ShowDialog(this);
+                }
+            }            
 
             if (!dto.DTO.Model.ErrorMassage.IsNullOrEmpty())
             {
@@ -139,7 +152,7 @@ namespace WFA.PDFHelper.UserControls
         }
         #endregion
 
-        #region method
+        #region method        
         private void savedaa()
         {
             //test
@@ -150,7 +163,11 @@ namespace WFA.PDFHelper.UserControls
             for (int i = 0; i <= 500; i++)
                 Thread.Sleep(10);
         }
+        private void ClearGenerateStatus()
+        {
+            lblGenerateStatus.Text = "";
+        }
         #endregion
-       
+
     }
 }

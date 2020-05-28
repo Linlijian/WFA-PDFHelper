@@ -38,6 +38,7 @@
             this.lblSortImage = new System.Windows.Forms.Label();
             this.lblSwitchSortImage = new System.Windows.Forms.Label();
             this.btnGenerate = new System.Windows.Forms.Button();
+            this.lblGenerateStatus = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lblToppic
@@ -172,11 +173,22 @@
             this.btnGenerate.UseVisualStyleBackColor = false;
             this.btnGenerate.Click += new System.EventHandler(this.btnGenerate_Click);
             // 
+            // lblGenerateStatus
+            // 
+            this.lblGenerateStatus.AutoSize = true;
+            this.lblGenerateStatus.Font = new System.Drawing.Font("Itim", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblGenerateStatus.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(125)))), ((int)(((byte)(154)))));
+            this.lblGenerateStatus.Location = new System.Drawing.Point(144, 368);
+            this.lblGenerateStatus.Name = "lblGenerateStatus";
+            this.lblGenerateStatus.Size = new System.Drawing.Size(0, 19);
+            this.lblGenerateStatus.TabIndex = 11;
+            // 
             // UCIMG2PDFF001
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
+            this.Controls.Add(this.lblGenerateStatus);
             this.Controls.Add(this.btnGenerate);
             this.Controls.Add(this.lblSwitchSortImage);
             this.Controls.Add(this.btnSortImage);
@@ -206,5 +218,6 @@
         private System.Windows.Forms.Label lblSortImage;
         private System.Windows.Forms.Label lblSwitchSortImage;
         private System.Windows.Forms.Button btnGenerate;
+        private System.Windows.Forms.Label lblGenerateStatus;
     }
 }
