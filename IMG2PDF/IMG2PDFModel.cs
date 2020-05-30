@@ -12,6 +12,7 @@ namespace IMG2PDF
         public int Margin { get; set; }
         public bool SORT { get; set; }
         public string ErrorMassage { get; set; }
+        public string GenerateType { get; set; }
         public List<IMG2PDFModels> IMG2PDFModels { get; set; }
 
         public Rectangle PageSize { get; set; }

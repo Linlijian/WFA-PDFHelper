@@ -29,6 +29,7 @@ namespace WFA.PDFHelper.UserControls
         private void UCIMG2PDFF001_Load(object sender, EventArgs e)
         {
             btnDelete.Visible = false;
+            SORT_TOGGLE_ON = 1; //false
         }
         #endregion
 
@@ -106,19 +107,19 @@ namespace WFA.PDFHelper.UserControls
         private void btnSortImage_Click(object sender, EventArgs e)
         {
             ClearGenerateStatus();
-            if (SORT_TOGGLE_ON % 2 == 0)
+            if (SORT_TOGGLE_ON != 0) 
             {
                 //on
                 btnSortImage.BackgroundImage = global::WFA_PDFHelper.Properties.Resources.toggle_on_32px;
                 lblSwitchSortImage.Text = "On";
-                SORT_TOGGLE_ON++;
+                SORT_TOGGLE_ON = 0;
             }
             else
             {
                 //off
                 btnSortImage.BackgroundImage = global::WFA_PDFHelper.Properties.Resources.toggle_off_32px;
                 lblSwitchSortImage.Text = "Off";
-                SORT_TOGGLE_ON++;
+                SORT_TOGGLE_ON = 1;
             }
         }
         private void btnGenerate_Click(object sender, EventArgs e)
@@ -126,13 +127,16 @@ namespace WFA.PDFHelper.UserControls
             ClearGenerateStatus();
             var dto = new IMG2PDFDA();
 
-            IMG2PDF.DTO.Model.SORT = SORT_TOGGLE_ON % 2 == 0 ? true : false;
+            IMG2PDF.DTO.Model.SORT = SORT_TOGGLE_ON == 0 ? true : false; //fail
             dto = IMG2PDF;
-            try {
-                dto.GeneratePdf(IMG2PDF.DTO);
+            try
+            {
+                dto.DTO.Model.GenerateType = IMG2PDFGenerateType.UCIMG2PDFF001;
+                dto.Generate(IMG2PDF.DTO);
                 lblGenerateStatus.Text = "Generate Complete!";
             }
-            catch {
+            catch
+            {
                 var message = new MassageBoxModel();
                 message.TITLE = "Error";
                 message.MESSAGE = "Please re-check to generate pdf.";
@@ -142,13 +146,7 @@ namespace WFA.PDFHelper.UserControls
                 {
                     box.ShowDialog(this);
                 }
-            }            
-
-            if (!dto.DTO.Model.ErrorMassage.IsNullOrEmpty())
-            {
-                MessageBox.Show("");
             }
-
         }
         #endregion
 

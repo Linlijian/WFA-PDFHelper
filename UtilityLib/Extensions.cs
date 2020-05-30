@@ -49,6 +49,29 @@ namespace UtilityLib
             }
             return obj;
         }
+        public static T CloneObject<T>(this T obj)
+           where T : class, new()
+        {
+            var newObj = new T();
+            foreach (var prop in obj.GetType().GetProperties())
+            {
+                try
+                {
+                    var propertyInfo = newObj.GetType().GetProperty(prop.Name);
+                    if (propertyInfo != null)
+                    {
+                        var value = prop.GetValue(obj, null);
+                        propertyInfo.SetValue(newObj, Extensions.IsNullOrEmpty(value) ? null : Convert.ChangeType(value, Extensions.IsNullableType(propertyInfo.PropertyType) ? Nullable.GetUnderlyingType(propertyInfo.PropertyType) : propertyInfo.PropertyType), null);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    //ex.Log();
+                    //throw;
+                }
+            }
+            return newObj;
+        }
         public static T PickRandom<T>(this IEnumerable<T> source)
         {
             return source.PickRandom(1).Single();
@@ -60,6 +83,30 @@ namespace UtilityLib
         public static IEnumerable<T> Shuffle<T>(this IEnumerable<T> source)
         {
             return source.OrderBy(x => Guid.NewGuid());
+        }
+        public static TTarget ToNewObject<TSource, TTarget>(this TSource obj)
+           where TSource : class
+           where TTarget : class, new()
+        {
+            var newObj = new TTarget();
+            foreach (var prop in obj.GetType().GetProperties())
+            {
+                try
+                {
+                    var propertyInfo = newObj.GetType().GetProperty(prop.Name);
+                    if (propertyInfo != null)
+                    {
+                        var value = prop.GetValue(obj, null);
+                        propertyInfo.SetValue(newObj, Extensions.IsNullOrEmpty(value) ? null : Convert.ChangeType(value, Extensions.IsNullableType(propertyInfo.PropertyType) ? Nullable.GetUnderlyingType(propertyInfo.PropertyType) : propertyInfo.PropertyType), null);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    //ex.Log();
+                    //throw;
+                }
+            }
+            return newObj;
         }
         public static TTarget ToNewObject<TSource, TTarget>(this TSource obj, TTarget newObj)
             where TSource : class

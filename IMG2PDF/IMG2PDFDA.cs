@@ -7,6 +7,7 @@ using iTextSharp.text;
 using iTextSharp.text.pdf;
 using UtilityLib;
 using System.IO;
+using System.Text.RegularExpressions;
 
 namespace IMG2PDF
 {
@@ -24,15 +25,30 @@ namespace IMG2PDF
         {
             DTO = new IMG2PDFDTO();
         }
+        public IMG2PDFDTO Generate(IMG2PDFDTO dto)
+        {
+            switch (dto.Model.GenerateType)
+            {
+                case IMG2PDFGenerateType.UCIMG2PDFF001: return CaseSort(dto);
+            }
+            return dto;
+        }
 
         #region img 2 pdf
-        public IMG2PDFDTO GeneratePdf(IMG2PDFDTO dto)
+        public IMG2PDFDTO CaseSort(IMG2PDFDTO dto)
+        {
+            if (dto.Model.SORT)
+                dto.Model.IMG2PDFModels = dto.IMG2PDFSort();
+
+            GenerateImage2Pdf(dto);
+            return dto;
+        }
+        public IMG2PDFDTO GenerateImage2Pdf(IMG2PDFDTO dto)
         {
             var doc = new Document();
             string path_pdf = GenerateFileName();
             doc.SetMargins(dto.Model.Margin, dto.Model.Margin, dto.Model.Margin, dto.Model.Margin);
             dto.Model.PageSize = PageSize.A4;
-
 
             using (var stream = new FileStream(path_pdf, FileMode.Create, FileAccess.Write, FileShare.None))
             {
@@ -104,6 +120,15 @@ namespace IMG2PDF
         #endregion
 
         #region img 2 pdf multi folder
+        #endregion
+
+        #region add on
+        public IMG2PDFDTO test(IMG2PDFDTO dto)
+        {
+            //WORK
+            dto.Model.IMG2PDFModels = dto.IMG2PDFSort();
+            return dto;
+        }
         #endregion
     }
 }

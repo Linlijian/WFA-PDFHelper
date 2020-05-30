@@ -24,4 +24,11 @@ namespace IMG2PDF
         public IMG2PDFModel Model { get; set; }
         public List<IMG2PDFModel> Models { get; set; }
     }
+
+    public class IMG2PDFGenerateType
+    {
+        public const string UCIMG2PDFF001 = "UCIMG2PDFF001";
+        public const string UCIMG2PDFF002 = "UCIMG2PDFF002";
+        public const string UCIMG2PDFF003 = "UCIMG2PDFF003";
+    }
 }
