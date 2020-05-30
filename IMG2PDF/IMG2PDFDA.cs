@@ -117,12 +117,32 @@ namespace IMG2PDF
         #endregion
 
         #region img 2 pdf folder
+
         #endregion
 
         #region img 2 pdf multi folder
         #endregion
 
         #region add on
+        public void SelectFolder(string directory, string searchPatterns = "*.jpg")
+        {
+            string sourceDirectory = directory;
+            try
+            {
+                var allFiles
+                  = Directory.EnumerateFiles(sourceDirectory, searchPatterns, SearchOption.AllDirectories);
+
+                foreach (string currentFile in allFiles)
+                {
+                    string fileName = currentFile.Substring(sourceDirectory.Length + 1);
+
+                }
+            }
+            catch (Exception e)
+            {
+
+            }
+        }
         public IMG2PDFDTO test(IMG2PDFDTO dto)
         {
             //WORK

@@ -14,6 +14,7 @@ namespace IMG2PDF
         public string ErrorMassage { get; set; }
         public string GenerateType { get; set; }
         public List<IMG2PDFModels> IMG2PDFModels { get; set; }
+        public List<IMG2FOLDERModels> IMG2FOLDERModels { get; set; }
 
         public Rectangle PageSize { get; set; }
     }
@@ -22,5 +23,19 @@ namespace IMG2PDF
     {
         public string FILE_NAME { get; set; }
         public string FILE_PATH { get; set; }
+    }
+
+    public class IMG2FOLDERModels
+    {
+        public string FOLDER_NAME { get; set; }
+        public string FOLDER_PATH { get; set; }
+        public List<SUB_IMG2FOLDERModels> SUB_IMG2FOLDERModels { get; set; }
+    }
+
+    public class SUB_IMG2FOLDERModels
+    {
+        public string FILE_NAME { get; set; }
+        public string FILE_PATH { get; set; }
+        public string SUB_FOLDER_NAME { get; set; }
     }
 }

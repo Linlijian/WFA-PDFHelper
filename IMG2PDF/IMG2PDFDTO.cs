@@ -16,6 +16,7 @@ namespace IMG2PDF
             Model = new IMG2PDFModel();
             Models = new List<IMG2PDFModel>();
             Model.IMG2PDFModels = new List<IMG2PDFModels>();
+            Model.IMG2FOLDERModels = new List<IMG2FOLDERModels>();
         }
 
         /// <summary>
@@ -27,8 +28,17 @@ namespace IMG2PDF
 
     public class IMG2PDFGenerateType
     {
+        /// <summary>
+        /// image to pdf
+        /// </summary>
         public const string UCIMG2PDFF001 = "UCIMG2PDFF001";
+        /// <summary>
+        /// image to folder
+        /// </summary>
         public const string UCIMG2PDFF002 = "UCIMG2PDFF002";
+        /// <summary>
+        /// image to multi folder
+        /// </summary>
         public const string UCIMG2PDFF003 = "UCIMG2PDFF003";
     }
 }

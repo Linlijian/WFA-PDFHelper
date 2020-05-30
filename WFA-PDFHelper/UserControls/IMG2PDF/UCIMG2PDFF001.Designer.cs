@@ -48,9 +48,9 @@
             this.lblToppic.ForeColor = System.Drawing.Color.White;
             this.lblToppic.Location = new System.Drawing.Point(22, 17);
             this.lblToppic.Name = "lblToppic";
-            this.lblToppic.Size = new System.Drawing.Size(135, 25);
+            this.lblToppic.Size = new System.Drawing.Size(150, 25);
             this.lblToppic.TabIndex = 0;
-            this.lblToppic.Text = "Image to PDF";
+            this.lblToppic.Text = "Convert to PDF";
             // 
             // label1
             // 
