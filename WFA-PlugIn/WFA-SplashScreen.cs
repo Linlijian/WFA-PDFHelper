@@ -32,14 +32,27 @@ namespace WFA_PlugIn
             lblStatus.Text = "Folder Output";
             try
             {
-                if (!Directory.Exists(xml.STATE.FolderOutput))
+                if (!xml.STATE.FolderOutput.IsNullOrEmpty())
                 {
-                    var state = new FormState();
-                    state.FolderOutput = @"C:\Generate\";
-                    Directory.CreateDirectory(state.FolderOutput);
+                    if (!Directory.Exists(xml.STATE.FolderOutput))
+                    {
+                        var state = new FormState();
+                        state.FolderOutput = @"C:\Generate\";
+                        Directory.CreateDirectory(state.FolderOutput);
 
-                    xml.writeConfig(xml.STATE);
+                        xml.writeConfig(xml.STATE);
+                    }
                 }
+                else
+                {
+                    SessionHelper.SYS_StartUp = false;
+                    SessionHelper.SYS_ERROR_CODE = "001";
+                    SessionHelper.SYS_ERROR_MESSAGE = "Can't find Folder Output!";
+                    SessionHelper.SYS_TITLE = "ERROR";
+
+                    return;
+                }
+                
             }
             catch (Exception x)
             {
