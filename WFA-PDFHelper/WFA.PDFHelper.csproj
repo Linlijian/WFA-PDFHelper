@@ -51,6 +51,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Design" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -254,6 +255,10 @@
       <Project>{F42BF853-AB0B-48EB-8333-2D4F53B622AA}</Project>
       <Name>IMG2PDF</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ScrollBar\ScrollBarLibrary.csproj">
+      <Project>{DEBD757C-4D28-446F-BB34-FC366052EFFA}</Project>
+      <Name>ScrollBarLibrary</Name>
+    </ProjectReference>
     <ProjectReference Include="..\UtilityLib\UtilityLib.csproj">
       <Project>{B4A79F70-8D7B-4E9F-A156-F325F46BCBAF}</Project>
       <Name>UtilityLib</Name>
@@ -261,6 +266,10 @@
     <ProjectReference Include="..\WFA-PlugIn\WFA-PlugIn.csproj">
       <Project>{C1311BB4-79C4-4610-9E6C-E2DA40E438AD}</Project>
       <Name>WFA-PlugIn</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\Users\po.klinmala\Downloads\Compressed\Custom-Scrollbar-master\Custom-Scrollbar-master\CustomControls\CustomControls.csproj">
+      <Project>{5B85E2D7-2005-4496-B5D7-59C68A1EC91D}</Project>
+      <Name>CustomControls</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

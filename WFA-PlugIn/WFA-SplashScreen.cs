@@ -29,6 +29,10 @@ namespace WFA_PlugIn
             xml.loadConfig();
 
             //check folder output
+            //เราไม่ต้องสร้างใหม่ ให้หามาเองหรือโหลดจาก git แบบ auto ถ้ามันหายไป
+            //เราจะได้ตัดปัญหาการหาไม่เจอ
+
+            //check dll ทุกอย่างจะได้ไม่ error เรื่อยๆ
             lblStatus.Text = "Folder Output";
             try
             {
