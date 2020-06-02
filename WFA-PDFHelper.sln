@@ -13,6 +13,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PDF2IMG", "PDF2IMG\PDF2IMG.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WFA-PlugIn", "WFA-PlugIn\WFA-PlugIn.csproj", "{C1311BB4-79C4-4610-9E6C-E2DA40E438AD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScrollBarLibrary", "ScrollBar\ScrollBarLibrary.csproj", "{DEBD757C-4D28-446F-BB34-FC366052EFFA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomControls", "D:\Users\po.klinmala\Downloads\Compressed\Custom-Scrollbar-master\Custom-Scrollbar-master\CustomControls\CustomControls.csproj", "{5B85E2D7-2005-4496-B5D7-59C68A1EC91D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +43,14 @@ Global
 		{C1311BB4-79C4-4610-9E6C-E2DA40E438AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C1311BB4-79C4-4610-9E6C-E2DA40E438AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C1311BB4-79C4-4610-9E6C-E2DA40E438AD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DEBD757C-4D28-446F-BB34-FC366052EFFA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DEBD757C-4D28-446F-BB34-FC366052EFFA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DEBD757C-4D28-446F-BB34-FC366052EFFA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DEBD757C-4D28-446F-BB34-FC366052EFFA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5B85E2D7-2005-4496-B5D7-59C68A1EC91D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5B85E2D7-2005-4496-B5D7-59C68A1EC91D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5B85E2D7-2005-4496-B5D7-59C68A1EC91D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5B85E2D7-2005-4496-B5D7-59C68A1EC91D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
