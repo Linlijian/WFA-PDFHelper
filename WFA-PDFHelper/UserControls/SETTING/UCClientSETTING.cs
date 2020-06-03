@@ -17,17 +17,10 @@ namespace WFA.PDFHelper.UserControls
         public UCClientSETTING()
         {
             InitializeComponent();
-            HideActive();
-            //HideSubActiveGeneral();
-
-            //var matches = Controls.Find("PActiveUpdate", true).FirstOrDefault();
+            //var matches = Controls.Find("PAc", true).FirstOrDefault();
             //matches.Show();
-        }
-        public void HideActive()
-        {
-            PActiveGeneral.Hide();
-            PActiveAbout.Hide();
-            PActiveUpdate.Hide();
+
+            Global.PActiveHide(panelClient);
         }
         public void HideSubActiveGeneral()
         {
@@ -57,13 +50,14 @@ namespace WFA.PDFHelper.UserControls
         {
             if (ACTIVE)
             {
-                HideActive();
+                Global.PActiveHide(panelClient);
                 HideSubActiveGeneral();
+
                 ACTIVE = false;
             }
             else
             {
-                HideActive();
+                Global.PActiveHide(panelClient);
                 PActiveGeneral.Show();
                 ShowSubActiveGeneral();
                 UserControlHelper.SetUserControl(panelClientTask, userControl: new UCSETTINGF001(), dockStyle: UserControlDockStyle.DockStyleFill);
@@ -75,13 +69,13 @@ namespace WFA.PDFHelper.UserControls
 
         private void btnAbout_Click(object sender, EventArgs e)
         {
-            HideActive();
+            Global.PActiveHide(panelClient);
             PActiveAbout.Show();
         }
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
-            HideActive();
+            Global.PActiveHide(panelClient);
             PActiveUpdate.Show();
         }
 
