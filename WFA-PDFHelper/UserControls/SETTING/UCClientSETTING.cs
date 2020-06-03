@@ -17,18 +17,10 @@ namespace WFA.PDFHelper.UserControls
         public UCClientSETTING()
         {
             InitializeComponent();
-            //var matches = Controls.Find("PAc", true).FirstOrDefault();
-            //matches.Show();
 
             Global.PActiveHide(panelClient);
-        }
-        public void HideSubActiveGeneral()
-        {
-            
-        }
-        public void ShowSubActiveGeneral()
-        {
-            
+            Global.PSActiveHide(panelClient);
+            Global.PHideMenu(PSubGeneral);
         }
         public void MoveDown() //create static
         {
@@ -51,15 +43,16 @@ namespace WFA.PDFHelper.UserControls
             if (ACTIVE)
             {
                 Global.PActiveHide(panelClient);
-                HideSubActiveGeneral();
+                Global.PSActiveHide(panelClient);
+                Global.PHideMenu(PSubGeneral);
 
                 ACTIVE = false;
             }
             else
             {
                 Global.PActiveHide(panelClient);
-                PActiveGeneral.Show();
-                ShowSubActiveGeneral();
+                Global.PActiveShow(PActiveGeneral);
+                Global.PShowMenu(PSubGeneral);
                 UserControlHelper.SetUserControl(panelClientTask, userControl: new UCSETTINGF001(), dockStyle: UserControlDockStyle.DockStyleFill);
 
                 ACTIVE = true;
@@ -70,18 +63,19 @@ namespace WFA.PDFHelper.UserControls
         private void btnAbout_Click(object sender, EventArgs e)
         {
             Global.PActiveHide(panelClient);
-            PActiveAbout.Show();
+            Global.PActiveShow(PActiveAbout);
         }
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
             Global.PActiveHide(panelClient);
-            PActiveUpdate.Show();
+            Global.PActiveShow(PActiveUpdate);
         }
 
         private void btnCaseSelect_Click(object sender, EventArgs e)
         {
-
+            Global.PSActiveHide(panelClient);
+            Global.PSActiveShow(PSActiveCaseSelect);
         }
     }
 }

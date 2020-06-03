@@ -37,7 +37,7 @@
             this.btnAbout = new System.Windows.Forms.Button();
             this.PSubGeneral = new System.Windows.Forms.Panel();
             this.btnCaseSelect = new System.Windows.Forms.Button();
-            this.PActiveCaseSelect = new System.Windows.Forms.Panel();
+            this.PSActiveCaseSelect = new System.Windows.Forms.Panel();
             this.panelGeneral = new System.Windows.Forms.Panel();
             this.PActiveGeneral = new System.Windows.Forms.Panel();
             this.btnGeneral = new System.Windows.Forms.Button();
@@ -150,7 +150,7 @@
             // PSubGeneral
             // 
             this.PSubGeneral.Controls.Add(this.btnCaseSelect);
-            this.PSubGeneral.Controls.Add(this.PActiveCaseSelect);
+            this.PSubGeneral.Controls.Add(this.PSActiveCaseSelect);
             this.PSubGeneral.Dock = System.Windows.Forms.DockStyle.Top;
             this.PSubGeneral.Location = new System.Drawing.Point(0, 196);
             this.PSubGeneral.Name = "PSubGeneral";
@@ -175,14 +175,15 @@
             this.btnCaseSelect.Text = "Case Select";
             this.btnCaseSelect.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnCaseSelect.UseVisualStyleBackColor = true;
+            this.btnCaseSelect.Click += new System.EventHandler(this.btnCaseSelect_Click);
             // 
-            // PActiveCaseSelect
+            // PSActiveCaseSelect
             // 
-            this.PActiveCaseSelect.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(125)))), ((int)(((byte)(154)))));
-            this.PActiveCaseSelect.Location = new System.Drawing.Point(63, 0);
-            this.PActiveCaseSelect.Name = "PActiveCaseSelect";
-            this.PActiveCaseSelect.Size = new System.Drawing.Size(6, 35);
-            this.PActiveCaseSelect.TabIndex = 22;
+            this.PSActiveCaseSelect.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(125)))), ((int)(((byte)(154)))));
+            this.PSActiveCaseSelect.Location = new System.Drawing.Point(63, 0);
+            this.PSActiveCaseSelect.Name = "PSActiveCaseSelect";
+            this.PSActiveCaseSelect.Size = new System.Drawing.Size(6, 35);
+            this.PSActiveCaseSelect.TabIndex = 22;
             // 
             // panelGeneral
             // 
@@ -281,7 +282,7 @@
             this.panelClientTask.Location = new System.Drawing.Point(256, 0);
             this.panelClientTask.Name = "panelClientTask";
             this.panelClientTask.Size = new System.Drawing.Size(644, 560);
-            this.panelClientTask.TabIndex = 2;            
+            this.panelClientTask.TabIndex = 2;
             // 
             // UCClientSETTING
             // 
@@ -322,6 +323,6 @@
         private System.Windows.Forms.Button btnAbout;
         private System.Windows.Forms.Panel PSubGeneral;
         private System.Windows.Forms.Button btnCaseSelect;
-        private System.Windows.Forms.Panel PActiveCaseSelect;
+        private System.Windows.Forms.Panel PSActiveCaseSelect;
     }
 }
