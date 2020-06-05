@@ -22,12 +22,6 @@ namespace WFA.PDFHelper.UserControls
             Global.PSActiveHide(panelClient);
             Global.PHideMenu(PSubGeneral);
         }
-        public void MoveDown() //create static
-        {
-            PActiveGeneral.Hide();
-            PActiveAbout.Hide();
-            PActiveUpdate.Hide();
-        }
         private void btnHome_Click(object sender, EventArgs e)
         {
             MainForm.Instance.PnlTitle.BackColor = Color.Black;
@@ -63,12 +57,14 @@ namespace WFA.PDFHelper.UserControls
         private void btnAbout_Click(object sender, EventArgs e)
         {
             Global.PActiveHide(panelClient);
+            Global.PSActiveHide(panelClient);
             Global.PActiveShow(PActiveAbout);
         }
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
             Global.PActiveHide(panelClient);
+            Global.PSActiveHide(panelClient);
             Global.PActiveShow(PActiveUpdate);
         }
 
@@ -76,6 +72,7 @@ namespace WFA.PDFHelper.UserControls
         {
             Global.PSActiveHide(panelClient);
             Global.PSActiveShow(PSActiveCaseSelect);
+            UserControlHelper.SetUserControl(panelClientTask, userControl: new UCSETTINGF1S01(), dockStyle: UserControlDockStyle.DockStyleFill);
         }
     }
 }

@@ -129,6 +129,12 @@
     <Compile Include="UserControls\SETTING\UCSETTINGF001.Designer.cs">
       <DependentUpon>UCSETTINGF001.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\SETTING\UCSETTINGF1S01.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\SETTING\UCSETTINGF1S01.Designer.cs">
+      <DependentUpon>UCSETTINGF1S01.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\UCClientBody.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -192,6 +198,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\SETTING\UCSETTINGF001.resx">
       <DependentUpon>UCSETTINGF001.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\SETTING\UCSETTINGF1S01.resx">
+      <DependentUpon>UCSETTINGF1S01.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\UCClientBody.resx">
       <DependentUpon>UCClientBody.cs</DependentUpon>
