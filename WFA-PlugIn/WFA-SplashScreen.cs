@@ -31,6 +31,7 @@ namespace WFA_PlugIn
             //check folder output
             //เราไม่ต้องสร้างใหม่ ให้หามาเองหรือโหลดจาก git แบบ auto ถ้ามันหายไป
             //เราจะได้ตัดปัญหาการหาไม่เจอ
+            //change icon all plug in
 
             //check dll ทุกอย่างจะได้ไม่ error เรื่อยๆ
             lblStatus.Text = "Folder Output";
@@ -50,9 +51,9 @@ namespace WFA_PlugIn
                 else
                 {
                     SessionHelper.SYS_StartUp = false;
-                    SessionHelper.SYS_ERROR_CODE = "001";
-                    SessionHelper.SYS_ERROR_MESSAGE = "Can't find Folder Output!";
-                    SessionHelper.SYS_TITLE = "ERROR";
+                    SessionHelper.SYS_ERROR_CODE = "003";
+                    SessionHelper.SYS_ERROR_MESSAGE = "Can't create config. if first runing please Restart!";
+                    SessionHelper.SYS_TITLE = "Infomation";
 
                     return;
                 }
@@ -75,6 +76,7 @@ namespace WFA_PlugIn
                 var load_data = xml;
                 SessionHelper.XML_FOLDER_INPUT = load_data.STATE.FolderIntput;
                 SessionHelper.XML_FOLDER_OUTPUT = load_data.STATE.FolderOutput;
+                SessionHelper.XML_CASE_SELECT = load_data.STATE.CaseSelect;
             }
             catch (Exception x)
             {

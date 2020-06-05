@@ -10,5 +10,6 @@ namespace UtilityLib
     {
         public string FolderIntput { get; set; }
         public string FolderOutput { get; set; }
+        public string CaseSelect { get; set; }
     }
 }

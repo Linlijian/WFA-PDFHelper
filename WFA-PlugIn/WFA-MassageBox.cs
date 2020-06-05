@@ -18,7 +18,7 @@ namespace WFA.PlugIn
         {
             InitializeComponent();
             lblTitle.Text = model.TITLE;
-            lblMessage.Text = model.MESSAGE;
+            txtMessage.Text = model.MESSAGE;
 
             switch (model.BUTTON_TYPE)
             {

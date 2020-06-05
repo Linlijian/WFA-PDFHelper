@@ -32,11 +32,18 @@ namespace UtilityLib
             }
             catch(Exception c)
             {
-                using (XmlWriter writer = XmlWriter.Create("config.xml"))
+                XmlWriterSettings xmlWriterSettings = new XmlWriterSettings()
+                {
+                    Indent = true,
+                    IndentChars = "\t",
+                    NewLineOnAttributes = true
+                };
+                using (XmlWriter writer = XmlWriter.Create("config.xml", xmlWriterSettings))
                 {
                     writer.WriteStartElement("FormState");
                     writer.WriteElementString("FolderIntput", @"C:\");
                     writer.WriteElementString("FolderOutput", @"C:\Generate");
+                    writer.WriteElementString("CaseSelect", ".COM");
                     writer.WriteEndElement();
                     writer.Flush();
                 }
@@ -51,6 +58,11 @@ namespace UtilityLib
                 XmlSerializer ser = new XmlSerializer(typeof(FormState));
                 ser.Serialize(sw, STATE);
             }
+        }
+
+        private string CaseSelect()
+        {
+            return "";
         }
     }
 }
