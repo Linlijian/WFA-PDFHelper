@@ -90,6 +90,7 @@
             this.txtMessage.Location = new System.Drawing.Point(12, 31);
             this.txtMessage.Multiline = true;
             this.txtMessage.Name = "txtMessage";
+            this.txtMessage.ReadOnly = true;
             this.txtMessage.Size = new System.Drawing.Size(346, 97);
             this.txtMessage.TabIndex = 13;
             // 
