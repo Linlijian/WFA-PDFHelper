@@ -49,6 +49,30 @@ namespace UtilityLib
             }
             return obj;
         }
+        public static TSource MergeState<TSource, TTarget>(this TSource obj, TTarget obj2)
+            where TSource : class
+            where TTarget : class
+        {
+            foreach (var prop in obj.GetType().GetProperties())
+            {
+                try
+                {
+                    var propertyInfo = obj2.GetType().GetProperty(prop.Name);
+                    if (propertyInfo != null)
+                    {
+                        var newValue = propertyInfo.GetValue(obj2, null);
+                        if(newValue!=null)
+                            prop.SetValue(obj, Extensions.IsNullOrEmpty(newValue) ? null : Convert.ChangeType(newValue, Extensions.IsNullableType(propertyInfo.PropertyType) ? Nullable.GetUnderlyingType(propertyInfo.PropertyType) : propertyInfo.PropertyType), null);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    //ex.Log();
+                    //throw;
+                }
+            }
+            return obj;
+        }
         public static T CloneObject<T>(this T obj)
            where T : class, new()
         {

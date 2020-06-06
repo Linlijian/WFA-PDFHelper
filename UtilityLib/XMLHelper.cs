@@ -13,10 +13,12 @@ namespace UtilityLib
     public class XMLHelper
     {
         public FormState STATE;
+        public FormState Model;
 
         public XMLHelper()
         {
             STATE = new FormState();
+            Model = new FormState();
         }
 
         public void loadConfig()
@@ -60,9 +62,9 @@ namespace UtilityLib
             }
         }
 
-        private string CaseSelect()
+        public void MergeConfig()
         {
-            return "";
+            STATE.MergeState(Model);
         }
     }
 }
