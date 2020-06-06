@@ -56,13 +56,14 @@ namespace WFA.PDFHelper.UserControls
             //save xml
             var xml = new XMLHelper();
 
-            xml.STATE.FolderIntput = lblShowInput.Text;
-            xml.STATE.FolderOutput = lblShowOutput.Text;
+            xml.loadConfig();
+            xml.Model.FolderIntput = lblShowInput.Text;
+            xml.Model.FolderOutput = lblShowOutput.Text;
 
+            xml.MergeConfig();
             xml.writeConfig(xml.STATE);
 
             //load to sassion
-            xml.loadConfig();
             SessionHelper.XML_FOLDER_INPUT = xml.STATE.FolderIntput;
             SessionHelper.XML_FOLDER_OUTPUT = xml.STATE.FolderOutput;
         }

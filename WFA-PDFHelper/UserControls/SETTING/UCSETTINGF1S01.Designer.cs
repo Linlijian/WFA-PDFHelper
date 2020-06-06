@@ -80,6 +80,7 @@
             this.btnSave.TabIndex = 11;
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = false;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // listboxCustomSelect
             // 
@@ -103,7 +104,7 @@
             this.txtCustomSelect.ForeColor = System.Drawing.SystemColors.Info;
             this.txtCustomSelect.Location = new System.Drawing.Point(27, 78);
             this.txtCustomSelect.Name = "txtCustomSelect";
-            this.txtCustomSelect.Size = new System.Drawing.Size(284, 32);
+            this.txtCustomSelect.Size = new System.Drawing.Size(284, 33);
             this.txtCustomSelect.TabIndex = 14;
             // 
             // btnAddCustomSelect
@@ -121,6 +122,7 @@
             this.btnAddCustomSelect.Size = new System.Drawing.Size(33, 32);
             this.btnAddCustomSelect.TabIndex = 14;
             this.btnAddCustomSelect.UseVisualStyleBackColor = false;
+            this.btnAddCustomSelect.Click += new System.EventHandler(this.btnAddCustomSelect_Click);
             // 
             // btnDeleteCustomSelect
             // 
@@ -137,6 +139,7 @@
             this.btnDeleteCustomSelect.Size = new System.Drawing.Size(33, 32);
             this.btnDeleteCustomSelect.TabIndex = 15;
             this.btnDeleteCustomSelect.UseVisualStyleBackColor = false;
+            this.btnDeleteCustomSelect.Click += new System.EventHandler(this.btnDeleteCustomSelect_Click);
             // 
             // UCSETTINGF1S01
             // 
@@ -152,6 +155,7 @@
             this.Controls.Add(this.lblToppic);
             this.Name = "UCSETTINGF1S01";
             this.Size = new System.Drawing.Size(644, 560);
+            this.Load += new System.EventHandler(this.UCSETTINGF1S01_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -39,6 +39,7 @@ namespace WFA.PDFHelper.UserControls
                 Global.PActiveHide(panelClient);
                 Global.PSActiveHide(panelClient);
                 Global.PHideMenu(PSubGeneral);
+                UserControlHelper.SetUserControl(panelClientTask, userControl: new UCSETTINGF001(), dockStyle: UserControlDockStyle.DockStyleFill);
 
                 ACTIVE = false;
             }
