@@ -63,6 +63,21 @@ namespace WFA.PDFHelper.UserControls
             xml.MergeConfig();
             xml.writeConfig(xml.STATE);
 
+            if (!xml.IsComplete())
+            {
+                var message = new MassageBoxModel();
+                message.TITLE = "Error";
+                message.MESSAGE = xml.ERROR;
+                message.BUTTON_TYPE = ButtonType.OK;
+
+                using (MassageBox box = new MassageBox(message))
+                {
+                    box.ShowDialog(this);
+                }
+
+                return;
+            }
+
             //load to sassion
             SessionHelper.XML_FOLDER_INPUT = xml.STATE.FolderIntput;
             SessionHelper.XML_FOLDER_OUTPUT = xml.STATE.FolderOutput;

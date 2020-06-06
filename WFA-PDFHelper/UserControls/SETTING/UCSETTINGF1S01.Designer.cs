@@ -36,6 +36,7 @@
             this.txtCustomSelect = new System.Windows.Forms.TextBox();
             this.btnAddCustomSelect = new System.Windows.Forms.Button();
             this.btnDeleteCustomSelect = new System.Windows.Forms.Button();
+            this.lblSaveStatus = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lblToppic
@@ -106,6 +107,7 @@
             this.txtCustomSelect.Name = "txtCustomSelect";
             this.txtCustomSelect.Size = new System.Drawing.Size(284, 33);
             this.txtCustomSelect.TabIndex = 14;
+            this.txtCustomSelect.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtCustomSelect_KeyUp);
             // 
             // btnAddCustomSelect
             // 
@@ -141,11 +143,22 @@
             this.btnDeleteCustomSelect.UseVisualStyleBackColor = false;
             this.btnDeleteCustomSelect.Click += new System.EventHandler(this.btnDeleteCustomSelect_Click);
             // 
+            // lblSaveStatus
+            // 
+            this.lblSaveStatus.AutoSize = true;
+            this.lblSaveStatus.Font = new System.Drawing.Font("Itim", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSaveStatus.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(125)))), ((int)(((byte)(154)))));
+            this.lblSaveStatus.Location = new System.Drawing.Point(143, 518);
+            this.lblSaveStatus.Name = "lblSaveStatus";
+            this.lblSaveStatus.Size = new System.Drawing.Size(0, 19);
+            this.lblSaveStatus.TabIndex = 16;
+            // 
             // UCSETTINGF1S01
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
+            this.Controls.Add(this.lblSaveStatus);
             this.Controls.Add(this.btnDeleteCustomSelect);
             this.Controls.Add(this.btnAddCustomSelect);
             this.Controls.Add(this.txtCustomSelect);
@@ -171,5 +184,6 @@
         private System.Windows.Forms.TextBox txtCustomSelect;
         private System.Windows.Forms.Button btnAddCustomSelect;
         private System.Windows.Forms.Button btnDeleteCustomSelect;
+        private System.Windows.Forms.Label lblSaveStatus;
     }
 }

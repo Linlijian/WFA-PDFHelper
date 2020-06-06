@@ -14,11 +14,13 @@ namespace UtilityLib
     {
         public FormState STATE;
         public FormState Model;
+        public string ERROR { get; set; }
 
         public XMLHelper()
         {
             STATE = new FormState();
             Model = new FormState();
+            ERROR = string.Empty;
         }
 
         public void loadConfig()
@@ -54,17 +56,27 @@ namespace UtilityLib
 
         public void writeConfig(FormState state)
         {
-            using (StreamWriter sw = new StreamWriter("config.xml"))
+            try
             {
-                STATE = state;
-                XmlSerializer ser = new XmlSerializer(typeof(FormState));
-                ser.Serialize(sw, STATE);
+                using (StreamWriter sw = new StreamWriter("config.xml"))
+                {
+                    STATE = state;
+                    XmlSerializer ser = new XmlSerializer(typeof(FormState));
+                    ser.Serialize(sw, STATE);
+                }
             }
+            catch(Exception e) { ERROR = "Can't save config: " + e.Message; }
+            
         }
 
         public void MergeConfig()
         {
             STATE.MergeState(Model);
+        }
+
+        public bool IsComplete()
+        {
+            return ERROR.IsNullOrEmpty() ? true : false;
         }
     }
 }

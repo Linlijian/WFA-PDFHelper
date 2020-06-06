@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using UtilityLib;
+using WFA.PlugIn;
 
 namespace WFA.PDFHelper.UserControls
 {
@@ -16,41 +17,70 @@ namespace WFA.PDFHelper.UserControls
     /// </summary>
     public partial class UCSETTINGF1S01 : UserControl
     {
+        #region init
         public UCSETTINGF1S01()
         {
             InitializeComponent();
         }
+        private void UCSETTINGF1S01_Load(object sender, EventArgs e)
+        {
+            if (SessionHelper.XML_CASE_SELECT.IsNullOrEmpty())
+                btnDeleteCustomSelect.Visible = false;
 
+            listboxCustomSelect.Items.Add(SessionHelper.XML_CASE_SELECT);
+        }
+        #endregion
+
+        #region event
         private void btnAddCustomSelect_Click(object sender, EventArgs e)
         {
-
+            SaveToListBox();
         }
-
         private void btnDeleteCustomSelect_Click(object sender, EventArgs e)
         {
             if (listboxCustomSelect.SelectedItems.Count > 0)
             {
-               // foreach (var file in listboxCustomSelect.SelectedItems)
-                    //IMG2PDF.DTO.Model.IMG2PDFModels.RemoveAll(t => t.FILE_NAME == file.ToString());
-            }
+                List<string> item = new List<string>();
+                foreach (string list in listboxCustomSelect.Items)
+                {
+                    item.Add(list);
+                }
 
-            listboxCustomSelect.Items.Clear();
-            //foreach (var model in IMG2PDF.DTO.Model.IMG2PDFModels)
-            //{
-            //    listboxCustomSelect.Items.Add(model.FILE_NAME);
-            //}
+                foreach (string list in listboxCustomSelect.SelectedItems)
+                {
+                    item.Remove(list);
+                }
+
+                listboxCustomSelect.Items.Clear();
+                foreach (string list in item)
+                {
+                    listboxCustomSelect.Items.Add(list);
+                }
+
+            }
 
             if (listboxCustomSelect.Items.Count == 0)
                 btnDeleteCustomSelect.Visible = false;
         }
-
+        private void txtCustomSelect_KeyUp(object sender, KeyEventArgs e)
+        {
+            ClearGenerateStatus();
+            if (e.KeyCode == Keys.Enter)
+            {
+                //Do something
+                SaveToListBox();
+                e.Handled = true;
+            }
+        }
         private void btnSave_Click(object sender, EventArgs e)
         {
+            ClearGenerateStatus();
+
             //save xml
             var xml = new XMLHelper();
 
             xml.loadConfig();
-            foreach(string item in listboxCustomSelect.Items)
+            foreach (string item in listboxCustomSelect.Items)
             {
                 if (listboxCustomSelect.Items.Count == 1)
                 {
@@ -59,22 +89,48 @@ namespace WFA.PDFHelper.UserControls
                 else
                 {
                     xml.Model.CaseSelect += item + ',';
-                }                    
+                }
             }
 
             xml.MergeConfig();
             xml.writeConfig(xml.STATE);
 
+            if (!xml.IsComplete())
+            {
+                var message = new MassageBoxModel();
+                message.TITLE = "Error";
+                message.MESSAGE = xml.ERROR;
+                message.BUTTON_TYPE = ButtonType.OK;
+
+                using (MassageBox box = new MassageBox(message))
+                {
+                    box.ShowDialog(this);
+                }
+
+                return;
+            }
+
             //load to sassion
             SessionHelper.XML_CASE_SELECT = xml.STATE.CaseSelect;
         }
+        #endregion
 
-        private void UCSETTINGF1S01_Load(object sender, EventArgs e)
+        #region method  
+        private void ClearGenerateStatus()
         {
-            if (SessionHelper.XML_CASE_SELECT.IsNullOrEmpty())
-                btnDeleteCustomSelect.Visible = false;
-
-            listboxCustomSelect.Items.Add(SessionHelper.XML_CASE_SELECT);
+            lblSaveStatus.Text = "";
         }
+        private void SaveToListBox()
+        {
+            if (txtCustomSelect.Text.IsNullOrEmpty())
+                return;
+
+            listboxCustomSelect.Items.Add(txtCustomSelect.Text);
+            txtCustomSelect.Clear();
+            txtCustomSelect.Focus();
+
+            btnDeleteCustomSelect.Visible = true;
+        }
+        #endregion
     }
 }
