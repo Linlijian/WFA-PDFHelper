@@ -131,11 +131,24 @@ namespace IMG2PDF
             {
                 var allFiles
                   = Directory.EnumerateFiles(sourceDirectory, searchPatterns, SearchOption.AllDirectories);
-
+                Regex regex = new Regex(@"\d{6,8}_");
+                //if match (_)(.*)[a-zA-Z][-._](\d{1,2})
+                //do something eg. __Aneman_10
+                //else
+                //do (_)(.*)[a-zA-Z](_) eg. __Mane_Seku_
+                //else regex/case  select = null them select all image in folder
                 foreach (string currentFile in allFiles)
                 {
                     string fileName = currentFile.Substring(sourceDirectory.Length + 1);
+                    
+                    Match match = regex.Match(fileName);
+                    if (match.Success)
+                    {
 
+                        DTO.Model.IMG2FOLDERModels.Add(new IMG2FOLDERModels {
+                            FOLDER_NAME = match.Value.Split('_').First(),FOLDER_PATH= fileName
+                        });
+                    }
                 }
             }
             catch (Exception e)

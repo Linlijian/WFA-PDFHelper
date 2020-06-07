@@ -42,8 +42,6 @@ namespace WFA.PDFHelper.UserControls
                 dialog.Multiselect = true;
                 dialog.IsFolderPicker = true;
                 dialog.DefaultDirectory = SessionHelper.XML_FOLDER_INPUT;
-                //create new SessionHelper save DefaultDirectory
-                //create xml to save custom check case
 
                 if (dialog.ShowDialog() == CommonFileDialogResult.Ok)
                 {
