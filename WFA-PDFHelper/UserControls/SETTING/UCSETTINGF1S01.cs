@@ -27,7 +27,11 @@ namespace WFA.PDFHelper.UserControls
             if (SessionHelper.XML_CASE_SELECT.IsNullOrEmpty())
                 btnDeleteCustomSelect.Visible = false;
 
-            listboxCustomSelect.Items.Add(SessionHelper.XML_CASE_SELECT);
+            var list = SessionHelper.XML_CASE_SELECT.Split(',');
+            foreach (string item in list)
+            {
+                listboxCustomSelect.Items.Add(item);
+            }            
         }
         #endregion
 
@@ -38,6 +42,7 @@ namespace WFA.PDFHelper.UserControls
         }
         private void btnDeleteCustomSelect_Click(object sender, EventArgs e)
         {
+            ClearGenerateStatus();
             if (listboxCustomSelect.SelectedItems.Count > 0)
             {
                 List<string> item = new List<string>();
@@ -92,6 +97,9 @@ namespace WFA.PDFHelper.UserControls
                 }
             }
 
+            if (listboxCustomSelect.Items.Count != 1)
+                xml.Model.CaseSelect = RemoveLast(xml.Model.CaseSelect);
+
             xml.MergeConfig();
             xml.writeConfig(xml.STATE);
 
@@ -107,7 +115,13 @@ namespace WFA.PDFHelper.UserControls
                     box.ShowDialog(this);
                 }
 
+                lblSaveStatus.Text = xml.ERROR;
+
                 return;
+            }
+            else
+            {
+                lblSaveStatus.Text = "Save Complete!";
             }
 
             //load to sassion
@@ -130,6 +144,10 @@ namespace WFA.PDFHelper.UserControls
             txtCustomSelect.Focus();
 
             btnDeleteCustomSelect.Visible = true;
+        }
+        private string RemoveLast(string xml)
+        {
+            return xml.Substring(0, xml.Length - 1);
         }
         #endregion
     }
