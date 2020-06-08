@@ -129,26 +129,72 @@ namespace IMG2PDF
             string sourceDirectory = directory;
             try
             {
-                var allFiles
-                  = Directory.EnumerateFiles(sourceDirectory, searchPatterns, SearchOption.AllDirectories);
-                Regex regex = new Regex(@"\d{6,8}_");
+                var allFiles = Directory.EnumerateFiles(sourceDirectory, searchPatterns, SearchOption.AllDirectories);
+                DTO.Model.REGEX_CASE = SessionHelper.XML_CASE_SELECT.Split(new string[] { "0x1010" }, StringSplitOptions.None);
+
+                //Regex regex;// = new Regex(@"\d{6,8}_");
+                //Match match;
                 //if match (_)(.*)[a-zA-Z][-._](\d{1,2})
                 //do something eg. __Aneman_10
                 //else
                 //do (_)(.*)[a-zA-Z](_) eg. __Mane_Seku_
                 //else regex/case  select = null them select all image in folder
+
+                DTO.Model.IMG2FOLDERModels.Add(new IMG2FOLDERModels
+                {
+                    FOLDER_NAME = directory.Split('\\').Last(),
+                    FOLDER_PATH = directory
+                });
+
+                DTO.Model.COUNT_LAST = DTO.Model.IMG2FOLDERModels.Count() - 1;
+
                 foreach (string currentFile in allFiles)
                 {
                     string fileName = currentFile.Substring(sourceDirectory.Length + 1);
-                    
-                    Match match = regex.Match(fileName);
-                    if (match.Success)
-                    {
+                    DTO.Model.ARRAY_FILE = fileName.Split('\\');
 
-                        DTO.Model.IMG2FOLDERModels.Add(new IMG2FOLDERModels {
-                            FOLDER_NAME = match.Value.Split('_').First(),FOLDER_PATH= fileName
-                        });
-                    }
+                    if(DTO.Model.ARRAY_FILE.Count() == 1)
+                    {
+                        foreach(string rgCase in DTO.Model.REGEX_CASE)
+                        {
+                            DTO.Model.Regex = new Regex(rgCase);
+                            DTO.Model.Match = DTO.Model.Regex.Match(fileName);
+                            if (DTO.Model.Match.Success)
+                            {
+                                DTO.SubModel = new SUB_IMG2FOLDERModels
+                                {
+                                    FILE_NAME = fileName,
+                                    FILE_PATH = currentFile,
+                                    SUB_FOLDER_NAME = "" //if multi
+                                };
+                                DTO.Model.IS_MATCH = false;
+
+                                break;
+                            }
+                        }
+
+                        //if all case select
+                        if (!DTO.Model.IS_MATCH)
+                        {
+                            DTO.SubModel = new SUB_IMG2FOLDERModels
+                            {
+                                FILE_NAME = fileName,
+                                FILE_PATH = currentFile,
+                                SUB_FOLDER_NAME = "" //if multi
+                            };                            
+                            DTO.Model.IS_MATCH = false;
+                        }
+
+                        //add in list
+                        if (!DTO.Model.IMG2FOLDERModels[DTO.Model.COUNT_LAST].SUB_IMG2FOLDERModels.IsNullOrEmpty())
+                        {
+                            DTO.Model.IMG2FOLDERModels[DTO.Model.COUNT_LAST].SUB_IMG2FOLDERModels.Add(DTO.SubModel);
+                        }
+                        else
+                        {
+                            DTO.Model.IMG2FOLDERModels[DTO.Model.COUNT_LAST].SUB_IMG2FOLDERModels = DTO.SubModel.ToList();
+                        }
+                    }              
                 }
             }
             catch (Exception e)

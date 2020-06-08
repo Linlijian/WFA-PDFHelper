@@ -27,7 +27,7 @@ namespace WFA.PDFHelper.UserControls
             if (SessionHelper.XML_CASE_SELECT.IsNullOrEmpty())
                 btnDeleteCustomSelect.Visible = false;
 
-            var list = SessionHelper.XML_CASE_SELECT.Split(',');
+            var list = SessionHelper.XML_CASE_SELECT.Split(new[] { "0x1010" }, StringSplitOptions.None);
             foreach (string item in list)
             {
                 listboxCustomSelect.Items.Add(item);
@@ -93,7 +93,7 @@ namespace WFA.PDFHelper.UserControls
                 }
                 else
                 {
-                    xml.Model.CaseSelect += item + ',';
+                    xml.Model.CaseSelect += item + "0x1010";
                 }
             }
 

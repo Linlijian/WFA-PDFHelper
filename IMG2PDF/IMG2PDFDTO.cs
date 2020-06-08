@@ -17,12 +17,15 @@ namespace IMG2PDF
             Models = new List<IMG2PDFModel>();
             Model.IMG2PDFModels = new List<IMG2PDFModels>();
             Model.IMG2FOLDERModels = new List<IMG2FOLDERModels>();
+
+            SubModel = new SUB_IMG2FOLDERModels();
         }
 
         /// <summary>
         ///    Property in IMG2PDFDTO
         /// <summary>
         public IMG2PDFModel Model { get; set; }
+        public SUB_IMG2FOLDERModels SubModel { get; set; }
         public List<IMG2PDFModel> Models { get; set; }
     }
 

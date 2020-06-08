@@ -50,22 +50,33 @@ namespace WFA.PDFHelper.UserControls
                         IMG2PDF.SelectFolder(folder);
                     }
                 }
+
+                foreach(var item in IMG2PDF.DTO.Model.IMG2FOLDERModels)
+                {
+                    for(int i = 0; i < item.SUB_IMG2FOLDERModels.Count(); i++)
+                    {
+                        listboxImage.Items.Add(item.SUB_IMG2FOLDERModels[i].FILE_NAME);
+                    }                    
+                }
+
+                if (listboxImage.Items.Count > 0)
+                    btnDelete.Visible = true;
             }
         }
         private void btnDelete_Click(object sender, EventArgs e)
         {
             ClearGenerateStatus();
-            if (listboxImage.SelectedItems.Count > 0)
-            {
-                foreach (var file in listboxImage.SelectedItems)
-                    IMG2PDF.DTO.Model.IMG2PDFModels.RemoveAll(t => t.FILE_NAME == file.ToString());
-            }
+            //if (listboxImage.SelectedItems.Count > 0)
+            //{
+            //    foreach (var file in listboxImage.SelectedItems)
+            //        IMG2PDF.DTO.Model.IMG2PDFModels.RemoveAll(t => t.FILE_NAME == file.ToString());
+            //}
 
-            listboxImage.Items.Clear();
-            foreach (var model in IMG2PDF.DTO.Model.IMG2PDFModels)
-            {
-                listboxImage.Items.Add(model.FILE_NAME);
-            }
+            //listboxImage.Items.Clear();
+            //foreach (var model in IMG2PDF.DTO.Model.IMG2PDFModels)
+            //{
+            //    listboxImage.Items.Add(model.FILE_NAME);
+            //}
 
             if (listboxImage.Items.Count == 0)
                 btnDelete.Visible = false;

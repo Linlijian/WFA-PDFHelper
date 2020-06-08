@@ -185,6 +185,55 @@ namespace UtilityLib
                 return null;
             }
         }
+
+        /// <summary>
+        /// To new list of object.
+        /// </summary>
+        /// <typeparam name="T">Class of object</typeparam>
+        /// <param name="obj">Object to new object</param>
+        /// <returns>New object</returns>
+        public static List<T> ToList<T>(this T obj) where T : class, new()
+        {
+            try
+            {
+                var list = new List<T>();
+                list.Add(obj);
+                return list;
+            }
+            catch (Exception ex)
+            {
+                //ex.Log();
+                return null;
+            }
+        }
+        public static T ToObject<T>(this List<T> obj, T obj2) where T : class, new()
+        {
+            try
+            {
+                obj = new List<T>();
+                obj.Add(obj2);
+                return obj.First();
+
+            }
+            catch (Exception ex)
+            {
+                //ex.Log();
+                return null;
+            }
+        }
+        public static List<T> ToNewList<T>(this List<T> table) where T : class, new()
+        {
+            try
+            {
+                table = new List<T>();
+                return table;
+            }
+            catch (Exception ex)
+            {
+                //ex.Log();
+                return null;
+            }
+        }
         public static DateTime AsDateTime(this object data, DateTime? defaultValue = null)
         {
             if (IsNullOrEmpty(data))
