@@ -37,30 +37,47 @@ namespace WFA.PDFHelper.UserControls
         private void btnAdd_Click(object sender, EventArgs e)
         {
             ClearGenerateStatus();
-            using (CommonOpenFileDialog dialog = new CommonOpenFileDialog())
-            {
-                dialog.Multiselect = true;
-                dialog.IsFolderPicker = true;
-                dialog.DefaultDirectory = SessionHelper.XML_FOLDER_INPUT;
-
-                if (dialog.ShowDialog() == CommonFileDialogResult.Ok)
+            try {
+                using (CommonOpenFileDialog dialog = new CommonOpenFileDialog())
                 {
-                   foreach(string folder in dialog.FileNames)
+                    dialog.Multiselect = true;
+                    dialog.IsFolderPicker = true;
+                    dialog.DefaultDirectory = SessionHelper.XML_FOLDER_INPUT;
+
+                    if (dialog.ShowDialog() == CommonFileDialogResult.Ok)
                     {
-                        IMG2PDF.SelectFolder(folder);
+                        foreach (string folder in dialog.FileNames)
+                        {
+                            IMG2PDF.SelectFolder(folder);
+                        }
                     }
-                }
 
-                foreach(var item in IMG2PDF.DTO.Model.IMG2FOLDERModels)
-                {
-                    for(int i = 0; i < item.SUB_IMG2FOLDERModels.Count(); i++)
+                    listboxImage.Items.Clear();
+                    foreach (var item in IMG2PDF.DTO.Model.IMG2FOLDERModels)
                     {
-                        listboxImage.Items.Add(item.SUB_IMG2FOLDERModels[i].FILE_NAME);
-                    }                    
-                }
+                        for (int i = 0; i < item.SUB_IMG2FOLDERModels.Count(); i++)
+                        {
+                            listboxImage.Items.Add(item.FOLDER_NAME + " > " + item.SUB_IMG2FOLDERModels[i].FILE_NAME);
+                        }
+                    }
 
-                if (listboxImage.Items.Count > 0)
-                    btnDelete.Visible = true;
+                    if (listboxImage.Items.Count > 0)
+                        btnDelete.Visible = true;
+                }
+            }
+            catch(Exception ex)
+            {
+                ClearFolderError();
+
+                var message = new MassageBoxModel();
+                message.TITLE = "Error";
+                message.MESSAGE = "Can't find image in folder.\r\nDescription: " + ex.Message;
+                message.BUTTON_TYPE = ButtonType.OK;
+
+                using (MassageBox box = new MassageBox(message))
+                {
+                    box.ShowDialog(this);
+                }
             }
         }
         private void btnDelete_Click(object sender, EventArgs e)
@@ -131,6 +148,11 @@ namespace WFA.PDFHelper.UserControls
         private void ClearGenerateStatus()
         {
             lblGenerateStatus.Text = "";
+        }
+        private void ClearFolderError()
+        {
+            var err = IMG2PDF.DTO.Model.IMG2FOLDERModels.Where(w => w.SUB_IMG2FOLDERModels.IsNullOrEmpty()).FirstOrDefault();
+            IMG2PDF.DTO.Model.IMG2FOLDERModels.Remove(err);
         }
         #endregion        
     }
