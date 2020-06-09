@@ -83,17 +83,30 @@ namespace WFA.PDFHelper.UserControls
         private void btnDelete_Click(object sender, EventArgs e)
         {
             ClearGenerateStatus();
-            //if (listboxImage.SelectedItems.Count > 0)
-            //{
-            //    foreach (var file in listboxImage.SelectedItems)
-            //        IMG2PDF.DTO.Model.IMG2PDFModels.RemoveAll(t => t.FILE_NAME == file.ToString());
-            //}
+            if (listboxImage.SelectedItems.Count > 0)
+            {
+                foreach (var file in listboxImage.SelectedItems)
+                {
+                    var spl = file.ToString().Split(new string[] { " > " }, StringSplitOptions.None);
+                    var folder = IMG2PDF.DTO.Model.IMG2FOLDERModels.Where(l => l.FOLDER_NAME == spl.First()).FirstOrDefault();
+                    var remove = folder.SUB_IMG2FOLDERModels.Where(m => m.FILE_NAME == spl.Last()).FirstOrDefault();
+                    folder.SUB_IMG2FOLDERModels.Remove(remove);
 
-            //listboxImage.Items.Clear();
-            //foreach (var model in IMG2PDF.DTO.Model.IMG2PDFModels)
-            //{
-            //    listboxImage.Items.Add(model.FILE_NAME);
-            //}
+                    IMG2PDF.DTO.Model.IMG2FOLDERModels.MergeObject(folder);
+
+                    if(folder.SUB_IMG2FOLDERModels.Count() == 0)
+                        IMG2PDF.DTO.Model.IMG2FOLDERModels.Remove(folder);
+                }
+            }
+
+            listboxImage.Items.Clear();
+            foreach (var item in IMG2PDF.DTO.Model.IMG2FOLDERModels)
+            {
+                for (int i = 0; i < item.SUB_IMG2FOLDERModels.Count(); i++)
+                {
+                    listboxImage.Items.Add(item.FOLDER_NAME + " > " + item.SUB_IMG2FOLDERModels[i].FILE_NAME);
+                }
+            }
 
             if (listboxImage.Items.Count == 0)
                 btnDelete.Visible = false;

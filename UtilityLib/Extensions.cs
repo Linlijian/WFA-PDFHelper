@@ -187,7 +187,7 @@ namespace UtilityLib
         }
 
         /// <summary>
-        /// To new list of object.
+        /// To new object of init list.
         /// </summary>
         /// <typeparam name="T">Class of object</typeparam>
         /// <param name="obj">Object to new object</param>
