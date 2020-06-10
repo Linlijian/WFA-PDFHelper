@@ -10,6 +10,11 @@ namespace IMG2PDF
 {
     public static class Sorting
     {
+        /// <summary>
+        /// Sort image name for Image to PDF
+        /// </summary>
+        /// <param name="obj">This DTO to sort image</param>
+        /// <returns>New DTO</returns>
         public static List<IMG2PDFModels> IMG2PDFSort(this IMG2PDFDTO obj)
         {
             var dto = new IMG2PDFDTO();
@@ -20,17 +25,59 @@ namespace IMG2PDF
                 arr[i] = obj.Model.IMG2PDFModels[i].FILE_NAME;
             }
 
-            string path = GetPath(obj.Model.IMG2PDFModels[0].FILE_PATH);
+            //string path = GetPath(obj.Model.IMG2PDFModels[0].FILE_PATH);
             var list = NaturalSort(arr);
 
             foreach (var newList in list)
             {
-                var _fullpath = path + newList;
-                var temp = obj.Model.IMG2PDFModels.Where(s => s.FILE_PATH == _fullpath).ToList();
+                //var _fullpath = path + newList;
+                var temp = obj.Model.IMG2PDFModels.Where(s => s.FILE_NAME == newList).ToList();
                 dto.Model.IMG2PDFModels.Add(new IMG2PDFModels { FILE_NAME = temp[0].FILE_NAME, FILE_PATH = temp[0].FILE_PATH });
             }
 
             return dto.Model.IMG2PDFModels;
+        }
+
+        /// <summary>
+        /// Sort image name for Image to Folder
+        /// </summary>
+        /// <param name="obj">This DTO to sort image</param>
+        /// <returns>New DTO</returns>
+        public static List<IMG2FOLDERModels> IMG2FSort(this IMG2PDFDTO obj)
+        {
+            var dto = new IMG2PDFDTO();
+            int objCount = obj.Model.IMG2FOLDERModels.Count;
+            for (int i = 0; i < objCount; i++)
+            {
+                string []arr = new string[obj.Model.IMG2FOLDERModels[i].SUB_IMG2FOLDERModels.Count()];
+                for (int j = 0; j < arr.Length; j++)
+                {
+                    arr[j] = obj.Model.IMG2FOLDERModels[i].SUB_IMG2FOLDERModels[j].FILE_NAME;
+                }
+
+                var list = NaturalSort(arr);
+
+                dto.Model.IMG2FOLDERModels.Add(new IMG2FOLDERModels
+                {
+                    FOLDER_NAME = obj.Model.IMG2FOLDERModels[i].FOLDER_NAME,
+                    FOLDER_PATH = obj.Model.IMG2FOLDERModels[i].FOLDER_PATH,
+                    SUB_IMG2FOLDERModels = new List<SUB_IMG2FOLDERModels>()
+                });
+
+                foreach (var newList in list)
+                {
+                    var temp = obj.Model.IMG2FOLDERModels[i].SUB_IMG2FOLDERModels.Where(s => s.FILE_NAME == newList).ToList();
+                    dto.Model.IMG2FOLDERModels[i].SUB_IMG2FOLDERModels.Add(new SUB_IMG2FOLDERModels
+                    {
+                        FILE_NAME = temp[0].FILE_NAME,
+                        FILE_PATH = temp[0].FILE_PATH,
+                        SUB_FOLDER_NAME = temp[0].SUB_FOLDER_NAME
+                    });
+                }
+
+            }
+
+            return dto.Model.IMG2FOLDERModels;
         }
         private static string GetPath(string _path)
         {

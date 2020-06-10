@@ -138,15 +138,15 @@ namespace WFA.PDFHelper.UserControls
             dto = IMG2PDF;
             try
             {
-                dto.DTO.Model.GenerateType = IMG2PDFGenerateType.UCIMG2PDFF001;
+                dto.DTO.Model.GenerateType = IMG2PDFGenerateType.UCIMG2PDFF002;
                 dto.Generate(IMG2PDF.DTO);
                 lblGenerateStatus.Text = "Generate Complete!";
             }
-            catch
+            catch(Exception xs)
             {
                 var message = new MassageBoxModel();
                 message.TITLE = "Error";
-                message.MESSAGE = "Please re-check to generate pdf.";
+                message.MESSAGE = "Please re-check to generate pdf.\r\nDescription: " + xs.Message;
                 message.BUTTON_TYPE = ButtonType.OK;
 
                 using (MassageBox box = new MassageBox(message))

@@ -74,7 +74,7 @@ namespace WFA.PDFHelper.UserControls
                     {
                         var message = new MassageBoxModel();
                         message.TITLE = "Error";
-                        message.MESSAGE = "Error add image : " + ex.Message;
+                        message.MESSAGE = "Error add image.\r\nDescription: " + ex.Message;
                         message.BUTTON_TYPE = ButtonType.OK;
 
                         using (MassageBox box = new MassageBox(message))
@@ -135,11 +135,11 @@ namespace WFA.PDFHelper.UserControls
                 dto.Generate(IMG2PDF.DTO);
                 lblGenerateStatus.Text = "Generate Complete!";
             }
-            catch
+            catch(Exception ex)
             {
                 var message = new MassageBoxModel();
                 message.TITLE = "Error";
-                message.MESSAGE = "Please re-check to generate pdf.";
+                message.MESSAGE = "Please re-check to generate pdf.\r\nDescription: " + ex.Message;
                 message.BUTTON_TYPE = ButtonType.OK;
 
                 using (MassageBox box = new MassageBox(message))
