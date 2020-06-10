@@ -111,10 +111,6 @@ namespace IMG2PDF
             }
             return dto;
         }
-        private string GenerateFileName()
-        {
-            return SessionHelper.XML_FOLDER_OUTPUT + "\\" + DateTime.Now.ToString("yyy-MM-dd-hh-mm-ss") + ".pdf";
-        }
         #endregion
 
         #region img 2 pdf folder
@@ -128,69 +124,76 @@ namespace IMG2PDF
         }
         public IMG2PDFDTO GenerateImage2Folder(IMG2PDFDTO dto)
         {
-            //var doc = new Document();
-            //string path_pdf = GenerateFileName();
-            //doc.SetMargins(dto.Model.Margin, dto.Model.Margin, dto.Model.Margin, dto.Model.Margin);
-            //dto.Model.PageSize = PageSize.A4;
+            int folderCount = dto.Model.IMG2FOLDERModels.Count();
+            for (int i = 0; i < folderCount; i++)
+            {
+                var folder = dto.Model.IMG2FOLDERModels[i];
+                string path_pdf = GenerateFileName(folder.FOLDER_NAME);
 
-            //using (var stream = new FileStream(path_pdf, FileMode.Create, FileAccess.Write, FileShare.None))
-            //{
-            //    PdfWriter.GetInstance(doc, stream);
+                var doc = new Document();
+                doc.SetMargins(dto.Model.Margin, dto.Model.Margin, dto.Model.Margin, dto.Model.Margin);
+                dto.Model.PageSize = PageSize.A4;
 
-            //    doc.Open();
+                using (var stream = new FileStream(path_pdf, FileMode.Create, FileAccess.Write, FileShare.None))
+                {
+                    PdfWriter.GetInstance(doc, stream);
 
-            //    foreach (var imagePath in dto.Model.IMG2PDFModels)
-            //    {
-            //        using (var imageStream = new FileStream(imagePath.FILE_PATH, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
-            //        {
-            //            var image = Image.GetInstance(imageStream);
+                    doc.Open();
 
-            //            #region Checks orientation
+                    foreach (var imagePath in folder.SUB_IMG2FOLDERModels)
+                    {
+                        using (var imageStream = new FileStream(imagePath.FILE_PATH, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
+                        {
+                            var image = Image.GetInstance(imageStream);
 
-            //            doc.SetPageSize(image.Width > image.Height
-            //                      ? dto.Model.PageSize.Rotate()
-            //                      : dto.Model.PageSize);
+                            #region Checks orientation
 
-            //            #endregion Checks orientation
+                            doc.SetPageSize(image.Width > image.Height
+                                      ? dto.Model.PageSize.Rotate()
+                                      : dto.Model.PageSize);
 
-            //            doc.NewPage();
+                            #endregion Checks orientation
 
-            //            #region Configures image
+                            doc.NewPage();
 
-            //            image.ScaleToFit(new Rectangle(0, 0, doc.PageSize.Width - (doc.RightMargin + doc.LeftMargin + 1), doc.PageSize.Height - (doc.BottomMargin + doc.TopMargin + 1)));
-            //            image.Alignment = Image.ALIGN_CENTER;
+                            #region Configures image
 
-            //            #endregion Configures image
+                            image.ScaleToFit(new Rectangle(0, 0, doc.PageSize.Width - (doc.RightMargin + doc.LeftMargin + 1), doc.PageSize.Height - (doc.BottomMargin + doc.TopMargin + 1)));
+                            image.Alignment = Image.ALIGN_CENTER;
 
-            //            #region Creates elements
+                            #endregion Configures image
 
-            //            var table = new PdfPTable(1)
-            //            {
-            //                WidthPercentage = 100
-            //            };
+                            #region Creates elements
 
-            //            var cell = new PdfPCell
-            //            {
-            //                VerticalAlignment = Element.ALIGN_MIDDLE,
-            //                MinimumHeight = doc.PageSize.Height - (doc.BottomMargin + doc.TopMargin),
-            //                Border = 0,
-            //                BorderWidth = 0,
-            //                Padding = 0,
-            //                Indent = 0
-            //            };
+                            var table = new PdfPTable(1)
+                            {
+                                WidthPercentage = 100
+                            };
 
-            //            cell.AddElement(image);
+                            var cell = new PdfPCell
+                            {
+                                VerticalAlignment = Element.ALIGN_MIDDLE,
+                                MinimumHeight = doc.PageSize.Height - (doc.BottomMargin + doc.TopMargin),
+                                Border = 0,
+                                BorderWidth = 0,
+                                Padding = 0,
+                                Indent = 0
+                            };
 
-            //            table.AddCell(cell);
+                            cell.AddElement(image);
 
-            //            #endregion Creates elements
+                            table.AddCell(cell);
 
-            //            doc.Add(table);
-            //        }
-            //    }
+                            #endregion Creates elements
 
-            //    doc.Close();
-            //}
+                            doc.Add(table);
+                        }
+                    }
+
+                    doc.Close();
+                }
+            }
+
             return dto;
         }
         public void SelectFolder(string directory, string searchPatterns = "*.jpg")
@@ -289,6 +292,15 @@ namespace IMG2PDF
                 return false;
             }
         }
+        private string GenerateFileName()
+        {
+            return SessionHelper.XML_FOLDER_OUTPUT + "\\" + DateTime.Now.ToString("yyy-MM-dd-hh-mm-ss") + ".pdf";
+        }
+        private string GenerateFileName(string folder)
+        {
+            return SessionHelper.XML_FOLDER_OUTPUT + "\\" + folder + ".pdf";
+        }
+
         private bool IsDup(string fileName)
         {
             //var dup = DTO.Model.IMG2FOLDERModels.Where(

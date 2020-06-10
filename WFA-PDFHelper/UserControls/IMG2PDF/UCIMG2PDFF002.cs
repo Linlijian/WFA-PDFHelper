@@ -134,7 +134,7 @@ namespace WFA.PDFHelper.UserControls
             ClearGenerateStatus();
             var dto = new IMG2PDFDA();
 
-            IMG2PDF.DTO.Model.SORT = SORT_TOGGLE_ON == 0 ? true : false; //fail
+            IMG2PDF.DTO.Model.SORT = SORT_TOGGLE_ON == 0 ? true : false;
             dto = IMG2PDF;
             try
             {
