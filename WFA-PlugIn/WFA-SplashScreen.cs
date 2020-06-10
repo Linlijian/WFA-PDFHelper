@@ -69,6 +69,7 @@ namespace WFA_PlugIn
                 return;
             }
 
+            lblStatus.Text = "Load Session";
             xml.loadConfig();
 
             try
@@ -77,6 +78,7 @@ namespace WFA_PlugIn
                 SessionHelper.XML_FOLDER_INPUT = load_data.STATE.FolderIntput;
                 SessionHelper.XML_FOLDER_OUTPUT = load_data.STATE.FolderOutput;
                 SessionHelper.XML_CASE_SELECT = load_data.STATE.CaseSelect;
+                SessionHelper.XML_DUP_FILE = load_data.STATE.DupFile;
             }
             catch (Exception x)
             {

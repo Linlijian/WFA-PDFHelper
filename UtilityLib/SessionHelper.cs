@@ -17,5 +17,6 @@ namespace UtilityLib
         public static string XML_FOLDER_INPUT;
         public static string XML_FOLDER_OUTPUT;
         public static string XML_CASE_SELECT;
+        public static string XML_DUP_FILE;
     }
 }

@@ -37,6 +37,9 @@
             this.btnAddCustomSelect = new System.Windows.Forms.Button();
             this.btnDeleteCustomSelect = new System.Windows.Forms.Button();
             this.lblSaveStatus = new System.Windows.Forms.Label();
+            this.lblSwitchDupfile = new System.Windows.Forms.Label();
+            this.btnDupfile = new System.Windows.Forms.Button();
+            this.lblDupfile = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lblToppic
@@ -153,11 +156,54 @@
             this.lblSaveStatus.Size = new System.Drawing.Size(0, 19);
             this.lblSaveStatus.TabIndex = 16;
             // 
+            // lblSwitchDupfile
+            // 
+            this.lblSwitchDupfile.AutoSize = true;
+            this.lblSwitchDupfile.Font = new System.Drawing.Font("Itim", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSwitchDupfile.ForeColor = System.Drawing.Color.White;
+            this.lblSwitchDupfile.Location = new System.Drawing.Point(68, 306);
+            this.lblSwitchDupfile.Name = "lblSwitchDupfile";
+            this.lblSwitchDupfile.Size = new System.Drawing.Size(33, 19);
+            this.lblSwitchDupfile.TabIndex = 19;
+            this.lblSwitchDupfile.Text = "Off";
+            // 
+            // btnDupfile
+            // 
+            this.btnDupfile.BackColor = System.Drawing.Color.Black;
+            this.btnDupfile.BackgroundImage = global::WFA_PDFHelper.Properties.Resources.toggle_off_32px;
+            this.btnDupfile.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnDupfile.FlatAppearance.BorderSize = 0;
+            this.btnDupfile.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Black;
+            this.btnDupfile.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Black;
+            this.btnDupfile.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDupfile.ForeColor = System.Drawing.Color.Black;
+            this.btnDupfile.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
+            this.btnDupfile.Location = new System.Drawing.Point(27, 302);
+            this.btnDupfile.Name = "btnDupfile";
+            this.btnDupfile.Size = new System.Drawing.Size(35, 29);
+            this.btnDupfile.TabIndex = 18;
+            this.btnDupfile.UseVisualStyleBackColor = false;
+            this.btnDupfile.Click += new System.EventHandler(this.btnDupfile_Click);
+            // 
+            // lblDupfile
+            // 
+            this.lblDupfile.AutoSize = true;
+            this.lblDupfile.Font = new System.Drawing.Font("Itim", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDupfile.ForeColor = System.Drawing.Color.White;
+            this.lblDupfile.Location = new System.Drawing.Point(23, 280);
+            this.lblDupfile.Name = "lblDupfile";
+            this.lblDupfile.Size = new System.Drawing.Size(406, 19);
+            this.lblDupfile.TabIndex = 17;
+            this.lblDupfile.Text = "Show message box on found duplicate generate file name";
+            // 
             // UCSETTINGF1S01
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
+            this.Controls.Add(this.lblSwitchDupfile);
+            this.Controls.Add(this.btnDupfile);
+            this.Controls.Add(this.lblDupfile);
             this.Controls.Add(this.lblSaveStatus);
             this.Controls.Add(this.btnDeleteCustomSelect);
             this.Controls.Add(this.btnAddCustomSelect);
@@ -185,5 +231,8 @@
         private System.Windows.Forms.Button btnAddCustomSelect;
         private System.Windows.Forms.Button btnDeleteCustomSelect;
         private System.Windows.Forms.Label lblSaveStatus;
+        private System.Windows.Forms.Label lblSwitchDupfile;
+        private System.Windows.Forms.Button btnDupfile;
+        private System.Windows.Forms.Label lblDupfile;
     }
 }

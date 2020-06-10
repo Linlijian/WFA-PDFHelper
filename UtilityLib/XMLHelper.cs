@@ -47,7 +47,8 @@ namespace UtilityLib
                     writer.WriteStartElement("FormState");
                     writer.WriteElementString("FolderIntput", @"C:\");
                     writer.WriteElementString("FolderOutput", @"C:\Generate");
-                    writer.WriteElementString("CaseSelect", ".COM");
+                    writer.WriteElementString("CaseSelect", @"\d{6,8}_0x1010(_)(.*)[a-zA-Z][-._](\d{1,2})0x1010(_)(.*)[a-zA-Z](_)");
+                    writer.WriteElementString("DupFile", "0");
                     writer.WriteEndElement();
                     writer.Flush();
                 }

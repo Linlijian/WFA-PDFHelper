@@ -18,6 +18,7 @@ namespace WFA.PDFHelper.UserControls
     public partial class UCSETTINGF1S01 : UserControl
     {
         #region init
+        private string TOGGLE_ON;
         public UCSETTINGF1S01()
         {
             InitializeComponent();
@@ -31,7 +32,22 @@ namespace WFA.PDFHelper.UserControls
             foreach (string item in list)
             {
                 listboxCustomSelect.Items.Add(item);
-            }            
+            }
+
+            if (SessionHelper.XML_DUP_FILE == "0")
+            {
+                //on
+                btnDupfile.BackgroundImage = global::WFA_PDFHelper.Properties.Resources.toggle_on_32px;
+                lblSwitchDupfile.Text = "On";
+                TOGGLE_ON = "0";
+            }
+            else
+            {
+                //off
+                btnDupfile.BackgroundImage = global::WFA_PDFHelper.Properties.Resources.toggle_off_32px;
+                lblSwitchDupfile.Text = "Off";
+                TOGGLE_ON = "1";
+            }
         }
         #endregion
 
@@ -100,6 +116,8 @@ namespace WFA.PDFHelper.UserControls
             if (listboxCustomSelect.Items.Count != 1)
                 xml.Model.CaseSelect = RemoveLast(xml.Model.CaseSelect);
 
+            xml.Model.DupFile = TOGGLE_ON;
+
             xml.MergeConfig();
             xml.writeConfig(xml.STATE);
 
@@ -127,6 +145,24 @@ namespace WFA.PDFHelper.UserControls
             //load to sassion
             SessionHelper.XML_CASE_SELECT = xml.STATE.CaseSelect;
         }
+        private void btnDupfile_Click(object sender, EventArgs e)
+        {
+            ClearGenerateStatus();
+            if (TOGGLE_ON != "0")
+            {
+                //on
+                btnDupfile.BackgroundImage = global::WFA_PDFHelper.Properties.Resources.toggle_on_32px;
+                lblSwitchDupfile.Text = "On";
+                TOGGLE_ON = "0";
+            }
+            else
+            {
+                //off
+                btnDupfile.BackgroundImage = global::WFA_PDFHelper.Properties.Resources.toggle_off_32px;
+                lblSwitchDupfile.Text = "Off";
+                TOGGLE_ON = "1";
+            }
+        }
         #endregion
 
         #region method  
@@ -147,7 +183,7 @@ namespace WFA.PDFHelper.UserControls
         }
         private string RemoveLast(string xml)
         {
-            return xml.Substring(0, xml.Length - 1);
+            return xml.Substring(0, xml.Length - 6);
         }
         #endregion
     }
