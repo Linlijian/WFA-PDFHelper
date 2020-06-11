@@ -49,7 +49,6 @@ namespace IMG2PDF
             var doc = new Document();
             string path_pdf = GenerateFileName();
             doc.SetMargins(dto.Model.Margin, dto.Model.Margin, dto.Model.Margin, dto.Model.Margin);
-            dto.Model.PageSize = PageSize.A4;
 
             using (var stream = new FileStream(path_pdf, FileMode.Create, FileAccess.Write, FileShare.None))
             {
@@ -59,52 +58,7 @@ namespace IMG2PDF
 
                 foreach (var imagePath in dto.Model.IMG2PDFModels)
                 {
-                    using (var imageStream = new FileStream(imagePath.FILE_PATH, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
-                    {
-                        var image = Image.GetInstance(imageStream);
-
-                        #region Checks orientation
-
-                        doc.SetPageSize(image.Width > image.Height
-                                  ? dto.Model.PageSize.Rotate()
-                                  : dto.Model.PageSize);
-
-                        #endregion Checks orientation
-
-                        doc.NewPage();
-
-                        #region Configures image
-
-                        image.ScaleToFit(new Rectangle(0, 0, doc.PageSize.Width - (doc.RightMargin + doc.LeftMargin + 1), doc.PageSize.Height - (doc.BottomMargin + doc.TopMargin + 1)));
-                        image.Alignment = Image.ALIGN_CENTER;
-
-                        #endregion Configures image
-
-                        #region Creates elements
-
-                        var table = new PdfPTable(1)
-                        {
-                            WidthPercentage = 100
-                        };
-
-                        var cell = new PdfPCell
-                        {
-                            VerticalAlignment = Element.ALIGN_MIDDLE,
-                            MinimumHeight = doc.PageSize.Height - (doc.BottomMargin + doc.TopMargin),
-                            Border = 0,
-                            BorderWidth = 0,
-                            Padding = 0,
-                            Indent = 0
-                        };
-
-                        cell.AddElement(image);
-
-                        table.AddCell(cell);
-
-                        #endregion Creates elements
-
-                        doc.Add(table);
-                    }
+                    CreatePDF(imagePath.FILE_PATH, doc, PageSize.A4);
                 }
 
                 doc.Close();
@@ -142,52 +96,7 @@ namespace IMG2PDF
 
                     foreach (var imagePath in folder.SUB_IMG2FOLDERModels)
                     {
-                        using (var imageStream = new FileStream(imagePath.FILE_PATH, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
-                        {
-                            var image = Image.GetInstance(imageStream);
-
-                            #region Checks orientation
-
-                            doc.SetPageSize(image.Width > image.Height
-                                      ? dto.Model.PageSize.Rotate()
-                                      : dto.Model.PageSize);
-
-                            #endregion Checks orientation
-
-                            doc.NewPage();
-
-                            #region Configures image
-
-                            image.ScaleToFit(new Rectangle(0, 0, doc.PageSize.Width - (doc.RightMargin + doc.LeftMargin + 1), doc.PageSize.Height - (doc.BottomMargin + doc.TopMargin + 1)));
-                            image.Alignment = Image.ALIGN_CENTER;
-
-                            #endregion Configures image
-
-                            #region Creates elements
-
-                            var table = new PdfPTable(1)
-                            {
-                                WidthPercentage = 100
-                            };
-
-                            var cell = new PdfPCell
-                            {
-                                VerticalAlignment = Element.ALIGN_MIDDLE,
-                                MinimumHeight = doc.PageSize.Height - (doc.BottomMargin + doc.TopMargin),
-                                Border = 0,
-                                BorderWidth = 0,
-                                Padding = 0,
-                                Indent = 0
-                            };
-
-                            cell.AddElement(image);
-
-                            table.AddCell(cell);
-
-                            #endregion Creates elements
-
-                            doc.Add(table);
-                        }
+                        CreatePDF(imagePath.FILE_PATH, doc, PageSize.A4);
                     }
 
                     doc.Close();
@@ -231,6 +140,55 @@ namespace IMG2PDF
         #endregion
 
         #region add on
+        private void CreatePDF(string imagePath, Document doc, Rectangle PageSize)
+        {
+            using (var imageStream = new FileStream(imagePath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
+            {
+                var image = Image.GetInstance(imageStream);
+
+                #region Checks orientation
+
+                doc.SetPageSize(image.Width > image.Height
+                          ? PageSize.Rotate()
+                          : PageSize);
+
+                #endregion Checks orientation
+
+                doc.NewPage();
+
+                #region Configures image
+
+                image.ScaleToFit(new Rectangle(0, 0, doc.PageSize.Width - (doc.RightMargin + doc.LeftMargin + 1), doc.PageSize.Height - (doc.BottomMargin + doc.TopMargin + 1)));
+                image.Alignment = Image.ALIGN_CENTER;
+
+                #endregion Configures image
+
+                #region Creates elements
+
+                var table = new PdfPTable(1)
+                {
+                    WidthPercentage = 100
+                };
+
+                var cell = new PdfPCell
+                {
+                    VerticalAlignment = Element.ALIGN_MIDDLE,
+                    MinimumHeight = doc.PageSize.Height - (doc.BottomMargin + doc.TopMargin),
+                    Border = 0,
+                    BorderWidth = 0,
+                    Padding = 0,
+                    Indent = 0
+                };
+
+                cell.AddElement(image);
+
+                table.AddCell(cell);
+
+                #endregion Creates elements
+
+                doc.Add(table);
+            }
+        }
         private void SelectFile(string fileName, string currentFile)
         {
             foreach (string rgCase in DTO.Model.REGEX_CASE)
