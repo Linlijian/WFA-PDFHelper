@@ -8,7 +8,19 @@ namespace UtilityLib
 {
     public class SessionHelper
     {
-        public static bool SYS_StartUp;
+        /// <summary>
+        /// Session control start program
+        /// if return true = can start
+        /// else return false = cant statrt because something of lose.
+        /// </summary>
+        public static bool SYS_START_UP;
+
+        /// <summary>
+        /// Session rerturn result opendialog.
+        /// True = press OK.
+        /// False = press Cancel.
+        /// </summary>
+        public static bool SYS_DIALOG_RESULT;
 
         public static string SYS_ERROR_MESSAGE;
         public static string SYS_TITLE;

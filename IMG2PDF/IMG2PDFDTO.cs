@@ -40,6 +40,10 @@ namespace IMG2PDF
         /// </summary>
         public const string UCIMG2PDFF002 = "UCIMG2PDFF002";
         /// <summary>
+        /// image to folder sort
+        /// </summary>
+        public const string IMG2PDFF002SORT = "IMG2PDFF002SORT";
+        /// <summary>
         /// image to multi folder
         /// </summary>
         public const string UCIMG2PDFF003 = "UCIMG2PDFF003";

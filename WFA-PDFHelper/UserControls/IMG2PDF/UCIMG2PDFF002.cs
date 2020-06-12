@@ -138,8 +138,24 @@ namespace WFA.PDFHelper.UserControls
             dto = IMG2PDF;
             try
             {
+                dto.DTO.Model.GenerateType = IMG2PDFGenerateType.IMG2PDFF002SORT;
+                dto.GenerateEx(IMG2PDF.DTO);
+
                 dto.DTO.Model.GenerateType = IMG2PDFGenerateType.UCIMG2PDFF002;
-                dto.Generate(IMG2PDF.DTO);
+                int folderCount = IMG2PDF.DTO.Model.IMG2FOLDERModels.Count();
+                for (int i = 0; i < folderCount; i++)
+                {
+                    var folder = IMG2PDF.DTO.Model.IMG2FOLDERModels[i];
+                    FileDuplicate(folder.FOLDER_NAME);
+
+                    if (SessionHelper.SYS_DIALOG_RESULT)
+                    {
+                        IMG2PDF.DTO.Model.FOLDER_COUNT = i;
+                        dto.Generate(IMG2PDF.DTO);
+                    }
+
+                }
+
                 lblGenerateStatus.Text = "Generate Complete!";
             }
             catch(Exception xs)
@@ -166,6 +182,41 @@ namespace WFA.PDFHelper.UserControls
         {
             var err = IMG2PDF.DTO.Model.IMG2FOLDERModels.Where(w => w.SUB_IMG2FOLDERModels.IsNullOrEmpty()).FirstOrDefault();
             IMG2PDF.DTO.Model.IMG2FOLDERModels.Remove(err);
+        }
+        private string GenerateFileName(string folder)
+        {
+            return SessionHelper.XML_FOLDER_OUTPUT + "\\" + folder + ".pdf";
+        }
+        private void FileDuplicate(string filename)
+        {
+            var CFile = Directory.GetFiles(SessionHelper.XML_FOLDER_OUTPUT).Count();
+            if (CFile > 0)
+            {
+                foreach (string file in Directory.GetFiles(SessionHelper.XML_FOLDER_OUTPUT))
+                {
+                    if (file != GenerateFileName(filename))
+                    {
+                        SessionHelper.SYS_DIALOG_RESULT= true;
+                        return;
+                    }
+                    else
+                    {
+                        var message = new MassageBoxModel();
+                        message.TITLE = "Infomation";
+                        message.MESSAGE = "The destination already has file name \"" + file.Split('\\').Last() + "\"\r\nAre you replace the file in the destination?";
+                        message.BUTTON_TYPE = ButtonType.OK_CANCEL;
+
+                        using (MassageBox box = new MassageBox(message))
+                        {
+                            box.ShowDialog(this);
+                        }
+                        
+                        return;
+                    }
+                }
+            }
+
+            SessionHelper.SYS_DIALOG_RESULT = true;
         }
         #endregion        
     }

@@ -12,6 +12,7 @@ namespace IMG2PDF
     {
         public int Margin { get; set; }
         public int COUNT_LAST { get; set; }
+        public int FOLDER_COUNT { get; set; }
 
         public bool SORT { get; set; }
         public bool IS_MATCH { get; set; }

@@ -8,6 +8,7 @@ using System.Media;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using UtilityLib;
 using WFA.PlugIn;
 
 namespace WFA.PlugIn
@@ -34,10 +35,12 @@ namespace WFA.PlugIn
         }
         private void btnOK_Click(object sender, EventArgs e)
         {
+            SessionHelper.SYS_DIALOG_RESULT = true;
             this.Close();
         }
         private void btnCancel_Click(object sender, EventArgs e)
         {
+            SessionHelper.SYS_DIALOG_RESULT = false;
             this.Close();
         }
 

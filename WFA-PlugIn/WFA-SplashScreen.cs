@@ -50,7 +50,7 @@ namespace WFA_PlugIn
                 }
                 else
                 {
-                    SessionHelper.SYS_StartUp = false;
+                    SessionHelper.SYS_START_UP = false;
                     SessionHelper.SYS_ERROR_CODE = "003";
                     SessionHelper.SYS_ERROR_MESSAGE = "Can't create config. if first runing please Restart!";
                     SessionHelper.SYS_TITLE = "Infomation";
@@ -61,7 +61,7 @@ namespace WFA_PlugIn
             }
             catch (Exception x)
             {
-                SessionHelper.SYS_StartUp = false;
+                SessionHelper.SYS_START_UP = false;
                 SessionHelper.SYS_ERROR_CODE = "001";
                 SessionHelper.SYS_ERROR_MESSAGE = "Can't Create Folder Output!";
                 SessionHelper.SYS_TITLE = "ERROR";
@@ -82,7 +82,7 @@ namespace WFA_PlugIn
             }
             catch (Exception x)
             {
-                SessionHelper.SYS_StartUp = false;
+                SessionHelper.SYS_START_UP = false;
                 SessionHelper.SYS_ERROR_CODE = "002";
                 SessionHelper.SYS_ERROR_MESSAGE = "Can't Load config in Session";
                 SessionHelper.SYS_TITLE = "ERROR";
@@ -90,7 +90,7 @@ namespace WFA_PlugIn
                 return;
             }
 
-            SessionHelper.SYS_StartUp = true;
+            SessionHelper.SYS_START_UP = true;
         }
 
     }

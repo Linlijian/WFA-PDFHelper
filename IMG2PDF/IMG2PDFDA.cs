@@ -30,7 +30,15 @@ namespace IMG2PDF
             switch (dto.Model.GenerateType)
             {
                 case IMG2PDFGenerateType.UCIMG2PDFF001: return IM2PCaseSort(dto);
-                case IMG2PDFGenerateType.UCIMG2PDFF002: return IM2FCaseSort(dto);
+                case IMG2PDFGenerateType.UCIMG2PDFF002: return GenerateImage2Folder(dto);
+            }
+            return dto;
+        }
+        public IMG2PDFDTO GenerateEx(IMG2PDFDTO dto)
+        {
+            switch (dto.Model.GenerateType)
+            {
+                case IMG2PDFGenerateType.IMG2PDFF002SORT: return IM2FCaseSort(dto);
             }
             return dto;
         }
@@ -72,67 +80,32 @@ namespace IMG2PDF
         {
             if (dto.Model.SORT)
                 dto.Model.IMG2FOLDERModels = dto.IMG2FSort();
-
-            GenerateImage2Folder(dto);
             return dto;
         }
         public IMG2PDFDTO GenerateImage2Folder(IMG2PDFDTO dto)
         {
-            int folderCount = dto.Model.IMG2FOLDERModels.Count();
-            for (int i = 0; i < folderCount; i++)
+            var folder = dto.Model.IMG2FOLDERModels[dto.Model.FOLDER_COUNT];
+            string path_pdf = GenerateFileName(folder.FOLDER_NAME);
+
+            var doc = new Document();
+            doc.SetMargins(dto.Model.Margin, dto.Model.Margin, dto.Model.Margin, dto.Model.Margin);
+            dto.Model.PageSize = PageSize.A4;
+
+            using (var stream = new FileStream(path_pdf, FileMode.Create, FileAccess.Write, FileShare.None))
             {
-                var folder = dto.Model.IMG2FOLDERModels[i];
-                string path_pdf = GenerateFileName(folder.FOLDER_NAME);
+                PdfWriter.GetInstance(doc, stream);
 
-                var doc = new Document();
-                doc.SetMargins(dto.Model.Margin, dto.Model.Margin, dto.Model.Margin, dto.Model.Margin);
-                dto.Model.PageSize = PageSize.A4;
+                doc.Open();
 
-                using (var stream = new FileStream(path_pdf, FileMode.Create, FileAccess.Write, FileShare.None))
+                foreach (var imagePath in folder.SUB_IMG2FOLDERModels)
                 {
-                    PdfWriter.GetInstance(doc, stream);
-
-                    doc.Open();
-
-                    foreach (var imagePath in folder.SUB_IMG2FOLDERModels)
-                    {
-                        CreatePDF(imagePath.FILE_PATH, doc, PageSize.A4);
-                    }
-
-                    doc.Close();
+                    CreatePDF(imagePath.FILE_PATH, doc, PageSize.A4);
                 }
+
+                doc.Close();
             }
 
             return dto;
-        }
-        public void SelectFolder(string directory, string searchPatterns = "*.jpg")
-        {
-            string sourceDirectory = directory;
-            try
-            {
-                var allFiles = Directory.EnumerateFiles(sourceDirectory, searchPatterns, SearchOption.AllDirectories);
-                DTO.Model.REGEX_CASE = SessionHelper.XML_CASE_SELECT.Split(new string[] { "0x1010" }, StringSplitOptions.None);
-
-                if (!AddFolder(directory))
-                    return;
-
-                DTO.Model.COUNT_LAST = DTO.Model.IMG2FOLDERModels.Count() - 1;
-
-                foreach (string currentFile in allFiles)
-                {
-                    string fileName = currentFile.Substring(sourceDirectory.Length + 1);
-                    DTO.Model.ARRAY_FILE = fileName.Split('\\');
-
-                    if (DTO.Model.ARRAY_FILE.Count() == 1)
-                    {
-                        SelectFile(fileName, currentFile);
-                    }
-                }
-            }
-            catch (Exception e)
-            {
-
-            }
         }
         #endregion
 
@@ -187,6 +160,35 @@ namespace IMG2PDF
                 #endregion Creates elements
 
                 doc.Add(table);
+            }
+        }
+        public void SelectFolder(string directory, string searchPatterns = "*.jpg")
+        {
+            string sourceDirectory = directory;
+            try
+            {
+                var allFiles = Directory.EnumerateFiles(sourceDirectory, searchPatterns, SearchOption.AllDirectories);
+                DTO.Model.REGEX_CASE = SessionHelper.XML_CASE_SELECT.Split(new string[] { "0x1010" }, StringSplitOptions.None);
+
+                if (!AddFolder(directory))
+                    return;
+
+                DTO.Model.COUNT_LAST = DTO.Model.IMG2FOLDERModels.Count() - 1;
+
+                foreach (string currentFile in allFiles)
+                {
+                    string fileName = currentFile.Substring(sourceDirectory.Length + 1);
+                    DTO.Model.ARRAY_FILE = fileName.Split('\\');
+
+                    if (DTO.Model.ARRAY_FILE.Count() == 1)
+                    {
+                        SelectFile(fileName, currentFile);
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+
             }
         }
         private void SelectFile(string fileName, string currentFile)
@@ -257,8 +259,7 @@ namespace IMG2PDF
         private string GenerateFileName(string folder)
         {
             return SessionHelper.XML_FOLDER_OUTPUT + "\\" + folder + ".pdf";
-        }
-
+        }        
         private bool IsDup(string fileName)
         {
             //var dup = DTO.Model.IMG2FOLDERModels.Where(

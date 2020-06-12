@@ -81,7 +81,7 @@ namespace WFA.PDFHelper
         #region form
         private void MainForm_Load(object sender, EventArgs e)
         {
-            if (!SessionHelper.SYS_StartUp)
+            if (!SessionHelper.SYS_START_UP)
             {
                 //that work!
                 var message = new MassageBoxModel();
