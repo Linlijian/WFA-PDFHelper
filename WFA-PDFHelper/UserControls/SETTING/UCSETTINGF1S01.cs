@@ -144,6 +144,7 @@ namespace WFA.PDFHelper.UserControls
 
             //load to sassion
             SessionHelper.XML_CASE_SELECT = xml.STATE.CaseSelect;
+            SessionHelper.XML_DUP_FILE = xml.STATE.DupFile;
         }
         private void btnDupfile_Click(object sender, EventArgs e)
         {

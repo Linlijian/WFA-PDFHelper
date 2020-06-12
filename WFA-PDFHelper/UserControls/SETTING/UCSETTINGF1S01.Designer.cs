@@ -192,9 +192,9 @@
             this.lblDupfile.ForeColor = System.Drawing.Color.White;
             this.lblDupfile.Location = new System.Drawing.Point(23, 280);
             this.lblDupfile.Name = "lblDupfile";
-            this.lblDupfile.Size = new System.Drawing.Size(406, 19);
+            this.lblDupfile.Size = new System.Drawing.Size(243, 19);
             this.lblDupfile.TabIndex = 17;
-            this.lblDupfile.Text = "Show message box on found duplicate generate file name";
+            this.lblDupfile.Text = "Replace the file in the destination";
             // 
             // UCSETTINGF1S01
             // 

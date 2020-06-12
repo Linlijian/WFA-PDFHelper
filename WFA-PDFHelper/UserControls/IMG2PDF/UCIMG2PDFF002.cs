@@ -190,27 +190,34 @@ namespace WFA.PDFHelper.UserControls
         private void FileDuplicate(string filename)
         {
             var CFile = Directory.GetFiles(SessionHelper.XML_FOLDER_OUTPUT).Count();
+            var CFound = 0;
             if (CFile > 0)
             {
-                foreach (string file in Directory.GetFiles(SessionHelper.XML_FOLDER_OUTPUT))
+                for(int i = 0; i < CFile; i++)
                 {
-                    if (file != GenerateFileName(filename))
+                    var file = Directory.GetFiles(SessionHelper.XML_FOLDER_OUTPUT);
+                    if (file[i] == GenerateFileName(filename))
                     {
-                        SessionHelper.SYS_DIALOG_RESULT= true;
-                        return;
+                        filename = file[i].Split('\\').Last();
+                        CFound += CFile;
                     }
-                    else
+                }
+                
+
+                if(CFound >= CFile)
+                {
+                    if (SessionHelper.XML_DUP_FILE == "1")
                     {
                         var message = new MassageBoxModel();
                         message.TITLE = "Infomation";
-                        message.MESSAGE = "The destination already has file name \"" + file.Split('\\').Last() + "\"\r\nAre you replace the file in the destination?";
+                        message.MESSAGE = "The destination already has file name \"" + filename + "\"\r\nAre you replace the file in the destination?";
                         message.BUTTON_TYPE = ButtonType.OK_CANCEL;
 
                         using (MassageBox box = new MassageBox(message))
                         {
                             box.ShowDialog(this);
                         }
-                        
+
                         return;
                     }
                 }
