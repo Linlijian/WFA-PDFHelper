@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScrollBarLibrary", "ScrollB
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomControls", "D:\Users\po.klinmala\Downloads\Compressed\Custom-Scrollbar-master\Custom-Scrollbar-master\CustomControls\CustomControls.csproj", "{5B85E2D7-2005-4496-B5D7-59C68A1EC91D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GROUPIMG", "GROUPIMG\GROUPIMG.csproj", "{6F8DDAB9-3C6C-4667-B8FF-F4204E185CA6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +53,10 @@ Global
 		{5B85E2D7-2005-4496-B5D7-59C68A1EC91D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5B85E2D7-2005-4496-B5D7-59C68A1EC91D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5B85E2D7-2005-4496-B5D7-59C68A1EC91D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6F8DDAB9-3C6C-4667-B8FF-F4204E185CA6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6F8DDAB9-3C6C-4667-B8FF-F4204E185CA6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6F8DDAB9-3C6C-4667-B8FF-F4204E185CA6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6F8DDAB9-3C6C-4667-B8FF-F4204E185CA6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

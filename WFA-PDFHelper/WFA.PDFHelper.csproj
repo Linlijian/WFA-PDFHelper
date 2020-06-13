@@ -193,6 +193,9 @@
     <EmbeddedResource Include="UserControls\GPFOLDER\UCClientGROUPIMG.resx">
       <DependentUpon>UCClientGROUPIMG.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\GPFOLDER\UCGROUPIMG001.resx">
+      <DependentUpon>UCGROUPIMG001.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UserControls\GPFOLDER\UCGROUPIMG002.resx">
       <DependentUpon>UCGROUPIMG002.cs</DependentUpon>
     </EmbeddedResource>
