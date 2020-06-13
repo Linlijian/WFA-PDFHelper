@@ -121,11 +121,14 @@
   <data name="multiply_32px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\multiply_32px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="jpg_32px" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\jpg_32px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="pdf_64px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\pdf_64px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="multiply_48px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\multiply_48px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="folder_64px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\folder_64px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="image_file_64px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\image_file_64px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -154,6 +157,9 @@
   <data name="pdf_window_32px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\pdf_window_32px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="image_gallery_32px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\image_gallery_32px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="subtract_32px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\subtract_32px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -163,8 +169,8 @@
   <data name="info_32px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\info_32px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="multiply_48px" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\multiply_48px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="plus_math_32px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\plus_math_32px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="folder_settings_32px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\folder_settings_32px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -175,13 +181,13 @@
   <data name="update_32px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\update_32px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="jpg_32px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\jpg_32px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="settings_64px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\settings_64px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="plus_math_32px" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\plus_math_32px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="image_gallery_32px" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\image_gallery_32px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="folder_32px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\folder_32px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

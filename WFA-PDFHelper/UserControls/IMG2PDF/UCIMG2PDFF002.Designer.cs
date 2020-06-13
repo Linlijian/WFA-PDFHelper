@@ -50,7 +50,7 @@
             this.lblToppic.Name = "lblToppic";
             this.lblToppic.Size = new System.Drawing.Size(171, 25);
             this.lblToppic.TabIndex = 0;
-            this.lblToppic.Text = "Convert ot Folder";
+            this.lblToppic.Text = "Convert to Folder";
             // 
             // label1
             // 

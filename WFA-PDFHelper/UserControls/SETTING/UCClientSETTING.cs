@@ -37,6 +37,7 @@ namespace WFA.PDFHelper.UserControls
             if (ACTIVE)
             {
                 Global.PActiveHide(panelClient);
+                Global.PActiveShow(PActiveGeneral);
                 Global.PSActiveHide(panelClient);
                 Global.PHideMenu(PSubGeneral);
                 UserControlHelper.SetUserControl(panelClientTask, userControl: new UCSETTINGF001(), dockStyle: UserControlDockStyle.DockStyleFill);
@@ -73,6 +74,7 @@ namespace WFA.PDFHelper.UserControls
         {
             Global.PSActiveHide(panelClient);
             Global.PSActiveShow(PSActiveCaseSelect);
+            Global.PActiveHide(panelClient, PActiveGeneral);
             UserControlHelper.SetUserControl(panelClientTask, userControl: new UCSETTINGF1S01(), dockStyle: UserControlDockStyle.DockStyleFill);
         }
     }

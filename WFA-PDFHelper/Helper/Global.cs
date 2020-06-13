@@ -22,6 +22,22 @@ namespace WFA.PDFHelper.Helper
             {
                 PAFindControl(panel.Controls);
             }
+
+        }
+
+        /// <summary>
+        /// To hide PActive control and show one panel.
+        /// </summary>
+        /// <param name="_control">Panel to hine PActive</param>
+        /// <param name="_panel">Panel to show PActive</param>
+        public static void PActiveHide(Control _control, Control _panel)
+        {
+            foreach (Control panel in _control.Controls)
+            {
+                PAFindControl(panel.Controls);
+            }
+
+            _panel.Show();
         }
 
         /// <summary>

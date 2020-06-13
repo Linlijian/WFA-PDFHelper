@@ -50,5 +50,15 @@ namespace WFA.PDFHelper.UserControls
             MainForm.Instance.PnlClientBody.Controls["UCClientSETTING"].BringToFront();
             MainForm.Instance.PnlTitle.BackColor = Color.FromArgb(32, 32, 32);
         }
+
+        private void btnGroupImage_Click(object sender, EventArgs e)
+        {
+            if (!MainForm.Instance.PnlClientBody.Controls.ContainsKey("UCClientGROUPIMG"))
+            {
+                UserControlHelper.SetUserControl(MainForm.Instance.PnlClientBody, userControl: new UCClientGROUPIMG(), dockStyle: UserControlDockStyle.DockStyleFill);
+            }
+            MainForm.Instance.PnlClientBody.Controls["UCClientGROUPIMG"].BringToFront();
+            MainForm.Instance.PnlTitle.BackColor = Color.FromArgb(32, 32, 32);
+        }
     }
 }

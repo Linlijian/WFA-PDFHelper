@@ -28,10 +28,30 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.btnGroupImage = new System.Windows.Forms.Button();
             this.btnSetting = new System.Windows.Forms.Button();
             this.btnImagetoPDF = new System.Windows.Forms.Button();
             this.btnPDFtoImage = new System.Windows.Forms.Button();
             this.SuspendLayout();
+            // 
+            // btnGroupImage
+            // 
+            this.btnGroupImage.FlatAppearance.BorderSize = 0;
+            this.btnGroupImage.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(77)))), ((int)(((byte)(77)))), ((int)(((byte)(77)))));
+            this.btnGroupImage.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(100)))), ((int)(((byte)(100)))));
+            this.btnGroupImage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnGroupImage.Font = new System.Drawing.Font("Itim", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnGroupImage.ForeColor = System.Drawing.Color.White;
+            this.btnGroupImage.Image = global::WFA_PDFHelper.Properties.Resources.folder_64px;
+            this.btnGroupImage.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnGroupImage.Location = new System.Drawing.Point(600, 100);
+            this.btnGroupImage.Name = "btnGroupImage";
+            this.btnGroupImage.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.btnGroupImage.Size = new System.Drawing.Size(240, 80);
+            this.btnGroupImage.TabIndex = 3;
+            this.btnGroupImage.Text = "Group Image";
+            this.btnGroupImage.UseVisualStyleBackColor = true;
+            this.btnGroupImage.Click += new System.EventHandler(this.btnGroupImage_Click);
             // 
             // btnSetting
             // 
@@ -43,7 +63,7 @@
             this.btnSetting.ForeColor = System.Drawing.Color.White;
             this.btnSetting.Image = global::WFA_PDFHelper.Properties.Resources.settings_64px;
             this.btnSetting.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSetting.Location = new System.Drawing.Point(600, 100);
+            this.btnSetting.Location = new System.Drawing.Point(58, 210);
             this.btnSetting.Name = "btnSetting";
             this.btnSetting.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
             this.btnSetting.Size = new System.Drawing.Size(240, 80);
@@ -95,6 +115,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
+            this.Controls.Add(this.btnGroupImage);
             this.Controls.Add(this.btnSetting);
             this.Controls.Add(this.btnImagetoPDF);
             this.Controls.Add(this.btnPDFtoImage);
@@ -109,5 +130,6 @@
         private System.Windows.Forms.Button btnPDFtoImage;
         private System.Windows.Forms.Button btnImagetoPDF;
         private System.Windows.Forms.Button btnSetting;
+        private System.Windows.Forms.Button btnGroupImage;
     }
 }
