@@ -49,7 +49,8 @@ namespace GROUPIMG
     public class SUB_GROUPIMGModels
     {
         public string IMAGE { get; set; }
-        public string SUB_FOLDER { get; set; }
+        public string FOLDER { get; set; } //โฟลเดอร์ที่มึงจะไป
+        public string SUB_FOLDER { get; set; } //โฟลเดอร์ที่มึงอยู่
         public string PATH_IMAGE { get; set; }
         public string SUB_FOLDER_OLD_PATH { get; set; }
 

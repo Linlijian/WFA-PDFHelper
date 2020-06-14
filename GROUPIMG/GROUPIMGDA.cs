@@ -181,6 +181,7 @@ namespace GROUPIMG
                     var model = new SUB_GROUPIMGModels
                     {
                         IMAGE = folder,
+                        FOLDER = GenerateFolderName(folder),
                         SUB_FOLDER = TMP_ARRAY.Last(),
                         PATH_IMAGE = currentFile,
                         SUB_FOLDER_OLD_PATH = GenerateSubFolders(folder, TMP_ARRAY)
