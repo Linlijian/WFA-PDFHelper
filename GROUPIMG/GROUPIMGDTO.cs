@@ -21,9 +21,9 @@ namespace GROUPIMG
     public class GROUPIMGGenerateType
     {
         /// <summary>
-        /// xxx
+        /// Single move
         /// </summary>
-        public const string xxx = "xxx";
+        public const string UCGROUPIMG001 = "UCGROUPIMG001";
 
     }
 }
