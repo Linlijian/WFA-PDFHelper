@@ -22,6 +22,7 @@ namespace GROUPIMG
         public string Directory { get; set; }
 
         public List<GROUPIMGModels> GROUPIMGModels { get; set; }
+        public List<GROUPMultiIMGModels> GROUPMultiIMGModels { get; set; }
 
         public Regex Regex { get; set; }
         public Match Match { get; set; }
@@ -33,5 +34,25 @@ namespace GROUPIMG
         public string FOLDER { get; set; }
         public string PATH_IMAGE { get; set; }
         public string OLD_PATH { get; set; }
+    }
+
+    public class GROUPMultiIMGModels
+    {
+        public string FOLDER { get; set; }
+        public string PATH_FOLDER { get; set; }
+        public string FOLDER_OLD_PATH { get; set; }
+
+        public List<string> TMP_ARRAY { get; set; }
+        public List<SUB_GROUPIMGModels> SUB_GROUPIMGModels { get; set; }
+    }
+
+    public class SUB_GROUPIMGModels
+    {
+        public string IMAGE { get; set; }
+        public string SUB_FOLDER { get; set; }
+        public string PATH_IMAGE { get; set; }
+        public string SUB_FOLDER_OLD_PATH { get; set; }
+
+        public List<string> ARRAY_FOLDER { get; set; }
     }
 }

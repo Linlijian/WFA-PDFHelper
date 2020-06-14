@@ -40,7 +40,6 @@ namespace WFA.PDFHelper.UserControls
             {
                 using (CommonOpenFileDialog dialog = new CommonOpenFileDialog())
                 {
-                    //dialog.Multiselect = true;
                     dialog.IsFolderPicker = true;
                     dialog.DefaultDirectory = SessionHelper.XML_FOLDER_INPUT;
 

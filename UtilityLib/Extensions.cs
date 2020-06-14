@@ -206,6 +206,20 @@ namespace UtilityLib
                 return null;
             }
         }
+        public static List<T> ToLists<T>(this T obj, T str) where T : class, new()
+        {
+            try
+            {
+                var list = new List<T>();
+                list.Add(str);
+                return list;
+            }
+            catch (Exception ex)
+            {
+                //ex.Log();
+                return null;
+            }
+        }
         public static T ToObject<T>(this List<T> obj, T obj2) where T : class, new()
         {
             try

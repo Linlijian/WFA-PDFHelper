@@ -12,6 +12,7 @@ namespace GROUPIMG
         {
             Model = new GROUPIMGModel();
             Model.GROUPIMGModels = new List<GROUPIMGModels>();
+            Model.GROUPMultiIMGModels = new List<GROUPMultiIMGModels>();
         }
 
         public GROUPIMGModel Model { get; set; }
@@ -24,6 +25,11 @@ namespace GROUPIMG
         /// Single move
         /// </summary>
         public const string UCGROUPIMG001 = "UCGROUPIMG001";
+
+        /// <summary>
+        /// Multi move
+        /// </summary>
+        public const string UCGROUPIMG002 = "UCGROUPIMG002";
 
     }
 }
