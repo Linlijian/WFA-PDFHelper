@@ -68,6 +68,8 @@ namespace WFA.PDFHelper.UserControls
             catch(Exception ex)
             {
                 ClearFolderError();
+                if (listboxImage.Items.Count > 0)
+                    btnDelete.Visible = true;
 
                 var message = new MassageBoxModel();
                 message.TITLE = "Error";
