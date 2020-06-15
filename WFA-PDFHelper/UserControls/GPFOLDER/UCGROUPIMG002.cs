@@ -53,13 +53,47 @@ namespace WFA.PDFHelper.UserControls
                     }
 
                     listboxFolder.Items.Clear();
-                    var models = GROUPIMG.DTO.Model.GROUPIMGModels.GroupBy(item => item.FOLDER)
-                                .Select(group => new { folder = group.Key })
-                                .ToList();
+                    string strShowList = string.Empty;
 
-                    foreach (var item in models)
+                    for (int i = 0; i < GROUPIMG.DTO.Model.GROUPMultiIMGModels.Count(); i++)
                     {
-                        listboxFolder.Items.Add(item.folder);
+                        //work
+                        //var models = GROUPIMG.DTO.Model.GROUPMultiIMGModels[i].SUB_GROUPIMGModels.GroupBy(t => new { t.SUB_FOLDER , t.FOLDER})
+                        //              .Select(group => new { SUB_FOLDER = group.Key})
+                        //              .ToList();
+                        //foreach(var item in models)
+                        //{
+                        //    listboxFolder.Items.Add(GROUPIMG.DTO.Model.GROUPMultiIMGModels[i].FOLDER
+                        //                                              + " > " + item.SUB_FOLDER.SUB_FOLDER
+                        //                                              + " > " + item.SUB_FOLDER.FOLDER);
+
+
+                        //}
+
+                        var models = GROUPIMG.DTO.Model.GROUPMultiIMGModels[i].SUB_GROUPIMGModels.GroupBy(t => new { t.SUB_FOLDER })
+                                      .Select(group => new { SUB_FOLDER = group.Key, ARR = group.ToArray() })
+                                      .ToList();
+                        for(int x = 0; x < models.Count; x++)
+                        {
+                            for (int y = 0; y < models[x].ARR.Count(); y++)
+                            {
+                                foreach(var arr in models[x].ARR[y].ARRAY_FOLDER)
+                                {
+                                    if (models[x].ARR[y].ARRAY_FOLDER.Last() != arr)
+                                    {
+                                        strShowList += arr + "=>";
+                                    }
+                                    else
+                                    {
+                                        strShowList += arr+"=>"+ models[x].ARR[y].FOLDER;
+                                    }
+                                }
+                                listboxFolder.Items.Add(GROUPIMG.DTO.Model.GROUPMultiIMGModels[i].FOLDER
+                                                                          + " > " + strShowList);
+                                strShowList = string.Empty;
+                            }
+                        }
+
                     }
 
                     if (listboxFolder.Items.Count > 0)
@@ -84,20 +118,55 @@ namespace WFA.PDFHelper.UserControls
         private void btnDelete_Click(object sender, EventArgs e)
         {
             ClearGenerateStatus();
-            if (listboxFolder.SelectedItems.Count > 0)
+            if(listboxFolder.SelectedItems.Count > 0)
             {
-                foreach (var folder in listboxFolder.SelectedItems)
-                    GROUPIMG.DTO.Model.GROUPIMGModels.RemoveAll(t => t.FOLDER == folder.ToString());
+                foreach (var file in listboxFolder.SelectedItems)
+                {
+                    var spl = file.ToString().Split(new string[] { " > ", "=>" }, StringSplitOptions.None);
+                    var LootFolder = GROUPIMG.DTO.Model.GROUPMultiIMGModels.Where(l => l.FOLDER == spl.First()).FirstOrDefault();
+                    var SubFolder = LootFolder.SUB_GROUPIMGModels.Where(w => w.FOLDER == spl.Last()).ToList();
+
+                    foreach(var remove in SubFolder)
+                    {
+                        LootFolder.SUB_GROUPIMGModels.Remove(remove);
+                    }
+
+                    GROUPIMG.DTO.Model.GROUPMultiIMGModels.MergeObject(LootFolder);
+
+                    if (LootFolder.SUB_GROUPIMGModels.Count() == 0)
+                        GROUPIMG.DTO.Model.GROUPMultiIMGModels.Remove(LootFolder);
+                }
             }
 
             listboxFolder.Items.Clear();
-            var models = GROUPIMG.DTO.Model.GROUPIMGModels.GroupBy(item => item.FOLDER)
-                        .Select(group => new { folder = group.Key })
-                        .ToList();
+            string strShowList = string.Empty;
 
-            foreach (var item in models)
+            for (int i = 0; i < GROUPIMG.DTO.Model.GROUPMultiIMGModels.Count(); i++)
             {
-                listboxFolder.Items.Add(item.folder);
+                var models = GROUPIMG.DTO.Model.GROUPMultiIMGModels[i].SUB_GROUPIMGModels.GroupBy(t => new { t.SUB_FOLDER })
+                              .Select(group => new { SUB_FOLDER = group.Key, ARR = group.ToArray() })
+                              .ToList();
+                for (int x = 0; x < models.Count; x++)
+                {
+                    for (int y = 0; y < models[x].ARR.Count(); y++)
+                    {
+                        foreach (var arr in models[x].ARR[y].ARRAY_FOLDER)
+                        {
+                            if (models[x].ARR[y].ARRAY_FOLDER.Last() != arr)
+                            {
+                                strShowList += arr + "=>";
+                            }
+                            else
+                            {
+                                strShowList += arr + "=>" + models[x].ARR[y].FOLDER;
+                            }
+                        }
+                        listboxFolder.Items.Add(GROUPIMG.DTO.Model.GROUPMultiIMGModels[i].FOLDER
+                                                                  + " > " + strShowList);
+                        strShowList = string.Empty;
+                    }
+                }
+
             }
 
             if (listboxFolder.Items.Count == 0)

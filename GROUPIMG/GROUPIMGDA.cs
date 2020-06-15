@@ -105,9 +105,9 @@ namespace GROUPIMG
                 var model = new GROUPIMGModels
                 {
                     IMAGE = fileName,
-                    FOLDER = "AllSelect",
+                    FOLDER = GenerateFolderNameEx(currentFile),
                     OLD_PATH = currentFile,
-                    PATH_IMAGE = currentFile + "AllSelect"
+                    PATH_IMAGE = currentFile
                 };
                 DTO.Model.GROUPIMGModels.Add(model);
             }
@@ -177,16 +177,41 @@ namespace GROUPIMG
                 DTO.Model.Match = DTO.Model.Regex.Match(folder);
                 if (DTO.Model.Match.Success)
                 {
-                    //DTO.Model.Match.Value;
-                    var model = new SUB_GROUPIMGModels
+                    DTO.Model.IS_MATCH = true;
+                    foreach (string rgCase in DTO.Model.REGEX_CASE)
                     {
-                        IMAGE = folder,
-                        FOLDER = GenerateFolderName(folder),
-                        SUB_FOLDER = TMP_ARRAY.Last(),
-                        PATH_IMAGE = currentFile,
-                        SUB_FOLDER_OLD_PATH = GenerateSubFolders(folder, TMP_ARRAY)
-                    };
-                    DTO.Model.GROUPMultiIMGModels[DTO.Model.COUNT_LAST].SUB_GROUPIMGModels.Add(model);
+                        DTO.Model.Regex = new Regex(rgCase);
+                        DTO.Model.Match = DTO.Model.Regex.Match(fileName);
+                        if (DTO.Model.Match.Success)
+                        {
+                            var model = new SUB_GROUPIMGModels
+                            {
+                                IMAGE = folder,
+                                FOLDER = GenerateFolderName(DTO.Model.Match.Value),
+                                SUB_FOLDER = TMP_ARRAY.Last(),
+                                PATH_IMAGE = currentFile,
+                                SUB_FOLDER_OLD_PATH = GenerateSubFolders(folder, TMP_ARRAY)
+                            };
+                            DTO.Model.GROUPMultiIMGModels[DTO.Model.COUNT_LAST].SUB_GROUPIMGModels.Add(model);
+
+                            DTO.Model.IS_MATCH = false;
+                            break;
+                        }
+                    }
+
+                    //if all case select
+                    if (DTO.Model.IS_MATCH)
+                    {
+                        var model = new SUB_GROUPIMGModels
+                        {
+                            IMAGE = folder,
+                            FOLDER = GenerateFolderNameEx(fileName),
+                            SUB_FOLDER = TMP_ARRAY.Last(),
+                            PATH_IMAGE = currentFile,
+                            SUB_FOLDER_OLD_PATH = GenerateSubFolders(folder, TMP_ARRAY)
+                        };
+                        DTO.Model.GROUPMultiIMGModels[DTO.Model.COUNT_LAST].SUB_GROUPIMGModels.Add(model);                        
+                    }
                 }
                 else
                 {                    
@@ -204,7 +229,7 @@ namespace GROUPIMG
         {
             try
             {
-                DTO.Model.Regex = new Regex(@"[a-zA-Z\d]_?[a-zA-Z\d_.-]+([a-zA-Z\d])");
+                DTO.Model.Regex = new Regex(@"[a-zA-Z\d]_?[a-zA-Z\d_.-]+([a-zA-Z\d])(?=.jpg|JPG)");
                 DTO.Model.Match = DTO.Model.Regex.Match(folder);
                 if (DTO.Model.Match.Success)
                 {
@@ -212,10 +237,30 @@ namespace GROUPIMG
                 }
                 else
                 {
-                    return folder;
+                    DTO.Model.Regex = new Regex(@"[a-zA-Z\d]_?[a-zA-Z\d_.-]+([a-zA-Z\d])");
+                    DTO.Model.Match = DTO.Model.Regex.Match(folder);
+                    return DTO.Model.Match.Value;
                 }
             }
-            catch { return folder; }
+            catch { return "AllCase"; }
+        }
+        private string GenerateFolderNameEx(string fileName)
+        {
+            try
+            {
+                var folder = fileName.Split('\\');
+                DTO.Model.Regex = new Regex(@"[a-zA-Z\d]_?[a-zA-Z\d_.-]+([a-zA-Z\d])(?=.jpg|JPG)");
+                if (folder.Count() > 2)
+                {
+                    return folder[folder.Count() - 2];
+                }
+                else
+                {
+                    DTO.Model.Match = DTO.Model.Regex.Match(folder.Last());
+                    return DTO.Model.Match.Value;
+                }
+            }
+            catch { return "AllCase"; }
         }
         private string GenerateSubFolders(string image, List<string> arr)
         {
