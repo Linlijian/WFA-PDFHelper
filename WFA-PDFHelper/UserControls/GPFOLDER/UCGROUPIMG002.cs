@@ -57,19 +57,6 @@ namespace WFA.PDFHelper.UserControls
 
                     for (int i = 0; i < GROUPIMG.DTO.Model.GROUPMultiIMGModels.Count(); i++)
                     {
-                        //work
-                        //var models = GROUPIMG.DTO.Model.GROUPMultiIMGModels[i].SUB_GROUPIMGModels.GroupBy(t => new { t.SUB_FOLDER , t.FOLDER})
-                        //              .Select(group => new { SUB_FOLDER = group.Key})
-                        //              .ToList();
-                        //foreach(var item in models)
-                        //{
-                        //    listboxFolder.Items.Add(GROUPIMG.DTO.Model.GROUPMultiIMGModels[i].FOLDER
-                        //                                              + " > " + item.SUB_FOLDER.SUB_FOLDER
-                        //                                              + " > " + item.SUB_FOLDER.FOLDER);
-
-
-                        //}
-
                         var models = GROUPIMG.DTO.Model.GROUPMultiIMGModels[i].SUB_GROUPIMGModels.GroupBy(t => new { t.SUB_FOLDER })
                                       .Select(group => new { SUB_FOLDER = group.Key, ARR = group.ToArray() })
                                       .ToList();
@@ -180,7 +167,7 @@ namespace WFA.PDFHelper.UserControls
             dto = GROUPIMG;
             try
             {
-                dto.DTO.Model.GenerateType = GROUPIMGGenerateType.UCGROUPIMG001;
+                dto.DTO.Model.GenerateType = GROUPIMGGenerateType.UCGROUPIMG002;
                 dto.Generate(GROUPIMG.DTO);
                 lblGenerateStatus.Text = "Move Complete!";
             }

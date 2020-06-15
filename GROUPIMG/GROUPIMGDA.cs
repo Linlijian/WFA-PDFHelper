@@ -118,20 +118,23 @@ namespace GROUPIMG
         public GROUPIMGDTO MultiMove(GROUPIMGDTO dto)
         {
             string MoveForm = SessionHelper.XML_FOLDER_OUTPUT;
-            foreach (var item in dto.Model.GROUPIMGModels)
+            for (int x = 0; x < dto.Model.GROUPMultiIMGModels.Count(); x++) 
             {
-                dto.Model.DirectoryFrom = item.PATH_IMAGE;
-                dto.Model.DirectoryTo = MoveForm + '\\' + item.FOLDER + '\\' + item.IMAGE;
-                dto.Model.Directory = MoveForm + '\\' + item.FOLDER;
+               foreach(var sub in dto.Model.GROUPMultiIMGModels[x].SUB_GROUPIMGModels)
+                {
+                    dto.Model.DirectoryFrom = sub.PATH_IMAGE;
+                    dto.Model.DirectoryTo = MoveForm + '\\' + sub.SUB_FOLDER + '\\' + sub.FOLDER + '\\' + sub.IMAGE;
+                    dto.Model.Directory = MoveForm + '\\' + sub.SUB_FOLDER + '\\' + sub.FOLDER;
 
-                if (!Directory.Exists(dto.Model.Directory))
-                {
-                    Directory.CreateDirectory(dto.Model.Directory);
-                    File.Move(dto.Model.DirectoryFrom, dto.Model.DirectoryTo);
-                }
-                else
-                {
-                    File.Move(dto.Model.DirectoryFrom, dto.Model.DirectoryTo);
+                    if (!Directory.Exists(dto.Model.Directory))
+                    {
+                        Directory.CreateDirectory(dto.Model.Directory);
+                        File.Move(dto.Model.DirectoryFrom, dto.Model.DirectoryTo);
+                    }
+                    else
+                    {
+                        File.Move(dto.Model.DirectoryFrom, dto.Model.DirectoryTo);
+                    }
                 }
             }
 
