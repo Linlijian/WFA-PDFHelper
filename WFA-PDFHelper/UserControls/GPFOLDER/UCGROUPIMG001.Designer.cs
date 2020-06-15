@@ -36,6 +36,8 @@
             this.btnAdd = new System.Windows.Forms.Button();
             this.btnGenerate = new System.Windows.Forms.Button();
             this.lblGenerateStatus = new System.Windows.Forms.Label();
+            this.lblStatusOld = new System.Windows.Forms.Label();
+            this.btnMoveBack = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lblToppic
@@ -140,11 +142,42 @@
             this.lblGenerateStatus.Size = new System.Drawing.Size(0, 19);
             this.lblGenerateStatus.TabIndex = 11;
             // 
+            // lblStatusOld
+            // 
+            this.lblStatusOld.AutoSize = true;
+            this.lblStatusOld.Font = new System.Drawing.Font("Itim", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblStatusOld.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(125)))), ((int)(((byte)(154)))));
+            this.lblStatusOld.Location = new System.Drawing.Point(143, 377);
+            this.lblStatusOld.Name = "lblStatusOld";
+            this.lblStatusOld.Size = new System.Drawing.Size(0, 19);
+            this.lblStatusOld.TabIndex = 13;
+            // 
+            // btnMoveBack
+            // 
+            this.btnMoveBack.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
+            this.btnMoveBack.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
+            this.btnMoveBack.FlatAppearance.BorderSize = 2;
+            this.btnMoveBack.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(77)))), ((int)(((byte)(77)))), ((int)(((byte)(77)))));
+            this.btnMoveBack.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(100)))), ((int)(((byte)(100)))));
+            this.btnMoveBack.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnMoveBack.Font = new System.Drawing.Font("Itim", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnMoveBack.ForeColor = System.Drawing.Color.White;
+            this.btnMoveBack.Location = new System.Drawing.Point(27, 362);
+            this.btnMoveBack.Name = "btnMoveBack";
+            this.btnMoveBack.Size = new System.Drawing.Size(110, 34);
+            this.btnMoveBack.TabIndex = 12;
+            this.btnMoveBack.Text = "Move Back";
+            this.btnMoveBack.UseVisualStyleBackColor = false;
+            this.btnMoveBack.Visible = false;
+            this.btnMoveBack.Click += new System.EventHandler(this.btnMoveBack_Click);
+            // 
             // UCGROUPIMG001
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
+            this.Controls.Add(this.lblStatusOld);
+            this.Controls.Add(this.btnMoveBack);
             this.Controls.Add(this.lblGenerateStatus);
             this.Controls.Add(this.btnGenerate);
             this.Controls.Add(this.btnDelete);
@@ -170,5 +203,7 @@
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.Button btnGenerate;
         private System.Windows.Forms.Label lblGenerateStatus;
+        private System.Windows.Forms.Label lblStatusOld;
+        private System.Windows.Forms.Button btnMoveBack;
     }
 }

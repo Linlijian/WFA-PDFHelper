@@ -31,5 +31,15 @@ namespace GROUPIMG
         /// </summary>
         public const string UCGROUPIMG002 = "UCGROUPIMG002";
 
+        /// <summary>
+        /// Single old move
+        /// </summary>
+        public const string UC001SingleOldMove = "UC001SingleOldMove";
+
+        /// <summary>
+        /// Multi old move
+        /// </summary>
+        public const string UC002MultiOldMove = "UC002MultiOldMove";
+
     }
 }
