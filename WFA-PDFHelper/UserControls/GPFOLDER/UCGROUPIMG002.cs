@@ -170,12 +170,41 @@ namespace WFA.PDFHelper.UserControls
                 dto.DTO.Model.GenerateType = GROUPIMGGenerateType.UCGROUPIMG002;
                 dto.Generate(GROUPIMG.DTO);
                 lblGenerateStatus.Text = "Move Complete!";
+
+                btnMoveBack.Visible = true;
             }
             catch (Exception ex)
             {
                 var message = new MassageBoxModel();
                 message.TITLE = "Error";
                 message.MESSAGE = "Please re-check to Generate group image.\r\nDescription: " + ex.Message;
+                message.BUTTON_TYPE = ButtonType.OK;
+
+                using (MassageBox box = new MassageBox(message))
+                {
+                    box.ShowDialog(this);
+                }
+            }
+        }
+        private void btnMoveBack_Click(object sender, EventArgs e)
+        {
+            ClearGenerateStatus();
+            var dto = new GROUPIMGDA();
+
+            dto = GROUPIMG;
+            try
+            {
+                dto.DTO.Model.GenerateType = GROUPIMGGenerateType.UC002MultiOldMove;
+                dto.Generate(GROUPIMG.DTO);
+                lblGenerateStatus.Text = "Move Back Complete!";
+
+                btnMoveBack.Visible = false;
+            }
+            catch (Exception ex)
+            {
+                var message = new MassageBoxModel();
+                message.TITLE = "Error";
+                message.MESSAGE = "Please re-check to Move back.\r\nDescription: " + ex.Message;
                 message.BUTTON_TYPE = ButtonType.OK;
 
                 using (MassageBox box = new MassageBox(message))

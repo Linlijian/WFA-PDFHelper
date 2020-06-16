@@ -35,6 +35,7 @@
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
             this.btnGenerate = new System.Windows.Forms.Button();
+            this.btnMoveBack = new System.Windows.Forms.Button();
             this.lblGenerateStatus = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
@@ -45,9 +46,9 @@
             this.lblToppic.ForeColor = System.Drawing.Color.White;
             this.lblToppic.Location = new System.Drawing.Point(22, 17);
             this.lblToppic.Name = "lblToppic";
-            this.lblToppic.Size = new System.Drawing.Size(130, 25);
+            this.lblToppic.Size = new System.Drawing.Size(123, 25);
             this.lblToppic.TabIndex = 0;
-            this.lblToppic.Text = "Single Folder";
+            this.lblToppic.Text = "Multi Folder";
             // 
             // label1
             // 
@@ -130,15 +131,34 @@
             this.btnGenerate.UseVisualStyleBackColor = false;
             this.btnGenerate.Click += new System.EventHandler(this.btnGenerate_Click);
             // 
+            // btnMoveBack
+            // 
+            this.btnMoveBack.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
+            this.btnMoveBack.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
+            this.btnMoveBack.FlatAppearance.BorderSize = 2;
+            this.btnMoveBack.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(77)))), ((int)(((byte)(77)))), ((int)(((byte)(77)))));
+            this.btnMoveBack.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(100)))), ((int)(((byte)(100)))));
+            this.btnMoveBack.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnMoveBack.Font = new System.Drawing.Font("Itim", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnMoveBack.ForeColor = System.Drawing.Color.White;
+            this.btnMoveBack.Location = new System.Drawing.Point(143, 322);
+            this.btnMoveBack.Name = "btnMoveBack";
+            this.btnMoveBack.Size = new System.Drawing.Size(110, 34);
+            this.btnMoveBack.TabIndex = 13;
+            this.btnMoveBack.Text = "Move Back";
+            this.btnMoveBack.UseVisualStyleBackColor = false;
+            this.btnMoveBack.Visible = false;
+            this.btnMoveBack.Click += new System.EventHandler(this.btnMoveBack_Click);
+            // 
             // lblGenerateStatus
             // 
             this.lblGenerateStatus.AutoSize = true;
             this.lblGenerateStatus.Font = new System.Drawing.Font("Itim", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblGenerateStatus.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(125)))), ((int)(((byte)(154)))));
-            this.lblGenerateStatus.Location = new System.Drawing.Point(143, 337);
+            this.lblGenerateStatus.Location = new System.Drawing.Point(23, 359);
             this.lblGenerateStatus.Name = "lblGenerateStatus";
             this.lblGenerateStatus.Size = new System.Drawing.Size(0, 19);
-            this.lblGenerateStatus.TabIndex = 11;
+            this.lblGenerateStatus.TabIndex = 14;
             // 
             // UCGROUPIMG002
             // 
@@ -146,6 +166,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
             this.Controls.Add(this.lblGenerateStatus);
+            this.Controls.Add(this.btnMoveBack);
             this.Controls.Add(this.btnGenerate);
             this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.listboxFolder);
@@ -169,6 +190,7 @@
         private System.Windows.Forms.ListBox listboxFolder;
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.Button btnGenerate;
+        private System.Windows.Forms.Button btnMoveBack;
         private System.Windows.Forms.Label lblGenerateStatus;
     }
 }

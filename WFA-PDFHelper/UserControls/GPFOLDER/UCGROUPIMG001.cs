@@ -172,7 +172,6 @@ namespace WFA.PDFHelper.UserControls
         private void ClearGenerateStatus()
         {
             lblGenerateStatus.Text = "";
-            lblStatusOld.Text = "";
         }
         private void ClearFolderError()
         {

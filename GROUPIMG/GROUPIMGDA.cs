@@ -24,6 +24,7 @@ namespace GROUPIMG
                 case GROUPIMGGenerateType.UCGROUPIMG001: return SigleMove(dto);
                 case GROUPIMGGenerateType.UC001SingleOldMove: return SigleOldMove(dto);
                 case GROUPIMGGenerateType.UCGROUPIMG002: return MultiMove(dto);
+                case GROUPIMGGenerateType.UC002MultiOldMove: return MultiOldMove(dto);
             }
             return dto;
         }
@@ -145,9 +146,34 @@ namespace GROUPIMG
             {
                 foreach (var sub in dto.Model.GROUPMultiIMGModels[x].SUB_GROUPIMGModels)
                 {
+                    dto.Model.DirectoryFrom = sub.SUB_FOLDER_OLD_PATH;
+                    dto.Model.DirectoryTo = sub.PATH_IMAGE;
+                    dto.Model.Directory = GenerateDirectory(sub.PATH_IMAGE);
+
+                    if (!Directory.Exists(dto.Model.Directory))
+                    {
+                        Directory.CreateDirectory(dto.Model.Directory);
+                        File.Move(dto.Model.DirectoryFrom, dto.Model.DirectoryTo);
+                    }
+                    else
+                    {
+                        File.Move(dto.Model.DirectoryFrom, dto.Model.DirectoryTo);
+                    }
+                }
+            }
+
+            return dto;
+        }
+        public GROUPIMGDTO MultiOldMove(GROUPIMGDTO dto)
+        {
+            string MoveForm = SessionHelper.XML_FOLDER_OUTPUT;
+            for (int x = 0; x < dto.Model.GROUPMultiIMGModels.Count(); x++)
+            {
+                foreach (var sub in dto.Model.GROUPMultiIMGModels[x].SUB_GROUPIMGModels)
+                {
                     dto.Model.DirectoryFrom = sub.PATH_IMAGE;
-                    dto.Model.DirectoryTo = MoveForm + '\\' + sub.SUB_FOLDER + '\\' + sub.FOLDER + '\\' + sub.IMAGE;
-                    dto.Model.Directory = MoveForm + '\\' + sub.SUB_FOLDER + '\\' + sub.FOLDER;
+                    dto.Model.DirectoryTo = sub.SUB_FOLDER_OLD_PATH;
+                    dto.Model.Directory = GenerateDirectory(sub.SUB_FOLDER_OLD_PATH);
 
                     if (!Directory.Exists(dto.Model.Directory))
                     {
@@ -190,7 +216,9 @@ namespace GROUPIMG
             }
             catch (Exception e)
             {
-
+                //แก้ PATH_IMAGE
+                //แก้ SUB_FOLDER_OLD_PATH
+                //ให้เหมือนกับ single move / old move
             }
         }
         private void GenerateFolders(string fileName, string currentFile, string oldPath)
@@ -215,8 +243,8 @@ namespace GROUPIMG
                                 IMAGE = folder,
                                 FOLDER = GenerateFolderName(DTO.Model.Match.Value),
                                 SUB_FOLDER = TMP_ARRAY.Last(),
-                                PATH_IMAGE = currentFile,
-                                SUB_FOLDER_OLD_PATH = GenerateSubFolders(folder, TMP_ARRAY)
+                                PATH_IMAGE = GenerateOldPaths(DTO.Model.Match.Value, TMP_ARRAY, folder, oldPath),
+                                SUB_FOLDER_OLD_PATH = currentFile
                             };
                             DTO.Model.GROUPMultiIMGModels[DTO.Model.COUNT_LAST].SUB_GROUPIMGModels.Add(model);
 
@@ -233,8 +261,8 @@ namespace GROUPIMG
                             IMAGE = folder,
                             FOLDER = GenerateFolderNameEx(fileName),
                             SUB_FOLDER = TMP_ARRAY.Last(),
-                            PATH_IMAGE = currentFile,
-                            SUB_FOLDER_OLD_PATH = GenerateSubFolders(folder, TMP_ARRAY)
+                            PATH_IMAGE = GenerateOldPathsEx(DTO.Model.Match.Value, TMP_ARRAY, folder, oldPath),
+                            SUB_FOLDER_OLD_PATH = currentFile
                         };
                         DTO.Model.GROUPMultiIMGModels[DTO.Model.COUNT_LAST].SUB_GROUPIMGModels.Add(model);
                     }
@@ -298,9 +326,27 @@ namespace GROUPIMG
 
             return subFolder + image;
         }
+        private string GenerateSubFolders(List<string> arr)
+        {
+            string subFolder = string.Empty;
+            foreach (var sub in arr)
+            {
+                subFolder += sub + "\\";
+            }
+
+            return subFolder;
+        }
         private string GenerateOldPath(string image, string fileName)
         {
             return SessionHelper.XML_FOLDER_OUTPUT + '\\' + GenerateFolderName(fileName) + '\\' + image;
+        }
+        private string GenerateOldPaths(string folder, List<string> arr, string image, string oldPath)
+        {
+            return SessionHelper.XML_FOLDER_OUTPUT + '\\' + oldPath.Split('\\').Last() + '\\' + GenerateSubFolders(arr) + GenerateFolderName(folder) + '\\' + image;
+        }
+        private string GenerateOldPathsEx(string folder, List<string> arr, string image, string oldPath)
+        {
+            return SessionHelper.XML_FOLDER_OUTPUT + '\\' + oldPath.Split('\\').Last() + '\\' + GenerateSubFolders(arr) + GenerateFolderNameEx(folder) + image;
         }
         private string GenerateDirectory(string path)
         {
