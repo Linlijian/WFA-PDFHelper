@@ -115,7 +115,7 @@ namespace GROUPIMG
                         IMAGE = fileName,
                         FOLDER = GenerateFolderName(DTO.Model.Match.Value),
                         OLD_PATH = currentFile,
-                        PATH_IMAGE = GenerateOldPath(fileName, currentFile)
+                        PATH_IMAGE = GenerateOldPath(fileName, DTO.Model.Match.Value)
                     };
                     DTO.Model.GROUPIMGModels.Add(model);
 
@@ -131,7 +131,7 @@ namespace GROUPIMG
                     IMAGE = fileName,
                     FOLDER = GenerateFolderNameEx(currentFile),
                     OLD_PATH = currentFile,
-                    PATH_IMAGE = GenerateOldPathEx(fileName, currentFile)
+                    PATH_IMAGE = GenerateOldPathEx(fileName, DTO.Model.Match.Value)
                 };
                 DTO.Model.GROUPIMGModels.Add(model);
             }
@@ -336,17 +336,28 @@ namespace GROUPIMG
 
             return subFolder;
         }
+        private string GenerateSubFolders(List<string> arr, string folder)
+        {
+            string subFolder = string.Empty;
+            foreach (var sub in arr)
+            {
+                if(folder != sub)
+                    subFolder += sub + "\\";
+            }
+
+            return subFolder;
+        }
         private string GenerateOldPath(string image, string fileName)
         {
             return SessionHelper.XML_FOLDER_OUTPUT + '\\' + GenerateFolderName(fileName) + '\\' + image;
         }
         private string GenerateOldPaths(string folder, List<string> arr, string image, string oldPath)
         {
-            return SessionHelper.XML_FOLDER_OUTPUT + '\\' + oldPath.Split('\\').Last() + '\\' + GenerateSubFolders(arr) + GenerateFolderName(folder) + '\\' + image;
+            return SessionHelper.XML_FOLDER_OUTPUT + '\\' + oldPath.Split('\\').Last() + '\\' + GenerateSubFolders(arr, folder) + GenerateFolderName(folder) + '\\' + image;
         }
         private string GenerateOldPathsEx(string folder, List<string> arr, string image, string oldPath)
         {
-            return SessionHelper.XML_FOLDER_OUTPUT + '\\' + oldPath.Split('\\').Last() + '\\' + GenerateSubFolders(arr) + GenerateFolderNameEx(folder) + image;
+            return SessionHelper.XML_FOLDER_OUTPUT + '\\' + oldPath.Split('\\').Last() + '\\' + GenerateSubFolders(arr, folder) + GenerateFolderNameEx(folder) + image;
         }
         private string GenerateDirectory(string path)
         {
