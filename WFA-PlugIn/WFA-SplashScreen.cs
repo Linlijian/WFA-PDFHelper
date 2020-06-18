@@ -12,7 +12,7 @@ using System.Windows.Forms;
 using UtilityLib;
 using WFA.PlugIn;
 
-namespace WFA_PlugIn
+namespace WFA.PlugIn
 {
     public partial class SplashScreen : Form
     {

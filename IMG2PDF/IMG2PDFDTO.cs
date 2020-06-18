@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UtilityLib;
 
 namespace IMG2PDF
 {
-    public class IMG2PDFDTO
+    public class IMG2PDFDTO : GlobalDTO
     {
         /// <summary>
         ///    constructor

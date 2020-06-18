@@ -47,6 +47,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Model\MassageBoxModel.cs" />
+    <Compile Include="Model\ResultModel.cs" />
+    <Compile Include="WF-Result.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WF-Result.Designer.cs">
+      <DependentUpon>WF-Result.cs</DependentUpon>
+    </Compile>
     <Compile Include="WFA-MassageBox.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -67,6 +74,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="WF-Result.resx">
+      <DependentUpon>WF-Result.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="WFA-MassageBox.resx">
       <DependentUpon>WFA-MassageBox.cs</DependentUpon>
     </EmbeddedResource>

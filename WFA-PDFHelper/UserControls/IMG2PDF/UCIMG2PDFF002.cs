@@ -159,6 +159,7 @@ namespace WFA.PDFHelper.UserControls
                 }
 
                 lblGenerateStatus.Text = "Generate Complete!";
+                GenerateResult();
             }
             catch(Exception xs)
             {
@@ -188,6 +189,21 @@ namespace WFA.PDFHelper.UserControls
         private string GenerateFileName(string folder)
         {
             return SessionHelper.XML_FOLDER_OUTPUT + "\\" + folder + ".pdf";
+        }
+        private void GenerateResult()
+        {
+            int folderCount = IMG2PDF.DTO.Model.IMG2FOLDERModels.Count();
+            for (int i = 0; i < folderCount; i++)
+            {
+                var code = IMG2PDF.DTO.Model.IMG2FOLDERModels[i].FOLDER_NAME;
+                var folder = IMG2PDF.DTO.Model.IMG2FOLDERModels[i].FOLDER_PATH.Split('\\');
+                IMG2PDF.DTO.Results.Add(new Results { CODE = code, FOLDER = folder[folder.Count() - 2] });
+            }
+
+            using (ResultList box = new ResultList(IMG2PDF.DTO.Results))
+            {
+                box.ShowDialog(this);
+            }
         }
         private void FileDuplicate(string filename)
         {

@@ -1,4 +1,4 @@
-﻿namespace WFA_PlugIn
+﻿namespace WFA.PlugIn
 {
     partial class SplashScreen
     {

@@ -134,6 +134,7 @@ namespace WFA.PDFHelper.UserControls
                 dto.DTO.Model.GenerateType = IMG2PDFGenerateType.UCIMG2PDFF001;
                 dto.Generate(IMG2PDF.DTO);
                 lblGenerateStatus.Text = "Generate Complete!";
+                GenerateResult();
             }
             catch(Exception ex)
             {
@@ -164,6 +165,21 @@ namespace WFA.PDFHelper.UserControls
         private void ClearGenerateStatus()
         {
             lblGenerateStatus.Text = "";
+        }
+        private void GenerateResult()
+        {
+            int folderCount = IMG2PDF.DTO.Model.IMG2PDFModels.Count();
+            for (int i = 0; i < folderCount; i++)
+            {
+                var code = IMG2PDF.DTO.Model.IMG2PDFModels[i].FILE_NAME;
+                var folder = IMG2PDF.DTO.Model.IMG2PDFModels[i].FILE_PATH.Split('\\');
+                IMG2PDF.DTO.Results.Add(new Results { CODE = code, FOLDER = folder[folder.Count() - 2] });
+            }
+
+            using (ResultList box = new ResultList(IMG2PDF.DTO.Results))
+            {
+                box.ShowDialog(this);
+            }
         }
         #endregion
 
