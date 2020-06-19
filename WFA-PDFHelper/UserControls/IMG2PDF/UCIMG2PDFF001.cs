@@ -175,6 +175,7 @@ namespace WFA.PDFHelper.UserControls
         }
         private void GenerateResult()
         {
+            IMG2PDF.DTO.Results.Clear();
             int folderCount = IMG2PDF.DTO.Model.IMG2PDFModels.Count();
             for (int i = 0; i < folderCount; i++)
             {
