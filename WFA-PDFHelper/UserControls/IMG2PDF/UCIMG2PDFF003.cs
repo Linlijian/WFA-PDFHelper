@@ -19,8 +19,9 @@ namespace WFA.PDFHelper.UserControls
     public partial class UCIMG2PDFF003 : UserControl
     {
         #region init
-        private IMG2PDFDA IMG2PDF = new IMG2PDFDA();
         private int SORT_TOGGLE_ON = 0;
+        private IMG2PDFDA IMG2PDF = new IMG2PDFDA();
+        private CommonOpenFileDialog dialog2 = new CommonOpenFileDialog();
 
         public UCIMG2PDFF003()
         {
@@ -37,70 +38,39 @@ namespace WFA.PDFHelper.UserControls
         private void btnAdd_Click(object sender, EventArgs e)
         {
             ClearGenerateStatus();
-            try
+
+            using (CommonOpenFileDialog dialog = new CommonOpenFileDialog())
             {
-                using (CommonOpenFileDialog dialog = new CommonOpenFileDialog())
+                dialog.Multiselect = true;
+                dialog.IsFolderPicker = true;
+                dialog.DefaultDirectory = SessionHelper.XML_FOLDER_INPUT;
+
+                if (dialog.ShowDialog() == CommonFileDialogResult.Ok)
                 {
-                    dialog.Multiselect = true;
-                    dialog.IsFolderPicker = true;
-                    dialog.DefaultDirectory = SessionHelper.XML_FOLDER_INPUT;
-
-                    if (dialog.ShowDialog() == CommonFileDialogResult.Ok)
+                    dialog2 = dialog;
+                    using (WaitForm form = new WaitForm(GenerateAdd))
                     {
-                        foreach (string folder in dialog.FileNames)
-                        {
-                            IMG2PDF.SelectFolders(folder);
-                        }
+                        form.ShowDialog(this);
                     }
-
-                    listboxImage.Items.Clear();
-                    string strShowList = string.Empty;
-
-                    for (int i = 0; i < IMG2PDF.DTO.Model.IMG2FOLDERModels.Count(); i++)
-                    {
-                        var models = IMG2PDF.DTO.Model.IMG2FOLDERModels[i].SUB_IMG2FOLDERModels.GroupBy(t => new { t.SUB_FOLDER_NAME })
-                                      .Select(group => new { SUB_FOLDER = group.Key, ARR = group.ToArray() })
-                                      .ToList();
-                        for (int x = 0; x < models.Count; x++)
-                        {
-                            for (int y = 0; y < models[x].ARR.Count(); y++)
-                            {
-                                foreach (var arr in models[x].ARR[y].ARRAY_FOLDER)
-                                {
-                                    if (models[x].ARR[y].ARRAY_FOLDER.Last() != arr)
-                                    {
-                                        strShowList += arr + "=>";
-                                    }
-                                    else
-                                    {
-                                        strShowList += arr + "=>" + models[x].ARR[y].FILE_NAME;
-                                    }
-                                }
-                                listboxImage.Items.Add(IMG2PDF.DTO.Model.IMG2FOLDERModels[i].FOLDER_NAME
-                                                                          + " > " + strShowList);
-                                strShowList = string.Empty;
-                            }
-                        }
-
-                    }
-
-                    if (listboxImage.Items.Count > 0)
-                        btnDelete.Visible = true;
                 }
+                dialog2.Dispose();
             }
-            catch (Exception ex)
-            {
-                ClearFolderError();
 
+            GenerateListBox();
+
+            if (IMG2PDF.DTO.ErrorResults.ERROR_CODE < 0)
+            {
                 var message = new MassageBoxModel();
                 message.TITLE = "Error";
-                message.MESSAGE = "Can't find image in folder.\r\nDescription: " + ex.Message;
+                message.MESSAGE = "Please re-check to Generate PDF.\r\nDescription: " + IMG2PDF.DTO.ErrorResults.ERROR_MESSAGE;
                 message.BUTTON_TYPE = ButtonType.OK;
 
                 using (MassageBox box = new MassageBox(message))
                 {
                     box.ShowDialog(this);
                 }
+
+                return;
             }
         }
         private void btnDelete_Click(object sender, EventArgs e)
@@ -201,6 +171,7 @@ namespace WFA.PDFHelper.UserControls
             }
 
             lblGenerateStatus.Text = "Generate Complete!";
+            GenerateResult();
         }
         #endregion
 
@@ -288,6 +259,84 @@ namespace WFA.PDFHelper.UserControls
                 IMG2PDF.DTO.ErrorResults.ERROR_MESSAGE = ex.Message;
             }
         }
-        #endregion        
+        private void GenerateResult()
+        {
+            IMG2PDF.DTO.Results.Clear();
+            int folderCount = IMG2PDF.DTO.Model.IMG2FOLDERModels.Count();
+            for (int i = 0; i < folderCount; i++)
+            {
+                var models = IMG2PDF.DTO.Model.IMG2FOLDERModels[i].SUB_IMG2FOLDERModels.GroupBy(t => new { t.SUB_FOLDER_NAME })
+                              .Select(group => new { SUB_FOLDER = group.Key, ARR = group.ToArray() })
+                              .ToList();
+
+                foreach (var model in models)
+                {
+                    IMG2PDF.DTO.Results.Add(new Results
+                    {
+                        CODE = model.SUB_FOLDER.SUB_FOLDER_NAME.ToString(),
+                        FOLDER = IMG2PDF.DTO.Model.IMG2FOLDERModels[i].FOLDER_NAME
+                    });
+                }
+
+            }
+
+            using (ResultList box = new ResultList(IMG2PDF.DTO.Results))
+            {
+                box.ShowDialog(this);
+            }
+        }
+        private void GenerateAdd()
+        {
+            try
+            {
+                foreach (string folder in dialog2.FileNames)
+                {
+                    IMG2PDF.SelectFolders(folder);
+                }
+                IMG2PDF.DTO.ErrorResults.ERROR_CODE = 0;
+            }
+            catch (Exception ex)
+            {
+                IMG2PDF.DTO.ErrorResults.ERROR_CODE = -1;
+                IMG2PDF.DTO.ErrorResults.ERROR_MESSAGE = ex.Message;
+            }
+        }
+        private void GenerateListBox()
+        {
+            listboxImage.Items.Clear();
+            string strShowList = string.Empty;
+
+            for (int i = 0; i < IMG2PDF.DTO.Model.IMG2FOLDERModels.Count(); i++)
+            {
+                var models = IMG2PDF.DTO.Model.IMG2FOLDERModels[i].SUB_IMG2FOLDERModels.GroupBy(t => new { t.SUB_FOLDER_NAME })
+                              .Select(group => new { SUB_FOLDER = group.Key, ARR = group.ToArray() })
+                              .ToList();
+                for (int x = 0; x < models.Count; x++)
+                {
+                    for (int y = 0; y < models[x].ARR.Count(); y++)
+                    {
+                        foreach (var arr in models[x].ARR[y].ARRAY_FOLDER)
+                        {
+                            if (models[x].ARR[y].ARRAY_FOLDER.Last() != arr)
+                            {
+                                strShowList += arr + "=>";
+                            }
+                            else
+                            {
+                                strShowList += arr + "=>" + models[x].ARR[y].FILE_NAME;
+                            }
+                        }
+                        listboxImage.Items.Add(IMG2PDF.DTO.Model.IMG2FOLDERModels[i].FOLDER_NAME
+                                                                  + " > " + strShowList);
+                        strShowList = string.Empty;
+                    }
+                }
+
+            }
+
+            if (listboxImage.Items.Count > 0)
+                btnDelete.Visible = true;
+        }
+        #endregion
     }
 }

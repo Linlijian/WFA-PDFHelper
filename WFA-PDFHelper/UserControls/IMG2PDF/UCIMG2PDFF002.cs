@@ -145,7 +145,7 @@ namespace WFA.PDFHelper.UserControls
             {
                 var message = new MassageBoxModel();
                 message.TITLE = "Error";
-                message.MESSAGE = "Please re-check to Generate group image.\r\nDescription: " + IMG2PDF.DTO.ErrorResults.ERROR_MESSAGE;
+                message.MESSAGE = "Please re-check to Generate PDF.\r\nDescription: " + IMG2PDF.DTO.ErrorResults.ERROR_MESSAGE;
                 message.BUTTON_TYPE = ButtonType.OK;
 
                 using (MassageBox box = new MassageBox(message))
