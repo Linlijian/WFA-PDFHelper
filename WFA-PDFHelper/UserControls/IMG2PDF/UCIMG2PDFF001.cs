@@ -125,42 +125,49 @@ namespace WFA.PDFHelper.UserControls
         private void btnGenerate_Click(object sender, EventArgs e)
         {
             ClearGenerateStatus();
-            var dto = new IMG2PDFDA();
-
             IMG2PDF.DTO.Model.SORT = SORT_TOGGLE_ON == 0 ? true : false;
-            dto = IMG2PDF;
-            try
+
+            using (WaitForm form = new WaitForm(Generate))
             {
-                dto.DTO.Model.GenerateType = IMG2PDFGenerateType.UCIMG2PDFF001;
-                dto.Generate(IMG2PDF.DTO);
-                lblGenerateStatus.Text = "Generate Complete!";
-                GenerateResult();
+                form.ShowDialog(this);
             }
-            catch(Exception ex)
+
+            if (IMG2PDF.DTO.ErrorResults.ERROR_CODE < 0)
             {
                 var message = new MassageBoxModel();
                 message.TITLE = "Error";
-                message.MESSAGE = "Please re-check to generate pdf.\r\nDescription: " + ex.Message;
+                message.MESSAGE = "Please re-check to Generate group image.\r\nDescription: " + IMG2PDF.DTO.ErrorResults.ERROR_MESSAGE;
                 message.BUTTON_TYPE = ButtonType.OK;
 
                 using (MassageBox box = new MassageBox(message))
                 {
                     box.ShowDialog(this);
                 }
+
+                return;
             }
+
+            lblGenerateStatus.Text = "Generate Complete!";
         }
         #endregion
 
         #region method        
-        private void savedaa()
+        private void Generate()
         {
-            //test
-            //using (WaitForm form = new WaitForm(savedaa))
-            //{
-            //    form.ShowDialog(this);
-            //}
-            for (int i = 0; i <= 500; i++)
-                Thread.Sleep(10);
+            var dto = new IMG2PDFDA();
+            dto = IMG2PDF;
+
+            try
+            {
+                dto.DTO.Model.GenerateType = IMG2PDFGenerateType.UCIMG2PDFF001;
+                dto.Generate(IMG2PDF.DTO);
+                IMG2PDF.DTO.ErrorResults.ERROR_CODE = 0;
+            }
+            catch (Exception ex)
+            {
+                IMG2PDF.DTO.ErrorResults.ERROR_CODE = -1;
+                IMG2PDF.DTO.ErrorResults.ERROR_MESSAGE = ex.Message;
+            }
         }
         private void ClearGenerateStatus()
         {

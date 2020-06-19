@@ -134,10 +134,39 @@ namespace WFA.PDFHelper.UserControls
         private void btnGenerate_Click(object sender, EventArgs e)
         {
             ClearGenerateStatus();
-            var dto = new IMG2PDFDA();
-
             IMG2PDF.DTO.Model.SORT = SORT_TOGGLE_ON == 0 ? true : false;
+          
+            using (WaitForm form = new WaitForm(Generate))
+            {
+                form.ShowDialog(this);
+            }
+
+            if (IMG2PDF.DTO.ErrorResults.ERROR_CODE < 0)
+            {
+                var message = new MassageBoxModel();
+                message.TITLE = "Error";
+                message.MESSAGE = "Please re-check to Generate group image.\r\nDescription: " + IMG2PDF.DTO.ErrorResults.ERROR_MESSAGE;
+                message.BUTTON_TYPE = ButtonType.OK;
+
+                using (MassageBox box = new MassageBox(message))
+                {
+                    box.ShowDialog(this);
+                }
+
+                return;
+            }
+
+            lblGenerateStatus.Text = "Generate Complete!";
+            GenerateResult();
+        }
+        #endregion
+
+        #region method
+        private void Generate()
+        {
+            var dto = new IMG2PDFDA();
             dto = IMG2PDF;
+
             try
             {
                 dto.DTO.Model.GenerateType = IMG2PDFGenerateType.IMG2PDFF002SORT;
@@ -157,26 +186,14 @@ namespace WFA.PDFHelper.UserControls
                     }
 
                 }
-
-                lblGenerateStatus.Text = "Generate Complete!";
-                GenerateResult();
+                IMG2PDF.DTO.ErrorResults.ERROR_CODE = 0;
             }
-            catch(Exception xs)
+            catch (Exception ex)
             {
-                var message = new MassageBoxModel();
-                message.TITLE = "Error";
-                message.MESSAGE = "Please re-check to generate pdf.\r\nDescription: " + xs.Message;
-                message.BUTTON_TYPE = ButtonType.OK;
-
-                using (MassageBox box = new MassageBox(message))
-                {
-                    box.ShowDialog(this);
-                }
+                IMG2PDF.DTO.ErrorResults.ERROR_CODE = -1;
+                IMG2PDF.DTO.ErrorResults.ERROR_MESSAGE = ex.Message;
             }
         }
-        #endregion
-
-        #region method
         private void ClearGenerateStatus()
         {
             lblGenerateStatus.Text = "";
