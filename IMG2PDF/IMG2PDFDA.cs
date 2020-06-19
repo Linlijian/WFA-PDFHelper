@@ -110,6 +110,85 @@ namespace IMG2PDF
         #endregion
 
         #region img 2 pdf multi folder
+        public void SelectFolders(string directory, string searchPatterns = "*.jpg")
+        {
+            string sourceDirectory = directory;
+
+            var allFiles = Directory.EnumerateFiles(sourceDirectory, searchPatterns, SearchOption.AllDirectories);
+            DTO.Model.REGEX_CASE = SessionHelper.XML_CASE_SELECT.Split(new string[] { "0x1010" }, StringSplitOptions.None);
+
+            if (AddFolder(directory))
+                DTO.Model.COUNT_LAST = DTO.Model.IMG2FOLDERModels.Count() - 1;
+
+            foreach (string currentFile in allFiles)
+            {
+                string fileName = currentFile.Substring(sourceDirectory.Length + 1);
+                DTO.Model.ARRAY_FILE = fileName.Split('\\');
+
+
+                if (DTO.Model.ARRAY_FILE.Count() > 1)
+                {
+                    GenerateFolders(fileName, currentFile, directory);
+                }
+            }
+        }
+        private void GenerateFolders(string fileName, string currentFile, string oldPath)
+        {
+            List<string> TMP_ARRAY = new List<string>();
+            DTO.Model.Regex = new Regex("(.*)(?=.*.JPG|.*.jpg)");
+
+            foreach (string folder in DTO.Model.ARRAY_FILE)
+            {
+                DTO.Model.Match = DTO.Model.Regex.Match(folder);
+                if (DTO.Model.Match.Success)
+                {
+                    DTO.Model.IS_MATCH = true;
+                    foreach (string rgCase in DTO.Model.REGEX_CASE)
+                    {
+                        DTO.Model.Regex = new Regex(rgCase);
+                        DTO.Model.Match = DTO.Model.Regex.Match(fileName);
+                        if (DTO.Model.Match.Success)
+                        {
+                            if (IsDup(folder))
+                                break;
+
+                            var model = new SUB_IMG2FOLDERModels
+                            {
+                                FILE_NAME = folder,
+                                FILE_PATH = currentFile,
+                                SUB_FOLDER_NAME = TMP_ARRAY.Last()
+                            };
+                            DTO.Model.IMG2FOLDERModels[DTO.Model.COUNT_LAST].SUB_IMG2FOLDERModels.Add(model);
+
+                            DTO.Model.IS_MATCH = false;
+                            break;
+                        }
+                    }
+
+                    //if all case select
+                    if (DTO.Model.IS_MATCH)
+                    {
+                        if (IsDup(folder))
+                            break;
+
+                        var model = new SUB_IMG2FOLDERModels
+                        {
+                            FILE_NAME = folder,
+                            FILE_PATH = currentFile,
+                            SUB_FOLDER_NAME = TMP_ARRAY.Last()
+                        };
+                        DTO.Model.IMG2FOLDERModels[DTO.Model.COUNT_LAST].SUB_IMG2FOLDERModels.Add(model);
+                    }
+                }
+                else
+                {
+                    TMP_ARRAY.Add(folder);
+                }
+            }
+
+            DTO.Model.IMG2FOLDERModels[DTO.Model.COUNT_LAST].SUB_IMG2FOLDERModels.Last().ARRAY_FOLDER = TMP_ARRAY;
+
+        }
         #endregion
 
         #region add on
@@ -170,10 +249,8 @@ namespace IMG2PDF
                 var allFiles = Directory.EnumerateFiles(sourceDirectory, searchPatterns, SearchOption.AllDirectories);
                 DTO.Model.REGEX_CASE = SessionHelper.XML_CASE_SELECT.Split(new string[] { "0x1010" }, StringSplitOptions.None);
 
-                if (!AddFolder(directory))
-                    return;
-
-                DTO.Model.COUNT_LAST = DTO.Model.IMG2FOLDERModels.Count() - 1;
+                if (AddFolder(directory))
+                    DTO.Model.COUNT_LAST = DTO.Model.IMG2FOLDERModels.Count() - 1;
 
                 foreach (string currentFile in allFiles)
                 {
@@ -206,6 +283,7 @@ namespace IMG2PDF
                         SUB_FOLDER_NAME = "" //if multi
                     };
                     DTO.Model.IS_MATCH = false;
+                    AddModel(DTO.SubModel);
 
                     break;
                 }
@@ -221,18 +299,8 @@ namespace IMG2PDF
                     SUB_FOLDER_NAME = "" //if multi
                 };
                 DTO.Model.IS_MATCH = false;
+                AddModel(DTO.SubModel);
             }
-
-            //add in list
-            if (!DTO.Model.IMG2FOLDERModels[DTO.Model.COUNT_LAST].SUB_IMG2FOLDERModels.IsNullOrEmpty())
-            {
-                DTO.Model.IMG2FOLDERModels[DTO.Model.COUNT_LAST].SUB_IMG2FOLDERModels.Add(DTO.SubModel);
-            }
-            else
-            {
-                DTO.Model.IMG2FOLDERModels[DTO.Model.COUNT_LAST].SUB_IMG2FOLDERModels = DTO.SubModel.ToList();
-            }
-
         }
         private bool AddFolder(string directory)
         {
@@ -242,13 +310,20 @@ namespace IMG2PDF
                 DTO.Model.IMG2FOLDERModels.Add(new IMG2FOLDERModels
                 {
                     FOLDER_NAME = directory.Split('\\').Last(),
-                    FOLDER_PATH = directory
+                    FOLDER_PATH = directory,
+                    SUB_IMG2FOLDERModels = new List<SUB_IMG2FOLDERModels>()
                 });
 
                 return true;
             }
             else
             {
+                for(int i = 0; i < DTO.Model.IMG2FOLDERModels.Count; i++)
+                {
+                    if (DTO.Model.IMG2FOLDERModels[i].FOLDER_NAME == directory.Split('\\').Last())
+                        DTO.Model.COUNT_LAST = i;
+                }
+
                 return false;
             }
         }
@@ -262,13 +337,6 @@ namespace IMG2PDF
         }        
         private bool IsDup(string fileName)
         {
-            //var dup = DTO.Model.IMG2FOLDERModels.Where(
-            //     t => t.SUB_IMG2FOLDERModels.Where(w=>w.FILE_NAME== fileName) == t
-            //     ).FirstOrDefault();
-            //var a = (from model in DTO.Model.IMG2FOLDERModels
-            //         where model.SUB_IMG2FOLDERModels.Where(w => w.FILE_NAME == fileName).FirstOrDefault() == null
-            //         select model.FOLDER_NAME).ToString();
-
             foreach(var model in DTO.Model.IMG2FOLDERModels)
             {
                 var dup2 = model.SUB_IMG2FOLDERModels.Where(w => w.FILE_NAME == fileName).FirstOrDefault();
@@ -284,7 +352,20 @@ namespace IMG2PDF
             }
 
             return true;
-            //return dup.IsNullOrEmpty() ? false : true;
+        }
+        private void AddModel(SUB_IMG2FOLDERModels model)
+        {
+            var del = DTO.Model.IMG2FOLDERModels[DTO.Model.COUNT_LAST].SUB_IMG2FOLDERModels.Where(w => w.FILE_NAME == model.FILE_NAME).FirstOrDefault();
+
+            if (del.IsNullOrEmpty())
+            {
+                DTO.Model.IMG2FOLDERModels[DTO.Model.COUNT_LAST].SUB_IMG2FOLDERModels.Add(model);
+            }
+            else
+            {
+                DTO.Model.IMG2FOLDERModels[DTO.Model.COUNT_LAST].SUB_IMG2FOLDERModels.Remove(del);
+                DTO.Model.IMG2FOLDERModels[DTO.Model.COUNT_LAST].SUB_IMG2FOLDERModels.Add(model);
+            }
         }
         public IMG2PDFDTO test(IMG2PDFDTO dto)
         {

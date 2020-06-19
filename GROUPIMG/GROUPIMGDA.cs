@@ -117,7 +117,7 @@ namespace GROUPIMG
                         OLD_PATH = currentFile,
                         PATH_IMAGE = GenerateOldPath(fileName, DTO.Model.Match.Value)
                     };
-                    DTO.Model.GROUPIMGModels.Add(model);
+                    AddModels(model);
 
                     return;
                 }
@@ -133,7 +133,7 @@ namespace GROUPIMG
                     OLD_PATH = currentFile,
                     PATH_IMAGE = GenerateOldPathEx(fileName, DTO.Model.Match.Value)
                 };
-                DTO.Model.GROUPIMGModels.Add(model);
+                AddModels(model);
             }
         }
         #endregion
@@ -197,8 +197,8 @@ namespace GROUPIMG
                 var allFiles = Directory.EnumerateFiles(sourceDirectory, searchPatterns, SearchOption.AllDirectories);
                 DTO.Model.REGEX_CASE = SessionHelper.XML_CASE_SELECT.Split(new string[] { "0x1010" }, StringSplitOptions.None);
 
-                if (!AddFolder(directory))
-                    return;
+                if (AddFolder(directory))
+                    DTO.Model.COUNT_LAST = DTO.Model.GROUPIMGModels.Count() - 1;
 
                 DTO.Model.COUNT_LAST = DTO.Model.GROUPMultiIMGModels.Count() - 1;
 
@@ -246,7 +246,8 @@ namespace GROUPIMG
                                 PATH_IMAGE = GenerateOldPaths(DTO.Model.Match.Value, TMP_ARRAY, folder, oldPath),
                                 SUB_FOLDER_OLD_PATH = currentFile
                             };
-                            DTO.Model.GROUPMultiIMGModels[DTO.Model.COUNT_LAST].SUB_GROUPIMGModels.Add(model);
+
+                            AddModels(model);
 
                             DTO.Model.IS_MATCH = false;
                             break;
@@ -264,7 +265,8 @@ namespace GROUPIMG
                             PATH_IMAGE = GenerateOldPathsEx(DTO.Model.Match.Value, TMP_ARRAY, folder, oldPath),
                             SUB_FOLDER_OLD_PATH = currentFile
                         };
-                        DTO.Model.GROUPMultiIMGModels[DTO.Model.COUNT_LAST].SUB_GROUPIMGModels.Add(model);
+
+                        AddModels(model);
                     }
                 }
                 else
@@ -400,7 +402,39 @@ namespace GROUPIMG
             }
             else
             {
+                for (int i = 0; i < DTO.Model.GROUPIMGModels.Count; i++)
+                {
+                    if (DTO.Model.GROUPIMGModels[i].FOLDER == directory.Split('\\').Last())
+                        DTO.Model.COUNT_LAST = i;
+                }
                 return false;
+            }
+        }
+        private void AddModels(SUB_GROUPIMGModels model)
+        {
+            var del = DTO.Model.GROUPMultiIMGModels[DTO.Model.COUNT_LAST].SUB_GROUPIMGModels.Where(t => t.FOLDER == model.FOLDER && t.IMAGE == model.IMAGE).FirstOrDefault();
+            if (del.IsNullOrEmpty())
+            {
+                DTO.Model.GROUPMultiIMGModels[DTO.Model.COUNT_LAST].SUB_GROUPIMGModels.Add(model);
+            }
+            else
+            {
+                DTO.Model.GROUPMultiIMGModels[DTO.Model.COUNT_LAST].SUB_GROUPIMGModels.Remove(del);
+                DTO.Model.GROUPMultiIMGModels[DTO.Model.COUNT_LAST].SUB_GROUPIMGModels.Add(model);
+            }
+
+        }
+        private void AddModels(GROUPIMGModels model)
+        {
+            var del = DTO.Model.GROUPIMGModels.Where(t => t.FOLDER == model.FOLDER && t.IMAGE == model.IMAGE).FirstOrDefault();
+            if (del.IsNullOrEmpty())
+            {
+                DTO.Model.GROUPIMGModels.Add(model);
+            }
+            else
+            {
+                DTO.Model.GROUPIMGModels.Remove(del);
+                DTO.Model.GROUPIMGModels.Add(model);
             }
         }
         #endregion

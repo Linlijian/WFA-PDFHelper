@@ -49,5 +49,7 @@ namespace IMG2PDF
         public string FILE_NAME { get; set; }
         public string FILE_PATH { get; set; }
         public string SUB_FOLDER_NAME { get; set; }
+
+        public List<string> ARRAY_FOLDER { get; set; }
     }
 }
