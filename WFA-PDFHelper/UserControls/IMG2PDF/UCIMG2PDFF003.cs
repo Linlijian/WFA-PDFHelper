@@ -49,17 +49,39 @@ namespace WFA.PDFHelper.UserControls
                     {
                         foreach (string folder in dialog.FileNames)
                         {
-                            IMG2PDF.SelectFolder(folder);
+                            IMG2PDF.SelectFolders(folder);
                         }
                     }
 
                     listboxImage.Items.Clear();
-                    foreach (var item in IMG2PDF.DTO.Model.IMG2FOLDERModels)
+                    string strShowList = string.Empty;
+
+                    for (int i = 0; i < IMG2PDF.DTO.Model.IMG2FOLDERModels.Count(); i++)
                     {
-                        for (int i = 0; i < item.SUB_IMG2FOLDERModels.Count(); i++)
+                        var models = IMG2PDF.DTO.Model.IMG2FOLDERModels[i].SUB_IMG2FOLDERModels.GroupBy(t => new { t.SUB_FOLDER_NAME })
+                                      .Select(group => new { SUB_FOLDER = group.Key, ARR = group.ToArray() })
+                                      .ToList();
+                        for (int x = 0; x < models.Count; x++)
                         {
-                            listboxImage.Items.Add(item.FOLDER_NAME + " > " + item.SUB_IMG2FOLDERModels[i].FILE_NAME);
+                            for (int y = 0; y < models[x].ARR.Count(); y++)
+                            {
+                                foreach (var arr in models[x].ARR[y].ARRAY_FOLDER)
+                                {
+                                    if (models[x].ARR[y].ARRAY_FOLDER.Last() != arr)
+                                    {
+                                        strShowList += arr + "=>";
+                                    }
+                                    else
+                                    {
+                                        strShowList += arr + "=>" + models[x].ARR[y].FILE_NAME;
+                                    }
+                                }
+                                listboxImage.Items.Add(IMG2PDF.DTO.Model.IMG2FOLDERModels[i].FOLDER_NAME
+                                                                          + " > " + strShowList);
+                                strShowList = string.Empty;
+                            }
                         }
+
                     }
 
                     if (listboxImage.Items.Count > 0)
@@ -83,34 +105,57 @@ namespace WFA.PDFHelper.UserControls
         }
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            //ClearGenerateStatus();
-            //if (listboxImage.SelectedItems.Count > 0)
-            //{
-            //    foreach (var file in listboxImage.SelectedItems)
-            //    {
-            //        var spl = file.ToString().Split(new string[] { " > " }, StringSplitOptions.None);
-            //        var folder = IMG2PDF.DTO.Model.IMG2FOLDERModels.Where(l => l.FOLDER_NAME == spl.First()).FirstOrDefault();
-            //        var remove = folder.SUB_IMG2FOLDERModels.Where(m => m.FILE_NAME == spl.Last()).FirstOrDefault();
-            //        folder.SUB_IMG2FOLDERModels.Remove(remove);
+            ClearGenerateStatus();
+            if (listboxImage.SelectedItems.Count > 0)
+            {
+                foreach (var file in listboxImage.SelectedItems)
+                {
+                    var spl = file.ToString().Split(new string[] { " > ", "=>" }, StringSplitOptions.None);
+                    var LootFolder = IMG2PDF.DTO.Model.IMG2FOLDERModels.Where(l => l.FOLDER_NAME == spl.First()).FirstOrDefault();
+                    var SubFolder = LootFolder.SUB_IMG2FOLDERModels.Where(w => w.FILE_NAME == spl.Last()).ToList();
 
-            //        IMG2PDF.DTO.Model.IMG2FOLDERModels.MergeObject(folder);
+                    foreach (var remove in SubFolder)
+                    {
+                        LootFolder.SUB_IMG2FOLDERModels.Remove(remove);
+                    }
 
-            //        if (folder.SUB_IMG2FOLDERModels.Count() == 0)
-            //            IMG2PDF.DTO.Model.IMG2FOLDERModels.Remove(folder);
-            //    }
-            //}
+                    IMG2PDF.DTO.Model.IMG2FOLDERModels.MergeObject(LootFolder);
 
-            //listboxImage.Items.Clear();
-            //foreach (var item in IMG2PDF.DTO.Model.IMG2FOLDERModels)
-            //{
-            //    for (int i = 0; i < item.SUB_IMG2FOLDERModels.Count(); i++)
-            //    {
-            //        listboxImage.Items.Add(item.FOLDER_NAME + " > " + item.SUB_IMG2FOLDERModels[i].FILE_NAME);
-            //    }
-            //}
+                    if (LootFolder.SUB_IMG2FOLDERModels.Count() == 0)
+                        IMG2PDF.DTO.Model.IMG2FOLDERModels.Remove(LootFolder);
+                }
+            }
 
-            //if (listboxImage.Items.Count == 0)
-            //    btnDelete.Visible = false;
+            listboxImage.Items.Clear();
+            string strShowList = string.Empty;
+
+            for (int i = 0; i < IMG2PDF.DTO.Model.IMG2FOLDERModels.Count(); i++)
+            {
+                var models = IMG2PDF.DTO.Model.IMG2FOLDERModels[i].SUB_IMG2FOLDERModels.GroupBy(t => new { t.SUB_FOLDER_NAME })
+                              .Select(group => new { SUB_FOLDER = group.Key, ARR = group.ToArray() })
+                              .ToList();
+                for (int x = 0; x < models.Count; x++)
+                {
+                    for (int y = 0; y < models[x].ARR.Count(); y++)
+                    {
+                        foreach (var arr in models[x].ARR[y].ARRAY_FOLDER)
+                        {
+                            if (models[x].ARR[y].ARRAY_FOLDER.Last() != arr)
+                            {
+                                strShowList += arr + "=>";
+                            }
+                            else
+                            {
+                                strShowList += arr + "=>" + models[x].ARR[y].FILE_NAME;
+                            }
+                        }
+                        listboxImage.Items.Add(IMG2PDF.DTO.Model.IMG2FOLDERModels[i].FOLDER_NAME
+                                                                  + " > " + strShowList);
+                        strShowList = string.Empty;
+                    }
+                }
+
+            }
         }
         private void btnSortImage_Click(object sender, EventArgs e)
         {
@@ -132,45 +177,30 @@ namespace WFA.PDFHelper.UserControls
         }
         private void btnGenerate_Click(object sender, EventArgs e)
         {
-            //ClearGenerateStatus();
-            //var dto = new IMG2PDFDA();
+            ClearGenerateStatus();
+            IMG2PDF.DTO.Model.SORT = SORT_TOGGLE_ON == 0 ? true : false;
 
-            //IMG2PDF.DTO.Model.SORT = SORT_TOGGLE_ON == 0 ? true : false;
-            //dto = IMG2PDF;
-            //try
-            //{
-            //    dto.DTO.Model.GenerateType = IMG2PDFGenerateType.IMG2PDFF002SORT;
-            //    dto.GenerateEx(IMG2PDF.DTO);
+            using (WaitForm form = new WaitForm(Generate))
+            {
+                form.ShowDialog(this);
+            }
 
-            //    dto.DTO.Model.GenerateType = IMG2PDFGenerateType.UCIMG2PDFF002;
-            //    int folderCount = IMG2PDF.DTO.Model.IMG2FOLDERModels.Count();
-            //    for (int i = 0; i < folderCount; i++)
-            //    {
-            //        var folder = IMG2PDF.DTO.Model.IMG2FOLDERModels[i];
-            //        FileDuplicate(folder.FOLDER_NAME);
+            if (IMG2PDF.DTO.ErrorResults.ERROR_CODE < 0)
+            {
+                var message = new MassageBoxModel();
+                message.TITLE = "Error";
+                message.MESSAGE = "Please re-check to Generate group image.\r\nDescription: " + IMG2PDF.DTO.ErrorResults.ERROR_MESSAGE;
+                message.BUTTON_TYPE = ButtonType.OK;
 
-            //        if (SessionHelper.SYS_DIALOG_RESULT)
-            //        {
-            //            IMG2PDF.DTO.Model.FOLDER_COUNT = i;
-            //            dto.Generate(IMG2PDF.DTO);
-            //        }
+                using (MassageBox box = new MassageBox(message))
+                {
+                    box.ShowDialog(this);
+                }
 
-            //    }
+                return;
+            }
 
-            //    lblGenerateStatus.Text = "Generate Complete!";
-            //}
-            //catch (Exception xs)
-            //{
-            //    var message = new MassageBoxModel();
-            //    message.TITLE = "Error";
-            //    message.MESSAGE = "Please re-check to generate pdf.\r\nDescription: " + xs.Message;
-            //    message.BUTTON_TYPE = ButtonType.OK;
-
-            //    using (MassageBox box = new MassageBox(message))
-            //    {
-            //        box.ShowDialog(this);
-            //    }
-            //}
+            lblGenerateStatus.Text = "Generate Complete!";
         }
         #endregion
 
@@ -225,6 +255,38 @@ namespace WFA.PDFHelper.UserControls
             }
 
             SessionHelper.SYS_DIALOG_RESULT = true;
+        }
+        private void Generate()
+        {
+            var dto = new IMG2PDFDA();
+            dto = IMG2PDF;
+
+            try
+            {
+                dto.DTO.Model.GenerateType = IMG2PDFGenerateType.IMG2PDFF003SORT;
+                dto.GenerateEx(IMG2PDF.DTO);
+
+                dto.DTO.Model.GenerateType = IMG2PDFGenerateType.UCIMG2PDFF003;
+                int folderCount = IMG2PDF.DTO.Model.IMG2FOLDERModels.Count();
+                for (int i = 0; i < folderCount; i++)
+                {
+                    var folder = IMG2PDF.DTO.Model.IMG2FOLDERModels[i];
+                    FileDuplicate(folder.FOLDER_NAME);
+
+                    if (SessionHelper.SYS_DIALOG_RESULT)
+                    {
+                        IMG2PDF.DTO.Model.FOLDER_COUNT = i;
+                        dto.Generate(IMG2PDF.DTO);
+                    }
+
+                }
+                IMG2PDF.DTO.ErrorResults.ERROR_CODE = 0;
+            }
+            catch (Exception ex)
+            {
+                IMG2PDF.DTO.ErrorResults.ERROR_CODE = -1;
+                IMG2PDF.DTO.ErrorResults.ERROR_MESSAGE = ex.Message;
+            }
         }
         #endregion        
     }

@@ -79,6 +79,52 @@ namespace IMG2PDF
 
             return dto.Model.IMG2FOLDERModels;
         }
+        public static List<IMG2FOLDERModels> IMG2MSort(this IMG2PDFDTO obj)
+        {
+            var dto = new IMG2PDFDTO();
+            int objCount = obj.Model.IMG2FOLDERModels.Count;
+            for (int i = 0; i < objCount; i++)
+            {
+                string[] arr = new string[obj.Model.IMG2FOLDERModels[i].SUB_IMG2FOLDERModels.Count()];
+                var models = obj.Model.IMG2FOLDERModels[i].SUB_IMG2FOLDERModels.GroupBy(t => new { t.SUB_FOLDER_NAME })
+                             .Select(group => new { SUB_FOLDER = group.Key, ARR = group.ToArray() })
+                             .ToList();
+
+                dto.Model.IMG2FOLDERModels.Add(new IMG2FOLDERModels
+                {
+                    FOLDER_NAME = obj.Model.IMG2FOLDERModels[i].FOLDER_NAME,
+                    FOLDER_PATH = obj.Model.IMG2FOLDERModels[i].FOLDER_PATH,
+                    SUB_IMG2FOLDERModels = new List<SUB_IMG2FOLDERModels>()
+                });
+
+                foreach (var item in models)
+                {
+                    string[] arr2 = new string[item.ARR.Count()];
+                    for (int j = 0; j < arr2.Length; j++)
+                    {
+                        arr2[j] = item.ARR[j].FILE_NAME;
+                    }
+
+                    var lists = NaturalSort(arr2);
+
+                    foreach (var newList in lists)
+                    {
+                        var temp = obj.Model.IMG2FOLDERModels[i].SUB_IMG2FOLDERModels.Where(s => s.FILE_NAME == newList).ToList();
+                        dto.Model.IMG2FOLDERModels[i].SUB_IMG2FOLDERModels.Add(new SUB_IMG2FOLDERModels
+                        {
+                            FILE_NAME = temp[0].FILE_NAME,
+                            FILE_PATH = temp[0].FILE_PATH,
+                            SUB_FOLDER_NAME = temp[0].SUB_FOLDER_NAME
+                        });
+                    }
+
+
+                }
+                
+            }
+
+            return dto.Model.IMG2FOLDERModels;
+        }
         private static string GetPath(string _path)
         {
             string[] path = _path.Split('\\');

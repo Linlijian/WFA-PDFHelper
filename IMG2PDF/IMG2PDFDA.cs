@@ -31,6 +31,7 @@ namespace IMG2PDF
             {
                 case IMG2PDFGenerateType.UCIMG2PDFF001: return IM2PCaseSort(dto);
                 case IMG2PDFGenerateType.UCIMG2PDFF002: return GenerateImage2Folder(dto);
+                case IMG2PDFGenerateType.UCIMG2PDFF003: return GenerateImage2MultiFolder(dto);
             }
             return dto;
         }
@@ -39,6 +40,7 @@ namespace IMG2PDF
             switch (dto.Model.GenerateType)
             {
                 case IMG2PDFGenerateType.IMG2PDFF002SORT: return IM2FCaseSort(dto);
+                case IMG2PDFGenerateType.IMG2PDFF003SORT: return IM2MCaseSort(dto);
             }
             return dto;
         }
@@ -110,6 +112,42 @@ namespace IMG2PDF
         #endregion
 
         #region img 2 pdf multi folder
+        public IMG2PDFDTO IM2MCaseSort(IMG2PDFDTO dto)
+        {
+            if (dto.Model.SORT)
+                dto.Model.IMG2FOLDERModels = dto.IMG2MSort();
+            return dto;
+        }
+        public IMG2PDFDTO GenerateImage2MultiFolder(IMG2PDFDTO dto)
+        {
+            var models = dto.Model.IMG2FOLDERModels[dto.Model.FOLDER_COUNT].SUB_IMG2FOLDERModels.GroupBy(t => new { t.SUB_FOLDER_NAME })
+                             .Select(group => new { SUB_FOLDER = group.Key, ARR = group.ToArray() })
+                             .ToList();
+
+            foreach(var model in models)
+            {
+                var doc = new Document();
+                doc.SetMargins(dto.Model.Margin, dto.Model.Margin, dto.Model.Margin, dto.Model.Margin);
+                dto.Model.PageSize = PageSize.A4;
+
+                string path_pdf = GenerateFileName(model.SUB_FOLDER.SUB_FOLDER_NAME.ToString(), dto.Model.IMG2FOLDERModels[dto.Model.FOLDER_COUNT].FOLDER_NAME);
+
+                using (var stream = new FileStream(path_pdf, FileMode.Create, FileAccess.Write, FileShare.None))
+                {
+                    PdfWriter.GetInstance(doc, stream);
+
+                    doc.Open();
+
+                    foreach (var imagePath in model.ARR)
+                    {
+                        CreatePDF(imagePath.FILE_PATH, doc, PageSize.A4);
+                    }
+
+                    doc.Close();
+                }
+            }
+            return dto;
+        }
         public void SelectFolders(string directory, string searchPatterns = "*.jpg")
         {
             string sourceDirectory = directory;
@@ -334,7 +372,17 @@ namespace IMG2PDF
         private string GenerateFileName(string folder)
         {
             return SessionHelper.XML_FOLDER_OUTPUT + "\\" + folder + ".pdf";
-        }        
+        }
+        private string GenerateFileName(string file, string folder)
+        {
+            string dir = SessionHelper.XML_FOLDER_OUTPUT + "\\" + folder;
+            if (!Directory.Exists(dir))
+            {
+                Directory.CreateDirectory(dir);
+            }
+
+            return dir + "\\" + file + ".pdf";
+        }
         private bool IsDup(string fileName)
         {
             foreach(var model in DTO.Model.IMG2FOLDERModels)
