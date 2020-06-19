@@ -105,69 +105,91 @@ namespace WFA.PDFHelper.UserControls
         private void btnGenerate_Click(object sender, EventArgs e)
         {
             ClearGenerateStatus();
-            var dto = new GROUPIMGDA();
-
-            dto = GROUPIMG;
-            try
+            using (WaitForm form = new WaitForm(GenerateMove))
             {
-                dto.DTO.Model.GenerateType = GROUPIMGGenerateType.UCGROUPIMG001;
-                dto.Generate(GROUPIMG.DTO);
-                lblGenerateStatus.Text = "Move Complete!";
-
-                btnMoveBack.Visible = true;
+                form.ShowDialog(this);
             }
-            catch (Exception ex)
+
+            if (GROUPIMG.DTO.ErrorResults.ERROR_CODE < 0)
             {
                 var message = new MassageBoxModel();
                 message.TITLE = "Error";
-                message.MESSAGE = "Please re-check to Generate group image.\r\nDescription: " + ex.Message;
+                message.MESSAGE = "Please re-check to Generate group image.\r\nDescription: " + GROUPIMG.DTO.ErrorResults.ERROR_MESSAGE;
                 message.BUTTON_TYPE = ButtonType.OK;
 
                 using (MassageBox box = new MassageBox(message))
                 {
                     box.ShowDialog(this);
                 }
+
+                return;
             }
+
+            lblGenerateStatus.Text = "Move Complete!";
+            btnMoveBack.Visible = true;
         }
         private void btnMoveBack_Click(object sender, EventArgs e)
         {
             ClearGenerateStatus();
-            var dto = new GROUPIMGDA();
-
-            dto = GROUPIMG;
-            try
+            using (WaitForm form = new WaitForm(GenerateMoveBack))
             {
-                dto.DTO.Model.GenerateType = GROUPIMGGenerateType.UC001SingleOldMove;
-                dto.Generate(GROUPIMG.DTO);
-                lblGenerateStatus.Text = "Move Back Complete!";
-
-                btnMoveBack.Visible = true;
+                form.ShowDialog(this);
             }
-            catch (Exception ex)
+
+            if (GROUPIMG.DTO.ErrorResults.ERROR_CODE < 0)
             {
                 var message = new MassageBoxModel();
                 message.TITLE = "Error";
-                message.MESSAGE = "Please re-check to Move back.\r\nDescription: " + ex.Message;
+                message.MESSAGE = "Please re-check to Generate group image.\r\nDescription: " + GROUPIMG.DTO.ErrorResults.ERROR_MESSAGE;
                 message.BUTTON_TYPE = ButtonType.OK;
 
                 using (MassageBox box = new MassageBox(message))
                 {
                     box.ShowDialog(this);
                 }
+
+                return;
             }
+
+            lblGenerateStatus.Text = "Move Back Complete!";
+            btnMoveBack.Visible = true;
         }
         #endregion
 
         #region method        
-        private void savedaa()
+        private void GenerateMove()
         {
-            //test
-            //using (WaitForm form = new WaitForm(savedaa))
-            //{
-            //    form.ShowDialog(this);
-            //}
-            for (int i = 0; i <= 500; i++)
-                Thread.Sleep(10);
+            var dto = new GROUPIMGDA();
+            dto = GROUPIMG;
+
+            try
+            {
+                dto.DTO.Model.GenerateType = GROUPIMGGenerateType.UCGROUPIMG001;
+                dto.Generate(GROUPIMG.DTO);
+                GROUPIMG.DTO.ErrorResults.ERROR_CODE = 0;
+            }
+            catch (Exception ex)
+            {
+                GROUPIMG.DTO.ErrorResults.ERROR_CODE = -1;
+                GROUPIMG.DTO.ErrorResults.ERROR_MESSAGE = ex.Message;
+            }
+        }
+        private void GenerateMoveBack()
+        {
+            var dto = new GROUPIMGDA();
+            dto = GROUPIMG;
+
+            try
+            {
+                dto.DTO.Model.GenerateType = GROUPIMGGenerateType.UC001SingleOldMove;
+                dto.Generate(GROUPIMG.DTO);
+                GROUPIMG.DTO.ErrorResults.ERROR_CODE = 0;
+            }
+            catch (Exception ex)
+            {
+                GROUPIMG.DTO.ErrorResults.ERROR_CODE = -1;
+                GROUPIMG.DTO.ErrorResults.ERROR_MESSAGE = ex.Message;
+            }
         }
         private void ClearGenerateStatus()
         {
