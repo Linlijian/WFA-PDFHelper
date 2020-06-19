@@ -283,38 +283,60 @@ namespace GROUPIMG
         #region add-in
         private string GenerateFolderName(string folder)
         {
+            string values = string.Empty;
             try
             {
-                DTO.Model.Regex = new Regex(@"[a-zA-Z\d]_?[a-zA-Z\d_.-]+([a-zA-Z\d])(?=.jpg|JPG)");
-                DTO.Model.Match = DTO.Model.Regex.Match(folder);
-                if (DTO.Model.Match.Success)
+                var Regex = new Regex(@"[a-zA-Z\d]_?[a-zA-Z\d_.-]+([a-zA-Z\d])(?=.jpg|JPG)");
+                var Match = Regex.Match(folder);
+                if (Match.Success)
                 {
-                    return DTO.Model.Match.Value;
+                    values = Match.Value;
                 }
                 else
                 {
-                    DTO.Model.Regex = new Regex(@"[a-zA-Z\d]_?[a-zA-Z\d_.-]+([a-zA-Z\d])");
-                    DTO.Model.Match = DTO.Model.Regex.Match(folder);
-                    return DTO.Model.Match.Value;
+                    Regex = new Regex(@"[a-zA-Z\d]_?[a-zA-Z\d_.-]+([a-zA-Z\d])");
+                    Match = Match = Regex.Match(folder);
+                    values = Match.Value;
                 }
+
+                Regex = new Regex(@"-\d{1,2}");
+                Match = Regex.Match(values);
+                if (Match.Success)
+                {
+                    return values.Replace(Match.Value, "");
+                }
+                   
+
+                return values;
             }
             catch { return "AllCase"; }
         }
         private string GenerateFolderNameEx(string fileName)
         {
+            string values = string.Empty;
             try
             {
                 var folder = fileName.Split('\\');
-                DTO.Model.Regex = new Regex(@"[a-zA-Z\d]_?[a-zA-Z\d_.-]+([a-zA-Z\d])(?=.jpg|JPG)");
+                var Regex = new Regex(@"[a-zA-Z\d]_?[a-zA-Z\d_.-]+([a-zA-Z\d])(?=.jpg|JPG)");
+                var Match = Regex.Match(folder.Last());
+
                 if (folder.Count() > 2)
                 {
-                    return folder[folder.Count() - 2];
+                    values = folder[folder.Count() - 2];
                 }
                 else
                 {
-                    DTO.Model.Match = DTO.Model.Regex.Match(folder.Last());
-                    return DTO.Model.Match.Value;
+                    values = Match.Value;
                 }
+
+                Regex = new Regex(@"-\d{1,2}");
+                Match = Regex.Match(values);
+                if (Match.Success)
+                {
+                    return values.Replace(Match.Value, "");
+                }
+
+                return values;
             }
             catch { return "AllCase"; }
         }
