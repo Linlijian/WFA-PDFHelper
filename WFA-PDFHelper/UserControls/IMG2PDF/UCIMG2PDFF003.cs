@@ -273,8 +273,8 @@ namespace WFA.PDFHelper.UserControls
                 {
                     IMG2PDF.DTO.Results.Add(new Results
                     {
-                        CODE = model.SUB_FOLDER.SUB_FOLDER_NAME.ToString(),
-                        FOLDER = IMG2PDF.DTO.Model.IMG2FOLDERModels[i].FOLDER_NAME
+                        CODE = "'" + model.SUB_FOLDER.SUB_FOLDER_NAME.ToString(),
+                        FOLDER = "'" + IMG2PDF.DTO.Model.IMG2FOLDERModels[i].FOLDER_NAME
                     });
                 }
 

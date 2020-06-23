@@ -181,7 +181,7 @@ namespace WFA.PDFHelper.UserControls
             {
                 var code = IMG2PDF.DTO.Model.IMG2PDFModels[i].FILE_NAME;
                 var folder = IMG2PDF.DTO.Model.IMG2PDFModels[i].FILE_PATH.Split('\\');
-                IMG2PDF.DTO.Results.Add(new Results { CODE = code, FOLDER = folder[folder.Count() - 2] });
+                IMG2PDF.DTO.Results.Add(new Results { CODE = "'" + code, FOLDER = "'" + folder[folder.Count() - 2] });
             }
 
             using (ResultList box = new ResultList(IMG2PDF.DTO.Results))
