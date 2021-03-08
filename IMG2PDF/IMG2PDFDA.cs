@@ -187,8 +187,8 @@ namespace IMG2PDF
                         DTO.Model.Match = DTO.Model.Regex.Match(fileName);
                         if (DTO.Model.Match.Success)
                         {
-                            if (IsDup(folder))
-                                break;
+                            //if (IsDup(folder))
+                            //    break;
 
                             var model = new SUB_IMG2FOLDERModels
                             {
@@ -206,8 +206,8 @@ namespace IMG2PDF
                     //if all case select
                     if (DTO.Model.IS_MATCH)
                     {
-                        if (IsDup(folder))
-                            break;
+                        //if (IsDup(folder))
+                        //    break;
 
                         var model = new SUB_IMG2FOLDERModels
                         {
