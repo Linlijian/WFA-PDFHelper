@@ -299,6 +299,10 @@
       <Project>{F42BF853-AB0B-48EB-8333-2D4F53B622AA}</Project>
       <Name>IMG2PDF</Name>
     </ProjectReference>
+    <ProjectReference Include="..\PDF2IMG\PDF2IMG.csproj">
+      <Project>{9709B23D-3BE1-4733-B7E0-1D0E3A26D3B3}</Project>
+      <Name>PDF2IMG</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ScrollBar\ScrollBarLibrary.csproj">
       <Project>{DEBD757C-4D28-446F-BB34-FC366052EFFA}</Project>
       <Name>ScrollBarLibrary</Name>
